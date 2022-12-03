@@ -14,8 +14,6 @@ tasks:
   install:
     desc: Install dependencies.
     cmds:
-      - pip install -U pip
-      - pip install -U poetry
       - poetry install
 
   lint:
