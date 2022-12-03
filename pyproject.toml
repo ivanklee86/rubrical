@@ -68,7 +68,6 @@ setuptools-scm = "^7.0.5"
 twine = "^4.0.2"
 pre-commit = "^2.20.0"
 isort = "^5.10.1"
-coveralls = "^3.3.1"
 
 [build-system]
 requires = ["poetry-core"]
