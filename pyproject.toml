@@ -30,7 +30,9 @@ disable = [
 max-attributes = 25
 max-args = 25
 max-locals = 25
-extension-pkg-allow-list = ["mmh3"]
+
+[tool.isort]
+profile = "black"
 
 [tool.setuptools_scm]
 
@@ -65,6 +67,7 @@ pytest-xdist = "^3.0.2"
 setuptools-scm = "^7.0.5"
 twine = "^4.0.2"
 pre-commit = "^2.20.0"
+isort = "^5.10.1"
 
 [build-system]
 requires = ["poetry-core"]
