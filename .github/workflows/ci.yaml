@@ -19,6 +19,7 @@ jobs:
         uses: arduino/setup-task@v1
       - name: Install packages
         run: |
+          poetry config virtualenvs.create false
           task install
       - name: Linting
         run: |
