@@ -28,8 +28,4 @@ jobs:
       - name: Unit tests
         run: |
           task test
-      - name: Send coverage to Coveralls
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          poetry run coveralls --service=github
+      - uses: codecov/codecov-action@v3
