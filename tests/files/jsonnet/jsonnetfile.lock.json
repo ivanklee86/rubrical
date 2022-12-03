@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "dependencies": [
+    {
+      "source": {
+        "git": {
+          "remote": "https://github.com/jsonnet-libs/k8s-libsonnet.git",
+          "subdir": "1.21"
+        }
+      },
+      "version": "610803705e9ec295ef2e4eeaa6b2f8fc1419e5b1",
+      "sum": "oBuUr4xdPm84ieyRJGy/ON6NV8rlmJK5GmkbFcsmtlI="
+    },
+    {
+      "source": {
+        "git": {
+          "remote": "https://github.com/xunleii/vector_jsonnet.git",
+          "subdir": ""
+        }
+      },
+      "version": "a40e86ebcacf6f396958480dbc4cb111fedfe4f8",
+      "sum": "YkiFwJf/2g96kNLNJA8YyZdfBdAj+lvPAc2J6eyPcdg="
+    }
+  ],
+  "legacyImports": false
+}

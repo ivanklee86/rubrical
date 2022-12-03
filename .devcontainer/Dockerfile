@@ -13,3 +13,6 @@ RUN if [ "${POETRY_VERSION}" != "none" ]; then su vscode -c "umask 0002 && pip3 
 
 # Update pip
 RUN pip install -U pip
+
+# Install task
+RUN npm install -g @go-task/cli
