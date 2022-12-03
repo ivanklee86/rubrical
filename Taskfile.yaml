@@ -19,11 +19,10 @@ tasks:
   lint:
     desc: Run linting tasks.
     cmds:
-      - pylint rubrical
-      - pylint tests
-      - mypy rubrical
+      - poetry run pylint rubrical tests
+      - poetry run mypy rubrical
 
   test:
     desc: Run unit and integration tests
     cmds:
-      - pytest tests/unit tests/integration
+      - poetry run pytest tests/unit tests/integration

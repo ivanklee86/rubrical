@@ -12,16 +12,16 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - name: Set up Python 3.11
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
           python-version: "3.11"
+          cache: poetry
       - name: Install Task
         uses: arduino/setup-task@v1
       - name: Install packages
         run: |
           pip install -U pip
           pip install -U poetry
-          poetry config virtualenvs.create false
           task install
       - name: Linting
         run: |
