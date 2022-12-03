@@ -7,8 +7,16 @@ vars:
 tasks:
   default:
     cmds:
+      - task: install
       - task: lint
       - task: test
+
+  install:
+    desc: Install dependencies.
+    cmds:
+      - pip install -U pip
+      - pip install -U poetry
+      - poetry install
 
   lint:
     desc: Run linting tasks.
