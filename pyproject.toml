@@ -40,7 +40,12 @@ version = "0.0.1"
 description = "A Python CLI to encourage (😅) people to update their dependencies!"
 authors = ["Ivan Lee <ivanklee86@gmail.com>"]
 license = "MIT"
+homepage = "https://github.com/ivanklee86/rubrical"
+repository = "https://github.com/ivanklee86/rubrical"
 readme = "README.md"
+
+[tool.poetry.scripts]
+rubrical = "rubrical.main:app"
 
 [tool.poetry.dependencies]
 python = "^3.11"
