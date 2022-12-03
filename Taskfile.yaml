@@ -7,5 +7,17 @@ vars:
 tasks:
   default:
     cmds:
-      - echo "{{.GREETING}}"
-    silent: true
+      - task: lint
+      - task: test
+
+  lint:
+    desc: Run linting tasks.
+    cmds:
+      - pylint rubrical
+      - pylint tests
+      - mypy rubrical
+
+  test:
+    desc: Run unit and integration tests
+    cmds:
+      - pytest tests/unit tests/integration
