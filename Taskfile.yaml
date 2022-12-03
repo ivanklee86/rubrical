@@ -1,0 +1,28 @@
+# https://taskfile.dev
+version: '3'
+
+vars:
+  GREETING: Hello, World!
+
+tasks:
+  default:
+    cmds:
+      - task: install
+      - task: lint
+      - task: test
+
+  install:
+    desc: Install dependencies.
+    cmds:
+      - poetry install
+
+  lint:
+    desc: Run linting tasks.
+    cmds:
+      - poetry run pylint rubrical tests
+      - poetry run mypy rubrical
+
+  test:
+    desc: Run unit and integration tests
+    cmds:
+      - poetry run pytest tests/unit tests/integration
