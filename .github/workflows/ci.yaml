@@ -29,3 +29,5 @@ jobs:
         run: |
           task test
       - uses: codecov/codecov-action@v3
+        with:
+          files: test_results/cov.xml
