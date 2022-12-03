@@ -3,7 +3,7 @@
 	"build": {
 		"dockerfile": "Dockerfile",
 		"context": "..",
-		"args": { 
+		"args": {
 			// Update 'VARIANT' to pick a Python version: 3, 3.10, 3.9, 3.8, 3.7, 3.6
 			// Append -bullseye or -buster to pin to an OS version.
 			// Use -bullseye variants on local on arm64/Apple Silicon.
@@ -19,7 +19,7 @@
 		// Configure properties specific to VS Code.
 		"vscode": {
 			// Set *default* container specific settings.json values on container create.
-			"settings": { 
+			"settings": {
 				"python.defaultInterpreterPath": "${workspaceFolder}/.venv/bin/python",
 				"python.linting.enabled": true,
 				"python.linting.pylintEnabled": true,
@@ -28,7 +28,7 @@
 				"python.linting.mypyPath": "${workspaceFolder}/.venv/bin/mypy",
 				"python.linting.pylintPath": "${workspaceFolder}/.venv/bin/pylint"
 			},
-			
+
 			// Add the IDs of extensions you want installed when the container is created.
 			"extensions": [
 				"ms-python.python",
@@ -46,7 +46,7 @@
 
 	// Use 'postCreateCommand' to run commands after the container is created.
 	"postCreateCommand": "bash ./.devcontainer/post_install.sh",
-		
+
 	"features": {
 		"ghcr.io/devcontainers/features/docker-in-docker:2": {
 			"dockerDashComposeVersion": "v2"
