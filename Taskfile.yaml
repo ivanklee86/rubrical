@@ -16,10 +16,15 @@ tasks:
     cmds:
       - poetry install
 
+  fix:
+    desc: Run linting and fix issues.
+    cmds:
+      - poetry run ruff rubrical tests --fix
+
   lint:
     desc: Run linting tasks.
     cmds:
-      - poetry run pylint rubrical tests
+      - poetry run ruff rubrical tests
       - poetry run mypy rubrical
 
   test:
