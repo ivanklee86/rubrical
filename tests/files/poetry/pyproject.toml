@@ -31,17 +31,6 @@ max-attributes = 25
 max-args = 25
 max-locals = 25
 
-[tool.pylint.'MESSAGES CONTROL']
-extension-pkg-whitelist = "pydantic"
-
-[tool.ruff]
-# Enable Pyflakes `E` and `F` codes by default.
-select = ["E", "F", "PL", "YTT", "I"]
-ignore = []
-
-fixable = ["I"]
-
-
 [tool.isort]
 profile = "black"
 
@@ -63,12 +52,11 @@ rubrical = "rubrical.main:app"
 [tool.poetry.dependencies]
 python = "^3.11"
 typer = {extras = ["all"], version = "^0.7.0"}
-pydantic = "^1.10.4"
 
 
 [tool.poetry.group.dev.dependencies]
-black = "^23.0.0"
-mypy = "^1.0"
+black = "^22.10.0"
+mypy = "^0.991"
 pytest = "^7.2.0"
 pylint = "^2.15.7"
 pytest-cov = "^4.0.0"
@@ -78,9 +66,8 @@ pytest-mock = "^3.10.0"
 pytest-xdist = "^3.0.2"
 setuptools-scm = "^7.0.5"
 twine = "^4.0.2"
-pre-commit = "^3.0.0"
+pre-commit = "^2.20.0"
 isort = "^5.10.1"
-ruff = "^0.0.246"
 
 [build-system]
 requires = ["poetry-core"]

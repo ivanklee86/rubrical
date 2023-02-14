@@ -15,4 +15,6 @@ RUN if [ "${POETRY_VERSION}" != "none" ]; then su vscode -c "umask 0002 && pip3 
 RUN pip install -U pip
 
 # Install task
-RUN npm install -g @go-task/cli
+RUN sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d
+
+ENV PATH="$HOME/.venv/bin:$PATH"
