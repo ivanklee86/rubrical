@@ -37,7 +37,7 @@ extension-pkg-whitelist = "pydantic"
 [tool.ruff]
 # Enable Pyflakes `E` and `F` codes by default.
 select = ["E", "F", "PL", "YTT", "I"]
-ignore = []
+ignore = ["E501"]
 
 fixable = ["I"]
 
@@ -64,7 +64,7 @@ rubrical = "rubrical.main:app"
 python = "^3.11"
 typer = {extras = ["all"], version = "^0.7.0"}
 pydantic = "^1.10.4"
-
+semver = "^2.13.0"
 
 [tool.poetry.group.dev.dependencies]
 black = "^23.0.0"
