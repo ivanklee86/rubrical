@@ -20,7 +20,7 @@ class DependencyRequirement(BaseModel):
             self._semver_warn = semver.VersionInfo.parse(self.warn)
             self._semver_block = semver.VersionInfo.parse(self.block)
 
-    def check_dependency(self, dependency) -> bool:
+    def check_dependency(self, dependency) -> DependencyCheck:
         if type == DependencyTypes.SEMVER:
             dependency_semver = semver.VersionInfo.parse(dependency.version)
             warn_signal = SemverComparison.GT != semver.compare(
