@@ -12,11 +12,11 @@ repos:
     hooks:
     -   id: black
 -   repo: https://github.com/python-poetry/poetry
-    rev: '1.3.0'
+    rev: '1.4.0'
     hooks:
       - id: poetry-check
 - repo: https://github.com/charliermarsh/ruff-pre-commit
   # Ruff version.
-  rev: 'v0.0.245'
+  rev: 'v0.0.253'
   hooks:
     - id: ruff
