@@ -1,0 +1,12 @@
+{
+    "dependencies": [
+        {
+            "name": "package1",
+            "version": "v1.0.0"
+        },
+        {
+            "name": "package2",
+            "version": "v2.0.0"
+        }
+    ]
+}

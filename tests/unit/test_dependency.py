@@ -1,5 +1,5 @@
 from rubrical.configuration.dependency_requirement import DependencyRequirement
-from rubrical.dependency.dependency import Dependency
+from rubrical.dependency import Dependency
 from rubrical.enum import DependencyCheck
 
 SEMVER_DEPENDENCY_REQUIREMENT = DependencyRequirement(
