@@ -31,3 +31,8 @@ tasks:
     desc: Run unit and integration tests
     cmds:
       - poetry run pytest tests/unit tests/integration
+
+  test-cov:
+    desc: Run unit and integration tests with coverage
+    cmds:
+      - poetry run pytest --cov rubrical --cov-report term --cov-report html:test_results/cov_html --cov-report xml:test_results/cov.xml tests/unit tests/integration

@@ -5,10 +5,6 @@ ignore_missing_imports = true
 
 [tool.pytest.ini_options]
 addopts= """
-    --cov rubrical \
-    --cov-report term \
-    --cov-report html:test_results/cov_html \
-    --cov-report xml:test_results/cov.xml \
     --html=test_results/results.html \
     --self-contained-html \
     --junitxml=test_results/results.xml \
@@ -37,7 +33,7 @@ extension-pkg-whitelist = "pydantic"
 [tool.ruff]
 # Enable Pyflakes `E` and `F` codes by default.
 select = ["E", "F", "PL", "YTT", "I"]
-ignore = ["E501"]
+ignore = ["E501", "PLR2004"]
 
 fixable = ["I"]
 

@@ -27,7 +27,7 @@ jobs:
           task lint
       - name: Unit tests
         run: |
-          task test
+          task test-cov
       - uses: codecov/codecov-action@v3
         with:
           files: test_results/cov.xml
