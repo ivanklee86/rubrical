@@ -7,8 +7,14 @@ from rubrical.dependency import Dependency
 
 class BasePackageManager(abc.ABC):
     target_file: str = ""
-    found_files: Dict[str, str] = {}
-    dependencies: Dict[str, List[Dependency]] = {}
+    found_files: Dict[str, str]
+    dependencies: Dict[str, List[Dependency]]
+
+    def __init__(self) -> None:
+        super().__init__()
+
+        self.found_files = {}
+        self.dependencies = {}
 
     def read_dependency_files(self, current_folder: Path):
         dependency_files = current_folder.rglob(self.target_file)
