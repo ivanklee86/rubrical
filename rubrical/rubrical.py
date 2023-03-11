@@ -32,6 +32,11 @@ class Rubrical:
                 PACKAGE_MANAGER_MAPPING[package_manager.name]()
             )
 
+    def check_package_managers(self):
+        for package_manager in self.package_managers:
+            check_results = self.check_package_manager(package_manager)
+            print(check_results)
+
     def check_package_manager(
         self, package_manager: BasePackageManager
     ) -> List[PackageCheckResult]:

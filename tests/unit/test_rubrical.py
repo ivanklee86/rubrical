@@ -28,9 +28,7 @@ TEST_JSONNET_FOLDER = Path(FILES_FOLDER_PATH, "jsonnet")
 
 def test_rubrical_single():
     test_config = RubricalConfig(**TEST_CONFIG)
-
     rubrical = Rubrical(test_config, TEST_JSONNET_FOLDER)
-
     result = rubrical.check_package_manager(rubrical.package_managers[0])
 
     assert len(result) == 2
@@ -40,3 +38,9 @@ def test_rubrical_single():
         x for x in result if x.name == "jsonnet-libs/argo-workflows-libsonnet"
     ]
     assert dependency_two.check == PackageCheck.BLOCK
+
+def test_rubrical():
+    test_config = RubricalConfig(**TEST_CONFIG)
+    rubrical = Rubrical(test_config, TEST_JSONNET_FOLDER)
+    rubrical.check_package_managers()
+    
