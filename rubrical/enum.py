@@ -14,12 +14,16 @@ class SemverComparison(Enum):
     EQ = 0
 
 
-class DependencyTypes(Enum):
+class PackageTypes(Enum):
     SEMVER = "semver"
     GENERIC = "generic"
 
 
-class DependencyCheck(Enum):
+class PackageCheck(Enum):
     OK = "ok"
     WARN = "warn"
     BLOCK = "block"
+
+
+class SupportedPackageManagers(Enum):
+    JSONNET = "jsonnet"
