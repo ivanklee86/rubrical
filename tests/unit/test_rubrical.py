@@ -39,8 +39,8 @@ def test_rubrical_single():
     ]
     assert dependency_two.check == PackageCheck.BLOCK
 
+
 def test_rubrical():
     test_config = RubricalConfig(**TEST_CONFIG)
     rubrical = Rubrical(test_config, TEST_JSONNET_FOLDER)
     rubrical.check_package_managers()
-    
