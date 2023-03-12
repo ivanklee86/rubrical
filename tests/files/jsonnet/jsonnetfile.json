@@ -18,6 +18,15 @@
         }
       },
       "version": "v0.1.2"
+    },
+    {
+      "source": {
+        "git": {
+          "remote": "git@github.com:jsonnet-libs/argo-workflows-libsonnet.git",
+          "subdir": ""
+        }
+      },
+      "version": "v1.1.1"
     }
   ],
   "legacyImports": true

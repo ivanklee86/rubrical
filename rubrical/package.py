@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 
 
-class Dependency(BaseModel):
+class Package(BaseModel):
     name: str
     version: str
