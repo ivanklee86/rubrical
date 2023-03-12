@@ -15,6 +15,9 @@ class PackageCheckResult:
     name: str
     file: str
     check: PackageCheck
+    version_package: str
+    version_block: str
+    version_warn: str
 
 
 class Rubrical:
@@ -60,6 +63,9 @@ class Rubrical:
                                 name=package.name,
                                 file=file,
                                 check=package_requirements.check_package(package),
+                                version_package=package.version,
+                                version_warn=package_requirements.warn,
+                                version_block=package_requirements.block,
                             )
                         )
 
