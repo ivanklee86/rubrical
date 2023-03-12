@@ -4,7 +4,7 @@ from rich.console import Console
 from rich.table import Table
 
 from rubrical.enum import PackageCheck
-from rubrical.rubrical import PackageCheckResult
+from rubrical.results import PackageCheckResult
 from rubrical.utilities import terminal
 
 
@@ -20,7 +20,8 @@ def terminal_report(
         if result.check == PackageCheck.BLOCK:
             result_text = f"❌ {result.version_package} <= {result.version_block}, update to > {result.version_warn}"
         elif result.check == PackageCheck.WARN:
-            result_text = f"⚠️ {result.version_package} <= {result.version_warn}"
+            # Terminal is cranky about the emoji, needs two spaces.
+            result_text = f"⚠️  {result.version_package} <= {result.version_warn}"
         else:
             result_text = "✅"
 

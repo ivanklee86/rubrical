@@ -1,0 +1,10 @@
+version: 1
+package_managers:
+  - name: jsonnet
+    packages:
+      - name: "xunleii/vector_jsonnet"
+        block: v0.1.0
+        warn: v0.1.2
+      - name: "jsonnet-libs/argo-workflows-libsonnet"
+        block: v1.1.1
+        warn: v1.1.3

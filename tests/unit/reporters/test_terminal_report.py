@@ -1,6 +1,6 @@
 from rubrical.enum import PackageCheck
 from rubrical.reporters import terminal
-from rubrical.rubrical import PackageCheckResult
+from rubrical.results import PackageCheckResult
 
 SAMPLE_DATA = [
     PackageCheckResult("File1.json", "Dep1", PackageCheck.OK, "1.1.1", "", ""),

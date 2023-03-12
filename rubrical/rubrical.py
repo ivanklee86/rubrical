@@ -1,23 +1,14 @@
-from dataclasses import dataclass
 from pathlib import Path
 from typing import List
 
 from rubrical.configuration import RubricalConfig
-from rubrical.enum import PackageCheck, SupportedPackageManagers
+from rubrical.enum import SupportedPackageManagers
 from rubrical.package_managers.base_package_manager import BasePackageManager
 from rubrical.package_managers.jsonnet import Jsonnet
+from rubrical.reporters import terminal
+from rubrical.results import PackageCheckResult
 
 PACKAGE_MANAGER_MAPPING = {SupportedPackageManagers.JSONNET.value: Jsonnet}
-
-
-@dataclass
-class PackageCheckResult:
-    name: str
-    file: str
-    check: PackageCheck
-    version_package: str
-    version_block: str
-    version_warn: str
 
 
 class Rubrical:
@@ -38,7 +29,7 @@ class Rubrical:
     def check_package_managers(self):
         for package_manager in self.package_managers:
             check_results = self.check_package_manager(package_manager)
-            print(check_results)
+            terminal.terminal_report(package_manager.name, check_results)
 
     def check_package_manager(
         self, package_manager: BasePackageManager
