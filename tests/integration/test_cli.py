@@ -18,5 +18,5 @@ def test_cli_basic():
             str(Path(BASE_TEST_PATH)),
         ],
     )
-    assert not result.exit_code
+    assert result.exit_code == 1
     assert "update to" in result.stdout

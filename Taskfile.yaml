@@ -24,6 +24,7 @@ tasks:
   lint:
     desc: Run linting tasks.
     cmds:
+      - poetry run black .
       - poetry run ruff rubrical tests
       - poetry run mypy rubrical
 
