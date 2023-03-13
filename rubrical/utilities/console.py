@@ -7,7 +7,7 @@ def print_header(message: str, emoji: str = "") -> None:
 
 
 def print_message(message: str, emoji: str = "") -> None:
-    rich.print(f"[bold steel_blue1]{f'{emoji} '}{message}[/bold steel_blue1]")
+    rich.print(f"[steel_blue1]{f'{emoji} '}{message}[/steel_blue1]")
 
 
 def print_raw(message: str, emoji: str = "") -> None:

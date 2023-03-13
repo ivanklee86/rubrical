@@ -1,12 +1,13 @@
 from pathlib import Path
-from typing import List
+from typing import List, Tuple
 
 from rubrical.configuration import RubricalConfig
-from rubrical.enum import SupportedPackageManagers
+from rubrical.enum import PackageCheck, SupportedPackageManagers
 from rubrical.package_managers.base_package_manager import BasePackageManager
 from rubrical.package_managers.jsonnet import Jsonnet
 from rubrical.reporters import terminal
 from rubrical.results import PackageCheckResult
+from rubrical.utilities import console
 
 PACKAGE_MANAGER_MAPPING = {SupportedPackageManagers.JSONNET.value: Jsonnet}
 
@@ -26,14 +27,32 @@ class Rubrical:
                 PACKAGE_MANAGER_MAPPING[package_manager.name]()
             )
 
-    def check_package_managers(self):
+    def check_package_managers(self) -> Tuple[bool, bool]:
+        warnings_found = False
+        blocks_found = False
+
         for package_manager in self.package_managers:
             check_results = self.check_package_manager(package_manager)
             terminal.terminal_report(package_manager.name, check_results)
 
+            if (
+                any([x.check == PackageCheck.BLOCK for x in check_results])
+                and not blocks_found
+            ):
+                blocks_found = True
+
+            if (
+                any([x.check == PackageCheck.WARN for x in check_results])
+                and not warnings_found
+            ):
+                warnings_found = True
+
+        return (warnings_found, blocks_found)
+
     def check_package_manager(
         self, package_manager: BasePackageManager
     ) -> List[PackageCheckResult]:
+        console.print_header(f"Grading {package_manager.name}", "🈴")
         check_results: List[PackageCheckResult] = []
 
         package_manager.read_package_manager_files(self.repository_path)
