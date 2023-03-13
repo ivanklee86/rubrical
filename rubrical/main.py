@@ -33,7 +33,7 @@ def rubrical(
         console.print_error("Blocked dependencies found!", "🛑")
     elif warnings_found:
         console.print_header(
-            "Warnings, some dependencies may need updating soon!", "☢️"
+            "Warnings, some dependencies may need updating soon!", "☢️ "
         )
     else:
         console.print_header("All dependencies up to date!", "🟢")
