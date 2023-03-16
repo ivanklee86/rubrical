@@ -27,7 +27,7 @@ def rubrical(
         )
 
     rubrical = Rubrical(configuration, target)
-    (warnings_found, blocks_found) = rubrical.check_package_managers()
+    (warnings_found, blocks_found, _) = rubrical.check_package_managers()
 
     if blocks_found and block:
         console.print_error("Blocked dependencies found!", "🛑")

@@ -1,0 +1,55 @@
+from typing import Dict, List
+
+from github import Github
+
+from rubrical.enum import PackageCheck
+from rubrical.results import PackageCheckResult
+
+
+def _generate_report(reporting_data: Dict[str, List[PackageCheckResult]]):
+    test = """
+# Rubrical Report
+
+"""
+
+    for package_manager in reporting_data.keys():
+        test += f"## {package_manager}\n\n"
+
+        not_ok_results = [
+            x for x in reporting_data[package_manager] if x.check != PackageCheck.OK
+        ]
+        if not_ok_results:
+            test += "| File | Dependency | Result |\n"
+            test += "|------|------------|--------|\n"
+
+            for result in not_ok_results:
+                if result.check == PackageCheck.BLOCK:
+                    test += f"| {result.file} | {result.name} | ❌ {result.version_package} <= {result.version_block}, update to > {result.version_warn} |\n"
+                elif result.check == PackageCheck.WARN:
+                    test += f"| {result.file} | {result.name} | ⚠️ {result.version_package} <= {result.version_warn} |\n"
+        else:
+            test += "🟢 All dependencies up to date!"
+
+    return test
+
+
+def report_github(
+    access_token: str,
+    repository_name: str,
+    pr_id: int,
+    reporting_data: Dict[str, List[PackageCheckResult]],
+):
+    rubrical_report_exists = False
+
+    # Set up Github
+    g = Github(access_token)
+    repo = g.get_repo(repository_name)
+    pr = repo.get_pull(pr_id)
+
+    for issue_comment in pr.get_issue_comments():
+        if "Rubrical Report" in issue_comment.body:
+            issue_comment.edit(_generate_report(reporting_data))
+            rubrical_report_exists = True
+
+    if not rubrical_report_exists:
+        pr.create_issue_comment(_generate_report(reporting_data))
