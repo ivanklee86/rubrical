@@ -12,24 +12,6 @@ addopts= """
 """
 log_file_level="INFO"
 
-[tool.pylint]
-load-plugins="pylint.extensions.no_self_use"
-
-[tool.pylint.messages_control]
-disable = [
-    "line-too-long",
-    "missing-class-docstring",
-    "missing-module-docstring",
-    "missing-function-docstring",
-    "logging-fstring-interpolation"
-]
-max-attributes = 25
-max-args = 25
-max-locals = 25
-
-[tool.pylint.'MESSAGES CONTROL']
-extension-pkg-whitelist = "pydantic"
-
 [tool.ruff]
 # Enable Pyflakes `E` and `F` codes by default.
 select = ["E", "F", "PL", "YTT", "I"]
@@ -37,6 +19,8 @@ ignore = ["E501", "PLR2004"]
 
 fixable = ["I"]
 
+[tool.ruff.pylint]
+max-args = 10
 
 [tool.isort]
 profile = "black"

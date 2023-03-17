@@ -78,25 +78,28 @@ def test_rubrical_single():
 def test_rubrical_blocks():
     test_config = RubricalConfig(**TEST_CONFIG_BLOCK)
     rubrical = Rubrical(test_config, TEST_JSONNET_FOLDER)
-    (warnings_found, blocks_found) = rubrical.check_package_managers()
+    (warnings_found, blocks_found, check_results) = rubrical.check_package_managers()
 
     assert warnings_found
     assert blocks_found
+    assert check_results
 
 
 def test_rubrical_warnings():
     test_config = RubricalConfig(**TEST_CONFIG_WARNINGS)
     rubrical = Rubrical(test_config, TEST_JSONNET_FOLDER)
-    (warnings_found, blocks_found) = rubrical.check_package_managers()
+    (warnings_found, blocks_found, check_results) = rubrical.check_package_managers()
 
     assert warnings_found
     assert not blocks_found
+    assert check_results
 
 
 def test_rubrical_clean():
     test_config = RubricalConfig(**TEST_CONFIG_CLEAN)
     rubrical = Rubrical(test_config, TEST_JSONNET_FOLDER)
-    (warnings_found, blocks_found) = rubrical.check_package_managers()
+    (warnings_found, blocks_found, check_results) = rubrical.check_package_managers()
 
     assert not warnings_found
     assert not blocks_found
+    assert check_results

@@ -4,6 +4,7 @@ import typer
 from benedict import benedict
 
 from rubrical.configuration import RubricalConfig
+from rubrical.reporters import gh
 from rubrical.rubrical import Rubrical
 from rubrical.utilities import console
 
@@ -15,6 +16,17 @@ def rubrical(
     config: Path = typer.Option(Path("rubrical.yaml"), help="Path to configuration"),
     target: Path = typer.Option(Path().absolute(), help="Path to configuration"),
     block: bool = typer.Option(True, "/--no-block", help="Don't fail if blocks found."),
+    repository_name: str = typer.Option(
+        "", envvar="RUBRICAL_REPOSITORY", help="Repository name for reporting purposes."
+    ),
+    pr_id: int = typer.Option(
+        0, envvar="RUBRICAL_PR_ID", help="PR ID for reporting purposes."
+    ),
+    gh_access_token: str = typer.Option(
+        "",
+        envvar="RUBRICAL_GH_TOKEN",
+        help="Github access token for reporting.  Presence will enable Github reporting.",
+    ),
 ):
     console.print_header("Rubrical starting!", "⚙️ ")
 
@@ -27,7 +39,17 @@ def rubrical(
         )
 
     rubrical = Rubrical(configuration, target)
-    (warnings_found, blocks_found, _) = rubrical.check_package_managers()
+    (warnings_found, blocks_found, check_results) = rubrical.check_package_managers()
+
+    if gh_access_token:
+        gh.report_github(
+            access_token=gh_access_token,
+            repository_name=repository_name,
+            pr_id=pr_id,
+            reporting_data=check_results,
+            warnings_found=warnings_found,
+            blocks_found=blocks_found,
+        )
 
     if blocks_found and block:
         console.print_error("Blocked dependencies found!", "🛑")

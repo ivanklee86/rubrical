@@ -4,16 +4,17 @@ from github import Github
 
 from rubrical.enum import PackageCheck
 from rubrical.results import PackageCheckResult
+from rubrical.utilities import console
 
 
 def _generate_report(reporting_data: Dict[str, List[PackageCheckResult]]):
     test = """
-# Rubrical Report
+## [Rubrical](https://github.com/ivanklee86/rubrical) Report
 
 """
 
     for package_manager in reporting_data.keys():
-        test += f"## {package_manager}\n\n"
+        test += f"### {package_manager}\n\n"
 
         not_ok_results = [
             x for x in reporting_data[package_manager] if x.check != PackageCheck.OK
@@ -38,18 +39,26 @@ def report_github(
     repository_name: str,
     pr_id: int,
     reporting_data: Dict[str, List[PackageCheckResult]],
+    warnings_found: bool,
+    blocks_found: bool,
 ):
-    rubrical_report_exists = False
+    if warnings_found or blocks_found:
+        rubrical_report_exists = False
 
-    # Set up Github
-    g = Github(access_token)
-    repo = g.get_repo(repository_name)
-    pr = repo.get_pull(pr_id)
+        # Set up Github
+        g = Github(access_token)
+        repo = g.get_repo(repository_name)
+        pr = repo.get_pull(pr_id)
 
-    for issue_comment in pr.get_issue_comments():
-        if "Rubrical Report" in issue_comment.body:
-            issue_comment.edit(_generate_report(reporting_data))
-            rubrical_report_exists = True
+        for issue_comment in pr.get_issue_comments():
+            if (
+                "[Rubrical](https://github.com/ivanklee86/rubrical) Report"
+                in issue_comment.body
+            ):
+                issue_comment.edit(_generate_report(reporting_data))
+                rubrical_report_exists = True
 
-    if not rubrical_report_exists:
-        pr.create_issue_comment(_generate_report(reporting_data))
+        if not rubrical_report_exists:
+            pr.create_issue_comment(_generate_report(reporting_data))
+    else:
+        console.print_message("Clean report, skipping post to Github comment.")
