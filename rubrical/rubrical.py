@@ -1,5 +1,5 @@
 from pathlib import Path
-from typing import List, Tuple
+from typing import Dict, List, Tuple
 
 from rubrical.configuration import RubricalConfig
 from rubrical.enum import PackageCheck, SupportedPackageManagers
@@ -27,9 +27,12 @@ class Rubrical:
                 PACKAGE_MANAGER_MAPPING[package_manager.name]()
             )
 
-    def check_package_managers(self) -> Tuple[bool, bool]:
+    def check_package_managers(
+        self,
+    ) -> Tuple[bool, bool, Dict[str, List[PackageCheckResult]]]:
         warnings_found = False
         blocks_found = False
+        results: Dict[str, List[PackageCheckResult]] = {}
 
         for package_manager in self.package_managers:
             check_results = self.check_package_manager(package_manager)
@@ -47,7 +50,9 @@ class Rubrical:
             ):
                 warnings_found = True
 
-        return (warnings_found, blocks_found)
+            results[package_manager.name] = check_results
+
+        return (warnings_found, blocks_found, results)
 
     def check_package_manager(
         self, package_manager: BasePackageManager

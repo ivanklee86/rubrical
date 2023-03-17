@@ -12,24 +12,6 @@ addopts= """
 """
 log_file_level="INFO"
 
-[tool.pylint]
-load-plugins="pylint.extensions.no_self_use"
-
-[tool.pylint.messages_control]
-disable = [
-    "line-too-long",
-    "missing-class-docstring",
-    "missing-module-docstring",
-    "missing-function-docstring",
-    "logging-fstring-interpolation"
-]
-max-attributes = 25
-max-args = 25
-max-locals = 25
-
-[tool.pylint.'MESSAGES CONTROL']
-extension-pkg-whitelist = "pydantic"
-
 [tool.ruff]
 # Enable Pyflakes `E` and `F` codes by default.
 select = ["E", "F", "PL", "YTT", "I"]
@@ -37,6 +19,8 @@ ignore = ["E501", "PLR2004"]
 
 fixable = ["I"]
 
+[tool.ruff.pylint]
+max-args = 10
 
 [tool.isort]
 profile = "black"
@@ -62,6 +46,7 @@ typer = {extras = ["all"], version = "^0.7.0"}
 pydantic = "^1.10.4"
 semver = "^2.13.0"
 python-benedict = "^0.29.1"
+pygithub = "^1.58.0"
 
 [tool.poetry.group.dev.dependencies]
 black = "^23.0.0"
@@ -78,6 +63,8 @@ twine = "^4.0.2"
 pre-commit = "^3.0.0"
 isort = "^5.10.1"
 ruff = "^0.0.256"
+python-dotenv = "^1.0.0"
+
 
 [build-system]
 requires = ["poetry-core"]
