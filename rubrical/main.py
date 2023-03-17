@@ -27,6 +27,11 @@ def rubrical(
         envvar="RUBRICAL_GH_TOKEN",
         help="Github access token for reporting.  Presence will enable Github reporting.",
     ),
+    gh_custom_url: str = typer.Option(
+        "",
+        envvar="RUBRICAL_GH_CUSTOM_URL",
+        help="Github Enterprise custom url. e.g. https://github.custom.dev",
+    ),
 ):
     """
     A Python CLI to encourage (😅) people to update their dependencies!
@@ -48,6 +53,7 @@ def rubrical(
     if gh_access_token:
         gh.report_github(
             access_token=gh_access_token,
+            custom_url=gh_custom_url,
             repository_name=repository_name,
             pr_id=pr_id,
             reporting_data=check_results,

@@ -36,6 +36,7 @@ def _generate_report(reporting_data: Dict[str, List[PackageCheckResult]]):
 
 def report_github(
     access_token: str,
+    custom_url: str,
     repository_name: str,
     pr_id: int,
     reporting_data: Dict[str, List[PackageCheckResult]],
@@ -46,7 +47,10 @@ def report_github(
         rubrical_report_exists = False
 
         # Set up Github
-        g = Github(access_token)
+        if custom_url:
+            g = Github(base_url=f"{custom_url}/api/v3", login_or_token=access_token)
+        else:
+            g = Github(access_token)
         repo = g.get_repo(repository_name)
         pr = repo.get_pull(pr_id)
 
