@@ -28,6 +28,10 @@ def rubrical(
         help="Github access token for reporting.  Presence will enable Github reporting.",
     ),
 ):
+    """
+    A Python CLI to encourage (😅) people to update their dependencies!
+    """
+
     console.print_header("Rubrical starting!", "⚙️ ")
 
     console.print_message("Loading configuration.", "📃")
