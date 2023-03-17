@@ -54,12 +54,13 @@ def test_gh_report_contents():
 
 def test_gh_report_noop():
     gh.report_github(
-        os.getenv("RUBRICAL_TEST_GITHUB_ACCESS_TOKEN"),
-        GITHUB_REPO_NAME,
-        GITHUB_TEST_PR,
-        DUMMY_RESULTS,
-        False,
-        False,
+        access_token=os.getenv("RUBRICAL_TEST_GITHUB_ACCESS_TOKEN"),
+        custom_url="",
+        repository_name=GITHUB_REPO_NAME,
+        pr_id=GITHUB_TEST_PR,
+        reporting_data=DUMMY_RESULTS,
+        warnings_found=True,
+        blocks_found=True,
     )
 
 
@@ -68,12 +69,13 @@ def test_gh_report(secrets, github_pr_clean):  # noqa: F811
 
     # Test creation.
     gh.report_github(
-        os.getenv("RUBRICAL_TEST_GITHUB_ACCESS_TOKEN"),
-        GITHUB_REPO_NAME,
-        GITHUB_TEST_PR,
-        DUMMY_RESULTS,
-        True,
-        True,
+        access_token=os.getenv("RUBRICAL_TEST_GITHUB_ACCESS_TOKEN"),
+        custom_url="",
+        repository_name=GITHUB_REPO_NAME,
+        pr_id=GITHUB_TEST_PR,
+        reporting_data=DUMMY_RESULTS,
+        warnings_found=True,
+        blocks_found=True,
     )
 
     # Check comment's created.
@@ -86,12 +88,13 @@ def test_gh_report(secrets, github_pr_clean):  # noqa: F811
 
     # Test upsert
     gh.report_github(
-        os.getenv("RUBRICAL_TEST_GITHUB_ACCESS_TOKEN"),
-        GITHUB_REPO_NAME,
-        GITHUB_TEST_PR,
-        DUMMY_RESULTS,
-        True,
-        True,
+        access_token=os.getenv("RUBRICAL_TEST_GITHUB_ACCESS_TOKEN"),
+        custom_url="",
+        repository_name=GITHUB_REPO_NAME,
+        pr_id=GITHUB_TEST_PR,
+        reporting_data=DUMMY_RESULTS,
+        warnings_found=True,
+        blocks_found=True,
     )
 
     # Check there's still only one comment.
