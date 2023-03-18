@@ -24,6 +24,7 @@ jobs:
       - name: Install packages
         run: |
           task install
+          poetry self add "poetry-dynamic-versioning[plugin]"
       - name: Publish package
         run: |
           task publish
