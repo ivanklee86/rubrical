@@ -38,6 +38,17 @@ tasks:
     cmds:
       - poetry run pytest --cov rubrical --cov-report term --cov-report html:test_results/cov_html --cov-report xml:test_results/cov.xml tests/unit tests/integration
 
+  build:
+    desc: Build artifact
+    cmds:
+      - poetry build
+
+  publish:
+    desc: Publish package to pypi
+    cmds:
+      - task: build
+      - poetry publish --username $PYPI_USERNAME --password $PYPI_PASSWORD
+
   docker-build:
     desc: Builds Docker container for local testing.
     cmds:
