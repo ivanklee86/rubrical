@@ -10,27 +10,34 @@ Supported package managers:
 
 ### Package
 
-_Coming soon!_
+```
+pip install rubrical
+```
 
 ### Docker
 
-_Coming soon!_
+```
+
+```
 
 ## Usage
 
-```bash
-rubrical [OPTIONS]
+```console
+$ rubrical [OPTIONS]
 ```
 
-| Option | Default Value | Description |
-|--------|---------------|-------------|
-| --config | rubrical.yaml | Path to configuration file |
-| --target | Current folder | Path to source code folder |
-| --no-block | n/a | Don't error if blocks found |
-| --repository-name | _Unset_ | Repository name for reporting |
-| --pr-id | _Unset_ | PR ID for reporting |
-| --gh-access-token | _Unset_ | Github access token. Enables Github comments. |
-| --gh-custom-url   | _Unset_ | Github Enterprise custom url e.g. https://github.custom.dev |
+**Options**:
+
+* `--config PATH`: Path to configuration  [default: rubrical.yaml]
+* `--target PATH`: Path to configuration  [default: /workspaces/rubrical]
+* `/--no-block`: Don't fail if blocks found.  [default: True]
+* `--repository-name TEXT`: Repository name for reporting purposes.  [env var: RUBRICAL_REPOSITORY]
+* `--pr-id INTEGER`: PR ID for reporting purposes.  [env var: RUBRICAL_PR_ID; default: 0]
+* `--gh-access-token TEXT`: Github access token for reporting.  Presence will enable Github reporting.  [env var: RUBRICAL_GH_TOKEN]
+* `--gh-custom-url TEXT`: Github Enterprise custom url. e.g. https://github.custom.dev  [env var: RUBRICAL_GH_CUSTOM_URL]
+* `--install-completion`: Install completion for the current shell.
+* `--show-completion`: Show completion for the current shell, to copy it or customize the installation.
+* `--help`: Show this message and exit.
 
 ## Configuration
 
