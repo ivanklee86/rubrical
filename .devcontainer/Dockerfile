@@ -9,15 +9,12 @@ RUN if [ "${NODE_VERSION}" != "none" ]; then su vscode -c "umask 0002 && . /usr/
 
 # [CHOICE] Poetry version: v1.2.2, etc
 ARG POETRY_VERSION="none"
-RUN if [ "${POETRY_VERSION}" != "none" ]; then su vscode -c "umask 0002 && pip3 install poetry==${POETRY_VERSION}"; fi
+RUN if [ "${POETRY_VERSION}" != "none" ]; then su vscode -c "umask 0002 && pipx install poetry==${POETRY_VERSION}"; fi
 
 # Update pip
 RUN pip install -U pip
 
 # Install task
 RUN sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d
-
-# Configure git
-RUN git config --global --add --bool push.autoSetupRemote true
 
 ENV PATH="$HOME/.venv/bin:$PATH"
