@@ -1,10 +1,14 @@
 # rubrical
+
+[![CI](https://github.com/ivanklee86/rubrical/actions/workflows/ci.yaml/badge.svg)](https://github.com/ivanklee86/rubrical/actions/workflows/ci.yaml) [![codecov](https://codecov.io/gh/ivanklee86/rubrical/branch/main/graph/badge.svg?token=9WJM4LBDEX)](https://codecov.io/gh/ivanklee86/rubrical) [![PyPI version](https://badge.fury.io/py/rubrical.svg)](https://badge.fury.io/py/rubrical)
+
 A Python CLI to encourage (😅) people to update their dependencies!
 
 Supported package managers:
 * Jsonnet
 * _More coming soon!_
 
+![rubrical](docs/images/rubrical.png)
 
 ## Installation
 
@@ -17,7 +21,8 @@ pip install rubrical
 ### Docker
 
 ```
-
+docker pull ghcr.io/ivanklee86/rubrical:latest
+docker run --rm -it --name rubrical -v `pwd`/tests/files:/code rubrical:latest --config /code/rubrical.yaml --target /code
 ```
 
 ## Usage

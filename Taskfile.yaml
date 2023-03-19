@@ -58,4 +58,10 @@ tasks:
     desc: Runs Rubrical in Docker container.
     cmds:
       - task: docker-build
+      - docker run --rm -it --name rubrical -v `pwd`/tests/files:/code rubrical:latest --config /code/rubrical.yaml --target /code
+
+  docker-shell:
+    desc: Runs Rubrical in Docker container.
+    cmds:
+      - task: docker-build
       - docker run --rm -it --entrypoint sh --name rubrical rubrical:latest
