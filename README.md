@@ -22,7 +22,7 @@ pip install rubrical
 
 ```
 docker pull ghcr.io/ivanklee86/rubrical:latest
-docker run --rm -it --name rubrical -v `pwd`/tests/files:/code rubrical:latest --config /code/rubrical.yaml --target /code
+docker run --rm -it --name rubrical -v `pwd`/tests/files:/code ghcr.io/ivanklee86/rubrical:latest --config /code/rubrical.yaml --target /code
 ```
 
 ## Usage
