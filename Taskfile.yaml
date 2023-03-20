@@ -52,6 +52,7 @@ tasks:
   docker-build:
     desc: Builds Docker container for local testing.
     cmds:
+      - docker image rm rubrical
       - docker build -t rubrical .
 
   docker:
@@ -64,4 +65,4 @@ tasks:
     desc: Runs Rubrical in Docker container.
     cmds:
       - task: docker-build
-      - docker run --rm -it --entrypoint sh --name rubrical rubrical:latest
+      - docker run --rm -it -v `pwd`/tests/files:/code --entrypoint sh --name rubrical rubrical:latest
