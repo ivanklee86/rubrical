@@ -1,7 +1,7 @@
 from typing import List, Optional
 
 import semver
-from pydantic import BaseModel, PrivateAttr
+from pydantic import BaseModel
 
 from rubrical.enum import PackageCheck, PackageTypes, SemverComparison
 
@@ -11,24 +11,22 @@ class PackageRequirement(BaseModel):
     type: Optional[PackageTypes] = PackageTypes.SEMVER
     warn: str
     block: str
-    _semver_warn: semver.VersionInfo = PrivateAttr
-    _semver_block: semver.VersionInfo = PrivateAttr
-
-    def __init__(self, **data) -> None:
-        super().__init__(**data)
-
-        if type == PackageTypes.SEMVER:
-            self._semver_warn = semver.VersionInfo.parse(self.warn)
-            self._semver_block = semver.VersionInfo.parse(self.block)
 
     def check_package(self, package) -> PackageCheck:
-        if type == PackageTypes.SEMVER:
-            package_semver = semver.VersionInfo.parse(package.version)
-            warn_signal = SemverComparison.GT != semver.compare(
-                package_semver, self._semver_warn
+        if self.type == PackageTypes.SEMVER:
+            package_semver = (
+                package.version[1:]
+                if package.version.startswith("v")
+                else package.version
             )
-            block_signal = SemverComparison.GT != semver.compare(
-                package_semver, self._semver_block
+
+            warn_signal = SemverComparison.GT.value != semver.compare(
+                package_semver,
+                self.warn[1:] if self.warn.startswith("v") else self.warn,
+            )
+            block_signal = SemverComparison.GT.value != semver.compare(
+                package_semver,
+                self.block[1:] if self.block.startswith("v") else self.block,
             )
         else:
             warn_signal = self.warn >= package.version
