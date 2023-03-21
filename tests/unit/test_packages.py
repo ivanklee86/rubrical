@@ -25,3 +25,13 @@ def test_dependency_semver():
     assert PackageCheck.OK == SEMVER_PACKAGE_REQUIREMENT.check_package(
         SEMVER_NEWEST_PACKAGE
     )
+
+
+def test_dependency_actuallysemver():
+    requirement = PackageRequirement(
+        **{"name": "dep1", "type": "semver", "warn": "v1.11.1", "block": "v1.11.0"}
+    )
+
+    package = Package(**{"name": "dep1", "version": "v1.7.0"})
+
+    assert PackageCheck.BLOCK == requirement.check_package(package)
