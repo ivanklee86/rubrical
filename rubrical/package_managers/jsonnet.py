@@ -4,9 +4,9 @@ from typing import List
 from pydantic import BaseModel
 
 from rubrical.enum import SupportedPackageManagers
-from rubrical.package import Package
 from rubrical.package_managers.base_package_manager import BasePackageManager
 from rubrical.package_managers.utilities import git
+from rubrical.schemas.package import Package
 
 
 class JsonnetDependencySourceGit(BaseModel):

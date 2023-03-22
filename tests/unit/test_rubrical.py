@@ -1,9 +1,9 @@
 # ruff: noqa: PLR2004
 from pathlib import Path
 
-from rubrical.configuration import RubricalConfig
 from rubrical.enum import PackageCheck
 from rubrical.rubrical import Rubrical
+from rubrical.schemas.configuration import RubricalConfig
 from tests.constants import FILES_FOLDER_PATH
 
 TEST_CONFIG_BLOCK = {

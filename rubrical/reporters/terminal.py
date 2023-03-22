@@ -4,7 +4,7 @@ from rich.console import Console
 from rich.table import Table
 
 from rubrical.enum import PackageCheck
-from rubrical.results import PackageCheckResult
+from rubrical.schemas.results import PackageCheckResult
 from rubrical.utilities import console
 
 

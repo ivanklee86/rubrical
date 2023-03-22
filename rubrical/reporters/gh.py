@@ -3,7 +3,7 @@ from typing import Dict, List
 from github import Github
 
 from rubrical.enum import PackageCheck
-from rubrical.results import PackageCheckResult
+from rubrical.schemas.results import PackageCheckResult
 from rubrical.utilities import console
 
 

@@ -2,7 +2,7 @@ import os
 
 from rubrical.enum import PackageCheck
 from rubrical.reporters import gh
-from rubrical.results import PackageCheckResult
+from rubrical.schemas.results import PackageCheckResult
 from tests.constants import GITHUB_REPO_NAME, GITHUB_TEST_PR
 from tests.fixtures import github_pr_clean, secrets  # noqa: F401
 

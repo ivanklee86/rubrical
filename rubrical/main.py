@@ -3,9 +3,9 @@ from pathlib import Path
 import typer
 from benedict import benedict
 
-from rubrical.configuration import RubricalConfig
 from rubrical.reporters import gh
 from rubrical.rubrical import Rubrical
+from rubrical.schemas.configuration import RubricalConfig
 from rubrical.utilities import console
 
 app = typer.Typer()
@@ -34,7 +34,7 @@ def rubrical(
     ),
 ):
     """
-    A Python CLI to encourage (😅) people to update their dependencies!
+    A CLI to encourage (😅) people to update their dependencies!
     """
 
     console.print_header("Rubrical starting!", "⚙️ ")

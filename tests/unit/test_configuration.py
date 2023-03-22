@@ -1,5 +1,5 @@
 # ruff: noqa: PLR2004
-from rubrical.configuration import RubricalConfig
+from rubrical.schemas.configuration import RubricalConfig
 
 TEST_CONFIG = {
     "version": 1,

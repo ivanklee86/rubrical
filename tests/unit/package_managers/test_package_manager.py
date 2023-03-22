@@ -1,8 +1,8 @@
 import json
 from pathlib import Path
 
-from rubrical.package import Package
 from rubrical.package_managers.base_package_manager import BasePackageManager
+from rubrical.schemas.package import Package
 from tests.constants import FILES_FOLDER_PATH
 
 
