@@ -1,6 +1,6 @@
-from rubrical.configuration import PackageRequirement
 from rubrical.enum import PackageCheck
-from rubrical.package import Package
+from rubrical.schemas.configuration import PackageRequirement
+from rubrical.schemas.package import Package
 
 SEMVER_PACKAGE_REQUIREMENT = PackageRequirement(
     **{"name": "dep1", "type": "semver", "warn": "v1.0.1", "block": "v1.0.0"}

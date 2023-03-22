@@ -2,7 +2,7 @@ import abc
 from pathlib import Path
 from typing import Dict, List
 
-from rubrical.package import Package
+from rubrical.schemas.package import Package
 
 
 class BasePackageManager(abc.ABC):
