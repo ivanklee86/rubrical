@@ -36,3 +36,13 @@ def test_dependency_actuallysemver():
     package = Package(**{"name": "dep1", "version": "v1.7.0"})
 
     assert PackageCheck.BLOCK == comparison.check_package(requirement, package)
+
+
+def test_dependency_branch():
+    requirement = PackageRequirement(
+        **{"name": "dep1", "type": "semver", "warn": "v1.11.1", "block": "v1.11.0"}
+    )
+
+    package = Package(**{"name": "dep1", "version": "some-random-branch"})
+
+    assert PackageCheck.OK == comparison.check_package(requirement, package)
