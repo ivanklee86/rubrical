@@ -34,7 +34,7 @@ def rubrical(
     ),
 ):
     """
-    A Python CLI to encourage (😅) people to update their dependencies!
+    A CLI to encourage (😅) people to update their dependencies!
     """
 
     console.print_header("Rubrical starting!", "⚙️ ")

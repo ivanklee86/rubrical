@@ -1,6 +1,7 @@
 from pathlib import Path
 from typing import Dict, List, Tuple
 
+from rubrical.comparison import check_package
 from rubrical.enum import PackageCheck, SupportedPackageManagers
 from rubrical.package_managers.base_package_manager import BasePackageManager
 from rubrical.package_managers.jsonnet import Jsonnet
@@ -77,7 +78,7 @@ class Rubrical:
                             PackageCheckResult(
                                 name=package.name,
                                 file=file,
-                                check=package_requirements.check_package(package),
+                                check=check_package(package_requirements, package),
                                 version_package=package.version,
                                 version_warn=package_requirements.warn,
                                 version_block=package_requirements.block,
