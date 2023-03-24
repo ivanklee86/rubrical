@@ -1368,14 +1368,14 @@ testing = ["filelock"]
 
 [[package]]
 name = "python-benedict"
-version = "0.29.1"
+version = "0.30.0"
 description = "python-benedict is a dict subclass with keylist/keypath support, normalized I/O operations (base64, csv, ini, json, pickle, plist, query-string, toml, xls, xml, yaml) and many utilities... for humans, obviously."
 category = "main"
 optional = false
 python-versions = "*"
 files = [
-    {file = "python-benedict-0.29.1.tar.gz", hash = "sha256:0f3fb31811e1a1171e5bc95fbe606c846cb2dd4e190a5fb8fd58ba1cede1bd28"},
-    {file = "python_benedict-0.29.1-py3-none-any.whl", hash = "sha256:bcfe7f7f80a11890fd48e79d73c26a456d85e7b18892545b62e2fc23cb8693a9"},
+    {file = "python-benedict-0.30.0.tar.gz", hash = "sha256:431e2eef5758277224e71c152afad1dec34324ae7b441a4cad9945a705c631f7"},
+    {file = "python_benedict-0.30.0-py3-none-any.whl", hash = "sha256:11fc3c6d3e9d0c7a4d87dc4828fb13519cad1744a5b1b9616185c8ace23ce474"},
 ]
 
 [package.dependencies]
@@ -2057,4 +2057,4 @@ testing = ["big-O", "flake8 (<5)", "jaraco.functools", "jaraco.itertools", "more
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "e923cd9c1b80fd0c31d6f944e77ef98028718a0c63aa7ab0fbc2a3edfff6e402"
+content-hash = "c92e28fa9885071d22ba414388558cff9dadb85e96d7f5ac0721d32f57a9dec4"
