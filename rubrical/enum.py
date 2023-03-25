@@ -1,13 +1,6 @@
 from enum import Enum
 
 
-class ComparisonOperators(Enum):
-    GT = ">"
-    GTE = ">="
-    LT = "<"
-    LTE = "<="
-
-
 class SemverComparison(Enum):
     LT = -1
     GT = 1
@@ -27,3 +20,4 @@ class PackageCheck(Enum):
 
 class SupportedPackageManagers(Enum):
     JSONNET = "jsonnet"
+    PYTHON = "python"

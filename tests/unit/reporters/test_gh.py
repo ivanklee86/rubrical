@@ -52,7 +52,7 @@ def test_gh_report_contents():
     assert "1.1.1 <= 1.1.2, update to > 1.1.3" in text
 
 
-def test_gh_report_noop():
+def test_gh_report_noop(secrets):  # noqa: F811
     gh.report_github(
         access_token=os.getenv("RUBRICAL_TEST_GITHUB_ACCESS_TOKEN"),
         custom_url="",

@@ -48,5 +48,6 @@ class Jsonnet(BasePackageManager):
                 Package(
                     name=git.repository_from_url(dependency.source.git.remote),
                     version=dependency.version,
+                    specifier=self.dependency_specifications.EQ,
                 )
             )
