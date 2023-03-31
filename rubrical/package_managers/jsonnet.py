@@ -3,7 +3,7 @@ from typing import List
 
 from pydantic import BaseModel
 
-from rubrical.enum import SupportedPackageManagers
+from rubrical.enum import DependencySpecifications, SupportedPackageManagers
 from rubrical.package_managers.base_package_manager import BasePackageManager
 from rubrical.package_managers.utilities import git
 from rubrical.schemas.package import Package
@@ -48,6 +48,6 @@ class Jsonnet(BasePackageManager):
                 Package(
                     name=git.repository_from_url(dependency.source.git.remote),
                     version=dependency.version,
-                    specifier=self.dependency_specifications.EQ,
+                    specifier=DependencySpecifications.EQ,
                 )
             )

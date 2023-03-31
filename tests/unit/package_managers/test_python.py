@@ -1,5 +1,6 @@
 from pathlib import Path
 
+from rubrical.enum import DependencySpecifications
 from rubrical.package_managers.python import Python
 from tests.constants import FILES_FOLDER_PATH
 
@@ -15,7 +16,7 @@ def test_python():
     # Check single version specifiers.
     [dep] = [x for x in python.packages["requirements.txt"] if x.name == "docopt"]
     assert dep.version == "0.6.1"
-    assert dep.specifier.value == "=="
+    assert dep.specifier == DependencySpecifications.EQ
 
     # Check for multiple version specifiers.
     [dep] = [
@@ -24,4 +25,4 @@ def test_python():
         if x.name == "something-something"
     ]
     assert dep.version == "1.5"
-    assert dep.specifier.value == ">"
+    assert dep.specifier == DependencySpecifications.GT

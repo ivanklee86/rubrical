@@ -2,7 +2,7 @@ from typing import Optional
 
 from pydantic import BaseModel
 
-from rubrical.aenum import DependencySpecifications
+from rubrical.enum import DependencySpecifications
 
 
 class Package(BaseModel):

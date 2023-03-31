@@ -2,7 +2,7 @@ import abc
 from pathlib import Path
 from typing import Dict, List
 
-from rubrical.aenum import DependencySpecifications
+from rubrical.enum import DependencySpecifications
 from rubrical.schemas.package import Package
 
 
@@ -11,7 +11,15 @@ class BasePackageManager(abc.ABC):
     target_file: str = ""
     found_files: Dict[str, str]
     packages: Dict[str, List[Package]]
-    dependency_specifications = DependencySpecifications
+    specification_symbols: Dict[str, List[str]] = {
+        DependencySpecifications.EQ.value: ["=="],
+        DependencySpecifications.GT.value: [">"],
+        DependencySpecifications.GTE.value: [">=", "=>"],
+        DependencySpecifications.LT.value: ["<"],
+        DependencySpecifications.LTE.value: ["<=", "=<"],
+        DependencySpecifications.NE.value: ["!="],
+        DependencySpecifications.COMPATIBLE.value: [],
+    }
 
     def __init__(self) -> None:
         super().__init__()

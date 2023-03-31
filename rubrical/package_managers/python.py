@@ -1,7 +1,6 @@
-import aenum
 import requirements
 
-from rubrical.enum import SupportedPackageManagers
+from rubrical.enum import DependencySpecifications, SupportedPackageManagers
 from rubrical.package_managers.base_package_manager import BasePackageManager
 from rubrical.schemas.package import Package
 
@@ -13,8 +12,22 @@ class Python(BasePackageManager):
         super().__init__()
 
         self.name = SupportedPackageManagers.PYTHON.value
-        aenum.extend_enum(self.dependency_specifications, "COMPATIBLE", "~=")
-        aenum.extend_enum(self.dependency_specifications, "EXCLUDE", "!=")
+
+        self.specification_symbols = self.specification_symbols | {
+            DependencySpecifications.COMPATIBLE.value: ["~="]
+        }
+
+    def _set_package(self, package_file_filename: str, requirement, spec):
+        for key, value in self.specification_symbols.items():
+            if spec[0] in value:
+                self.append_package(
+                    package_file_filename,
+                    Package(
+                        name=requirement.name,
+                        version=spec[1],
+                        specifier=DependencySpecifications(key),
+                    ),
+                )
 
     def parse_package_manager_file(
         self, package_file_filename: str, package_file_contents: str
@@ -26,32 +39,15 @@ class Python(BasePackageManager):
                 # Handle cases for single specifiers.
                 if len(req.specs) == 1:
                     [spec] = req.specs
-                    if spec[0] in [x.value for x in self.dependency_specifications]:
-                        self.append_package(
-                            package_file_filename,
-                            Package(
-                                name=req.name,
-                                version=spec[1],
-                                specifier=self.dependency_specifications(spec[0]),
-                            ),
-                        )
+                    self._set_package(package_file_filename, req, spec)
                 elif len(req.specs) > 1:
                     [spec] = [
                         x
                         for x in req.specs
                         if x[0]
-                        in [
-                            self.dependency_specifications.GT.value,
-                            self.dependency_specifications.GTE.value,
-                        ]
+                        in self.specification_symbols["GT"]
+                        + self.specification_symbols["GTE"]
                     ]
-                    self.append_package(
-                        package_file_filename,
-                        Package(
-                            name=req.name,
-                            version=spec[1],
-                            specifier=self.dependency_specifications(spec[0]),
-                        ),
-                    )
+                    self._set_package(package_file_filename, req, spec)
                 else:
                     pass

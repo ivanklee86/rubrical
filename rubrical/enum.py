@@ -7,6 +7,16 @@ class SemverComparison(Enum):
     EQ = 0
 
 
+class DependencySpecifications(Enum):
+    EQ = "EQ"
+    GT = "GT"
+    GTE = "GTE"
+    LT = "LT"
+    LTE = "LTE"
+    NE = "NE"
+    COMPATIBLE = "COMPATIBLE"
+
+
 class PackageTypes(Enum):
     SEMVER = "semver"
     GENERIC = "generic"
