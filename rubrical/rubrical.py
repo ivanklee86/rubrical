@@ -5,12 +5,16 @@ from rubrical.comparisons import check_package
 from rubrical.enum import PackageCheck, SupportedPackageManagers
 from rubrical.package_managers.base_package_manager import BasePackageManager
 from rubrical.package_managers.jsonnet import Jsonnet
+from rubrical.package_managers.python import Python
 from rubrical.reporters import terminal
 from rubrical.schemas.configuration import RubricalConfig
 from rubrical.schemas.results import PackageCheckResult
 from rubrical.utilities import console
 
-PACKAGE_MANAGER_MAPPING = {SupportedPackageManagers.JSONNET.value: Jsonnet}
+PACKAGE_MANAGER_MAPPING = {
+    SupportedPackageManagers.JSONNET.value: Jsonnet,
+    SupportedPackageManagers.PYTHON.value: Python,
+}
 
 
 class Rubrical:
