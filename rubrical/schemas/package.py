@@ -8,4 +8,4 @@ from rubrical.enum import DependencySpecifications
 class Package(BaseModel):
     name: str
     version: str
-    specifier: Optional[DependencySpecifications]
+    specifier: Optional[DependencySpecifications] = DependencySpecifications.EQ

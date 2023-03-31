@@ -1,7 +1,7 @@
 from pathlib import Path
 from typing import Dict, List, Tuple
 
-from rubrical.comparison import check_package
+from rubrical.comparisons import check_package
 from rubrical.enum import PackageCheck, SupportedPackageManagers
 from rubrical.package_managers.base_package_manager import BasePackageManager
 from rubrical.package_managers.jsonnet import Jsonnet

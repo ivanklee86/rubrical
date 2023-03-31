@@ -1,4 +1,4 @@
-from rubrical import comparison
+from rubrical.comparisons import check_package
 from rubrical.enum import PackageCheck
 from rubrical.schemas.configuration import PackageRequirement
 from rubrical.schemas.package import Package
@@ -14,16 +14,16 @@ SEMVER_NEWEST_PACKAGE = Package(**{"name": "dep2", "version": "v1.0.2"})
 
 
 def test_dependency_semver():
-    assert PackageCheck.BLOCK == comparison.check_package(
+    assert PackageCheck.BLOCK == check_package(
         SEMVER_PACKAGE_REQUIREMENT, SEMVER_OLD_PACKAGE
     )
-    assert PackageCheck.BLOCK == comparison.check_package(
+    assert PackageCheck.BLOCK == check_package(
         SEMVER_PACKAGE_REQUIREMENT, SEMVER_PACKAGE
     )
-    assert PackageCheck.WARN == comparison.check_package(
+    assert PackageCheck.WARN == check_package(
         SEMVER_PACKAGE_REQUIREMENT, SEMVER_NEWER_PACKAGE
     )
-    assert PackageCheck.OK == comparison.check_package(
+    assert PackageCheck.OK == check_package(
         SEMVER_PACKAGE_REQUIREMENT, SEMVER_NEWEST_PACKAGE
     )
 
@@ -35,7 +35,7 @@ def test_dependency_actuallysemver():
 
     package = Package(**{"name": "dep1", "version": "v1.7.0"})
 
-    assert PackageCheck.BLOCK == comparison.check_package(requirement, package)
+    assert PackageCheck.BLOCK == check_package(requirement, package)
 
 
 def test_dependency_branch():
@@ -45,4 +45,4 @@ def test_dependency_branch():
 
     package = Package(**{"name": "dep1", "version": "some-random-branch"})
 
-    assert PackageCheck.OK == comparison.check_package(requirement, package)
+    assert PackageCheck.OK == check_package(requirement, package)

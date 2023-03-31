@@ -26,6 +26,7 @@ class PackageCheck(Enum):
     OK = "ok"
     WARN = "warn"
     BLOCK = "block"
+    NOOP = "noop"
 
 
 class SupportedPackageManagers(Enum):
