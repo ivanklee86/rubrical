@@ -14,6 +14,10 @@ def print_raw(message: str, emoji: str = "") -> None:
     rich.print(f"{f'{emoji} '}{message}")
 
 
+def print_debug(message: str) -> None:
+    rich.print(f"Debug: {message}")
+
+
 def print_error(message: str, emoji: str = "") -> None:
     rich.print(f"[bold bright_red]{f'{emoji} '}{message}[/bold bright_red]")
     raise typer.Exit(code=1)

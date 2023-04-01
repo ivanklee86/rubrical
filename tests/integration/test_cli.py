@@ -18,6 +18,7 @@ def test_cli_basic():
             str(Path(BASE_TEST_PATH, "files", "rubrical.yaml")),
             "--target",
             str(Path(BASE_TEST_PATH)),
+            "--debug",
         ],
     )
     assert result.exit_code == 1
