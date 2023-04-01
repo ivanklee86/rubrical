@@ -16,9 +16,10 @@ tasks:
     cmds:
       - poetry install
 
-  fix:
+  fmt:
     desc: Run linting and fix issues.
     cmds:
+      - poetry run black .
       - poetry run ruff rubrical tests --fix
 
   lint:

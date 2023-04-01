@@ -8,3 +8,8 @@ package_managers:
       - name: "jsonnet-libs/argo-workflows-libsonnet"
         block: v1.1.1
         warn: v1.1.3
+  - name: python
+    packages:
+      - name: Mopidy-Dirble
+        block: v1.2.1
+        warn: v1.2.2

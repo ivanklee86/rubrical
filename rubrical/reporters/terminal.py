@@ -12,7 +12,7 @@ def terminal_report(
     package_manager_name: str, check_results: List[PackageCheckResult]
 ) -> None:
     # If any unsuccessful checks.
-    if [x for x in check_results if x.check != PackageCheck.OK]:
+    if [x for x in check_results if x.check in [PackageCheck.BLOCK, PackageCheck.WARN]]:
         console.print_message(
             f"[bold][dark_orange]{package_manager_name}[/dark_orange][/bold] checks completed with violations!"
         )

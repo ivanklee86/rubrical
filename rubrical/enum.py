@@ -1,17 +1,20 @@
 from enum import Enum
 
 
-class ComparisonOperators(Enum):
-    GT = ">"
-    GTE = ">="
-    LT = "<"
-    LTE = "<="
-
-
 class SemverComparison(Enum):
     LT = -1
     GT = 1
     EQ = 0
+
+
+class DependencySpecifications(Enum):
+    EQ = "EQ"
+    GT = "GT"
+    GTE = "GTE"
+    LT = "LT"
+    LTE = "LTE"
+    NE = "NE"
+    COMPATIBLE = "COMPATIBLE"
 
 
 class PackageTypes(Enum):
@@ -23,7 +26,9 @@ class PackageCheck(Enum):
     OK = "ok"
     WARN = "warn"
     BLOCK = "block"
+    NOOP = "noop"
 
 
 class SupportedPackageManagers(Enum):
     JSONNET = "jsonnet"
+    PYTHON = "python"

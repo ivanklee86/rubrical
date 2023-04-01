@@ -17,7 +17,9 @@ def _generate_report(reporting_data: Dict[str, List[PackageCheckResult]]):
         test += f"### {package_manager}\n\n"
 
         not_ok_results = [
-            x for x in reporting_data[package_manager] if x.check != PackageCheck.OK
+            x
+            for x in reporting_data[package_manager]
+            if x.check in [PackageCheck.BLOCK, PackageCheck.WARN]
         ]
         if not_ok_results:
             test += "| File | Dependency | Result |\n"
