@@ -7,6 +7,10 @@ SEMVER_PACKAGE_REQUIREMENT = PackageRequirement(
     **{"name": "dep1", "type": "semver", "warn": "v1.0.1", "block": "v1.0.0"}
 )
 
+GENERIC_PACKAGE_REQUIREMENT = PackageRequirement(
+    **{"name": "dep1", "type": "generic", "warn": "v1.0.1", "block": "v1.0.0"}
+)
+
 SEMVER_PACKAGE = Package(**{"name": "dep1", "version": "v1.0.0"})
 SEMVER_OLD_PACKAGE = Package(**{"name": "dep1", "version": "v0.9.0"})
 SEMVER_NEWER_PACKAGE = Package(**{"name": "dep1", "version": "v1.0.1"})
@@ -25,6 +29,12 @@ def test_dependency_semver():
     )
     assert PackageCheck.OK == check_package(
         SEMVER_PACKAGE_REQUIREMENT, SEMVER_NEWEST_PACKAGE
+    )
+
+
+def test_dependency_generic():
+    assert PackageCheck.BLOCK == check_package(
+        GENERIC_PACKAGE_REQUIREMENT, SEMVER_OLD_PACKAGE
     )
 
 
