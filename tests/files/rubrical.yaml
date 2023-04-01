@@ -11,5 +11,5 @@ package_managers:
   - name: python
     packages:
       - name: Mopidy-Dirble
-        block: v1.1.1
-        warn: v1.2.0
+        block: v1.2.1
+        warn: v1.2.2
