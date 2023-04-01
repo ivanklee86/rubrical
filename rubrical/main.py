@@ -32,6 +32,7 @@ def rubrical(
         envvar="RUBRICAL_GH_CUSTOM_URL",
         help="Github Enterprise custom url. e.g. https://github.custom.dev",
     ),
+    debug: bool = typer.Option(False, help="Enable debug messages"),
 ):
     """
     A CLI to encourage (😅) people to update their dependencies!
@@ -47,7 +48,9 @@ def rubrical(
             "Rubrical only supports YAML, JSON, or TOML configuration files"
         )
 
-    rubrical = Rubrical(configuration, target)
+    rubrical = Rubrical(
+        configuration=configuration, repository_path=target, debug=debug
+    )
     (warnings_found, blocks_found, check_results) = rubrical.check_package_managers()
 
     if gh_access_token:

@@ -21,10 +21,14 @@ class Rubrical:
     configuration: RubricalConfig
     package_managers: List[BasePackageManager]
     repository_path: Path
+    debug: bool
 
-    def __init__(self, configuration: RubricalConfig, repository_path: Path) -> None:
+    def __init__(
+        self, configuration: RubricalConfig, repository_path: Path, debug: bool = False
+    ) -> None:
         self.configuration = configuration
         self.repository_path = repository_path
+        self.debug = debug
         self.package_managers = []
 
         for package_manager in self.configuration.package_managers:
@@ -74,9 +78,17 @@ class Rubrical:
             if x.name == package_manager.name
         ]
 
-        for package_requirements in configuration.packages:
-            for file in package_manager.packages.keys():
-                for package in package_manager.packages[file]:
+        for file in package_manager.packages.keys():
+            if self.debug:
+                console.print_debug(f"Processing {file}.")
+
+            for package in package_manager.packages[file]:
+                for package_requirements in configuration.packages:
+                    if self.debug:
+                        console.print_debug(
+                            f"Checking {package.name} @ {package.version}."
+                        )
+
                     if package_requirements.name == package.name:
                         check_results.append(
                             PackageCheckResult(
@@ -88,5 +100,9 @@ class Rubrical:
                                 version_block=package_requirements.block,
                             )
                         )
+                        if self.debug:
+                            console.print_debug(
+                                f"Check result for {package.name} @ {package.version} is {check_results[-1].check.value}."
+                            )
 
         return check_results

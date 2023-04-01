@@ -2,7 +2,7 @@
 
 [![CI](https://github.com/ivanklee86/rubrical/actions/workflows/ci.yaml/badge.svg)](https://github.com/ivanklee86/rubrical/actions/workflows/ci.yaml) [![codecov](https://codecov.io/gh/ivanklee86/rubrical/branch/main/graph/badge.svg?token=9WJM4LBDEX)](https://codecov.io/gh/ivanklee86/rubrical) [![PyPI version](https://badge.fury.io/py/rubrical.svg)](https://badge.fury.io/py/rubrical)
 
-A Python CLI to encourage (😅) people to update their dependencies!
+A CLI to encourage (😅) people to update their dependencies!
 
 Supported package managers:
 * Python (requirements.txt)
@@ -37,6 +37,7 @@ $ rubrical [OPTIONS]
 * `--config PATH`: Path to configuration  [default: rubrical.yaml]
 * `--target PATH`: Path to configuration  [default: /workspaces/rubrical]
 * `/--no-block`: Don't fail if blocks found.  [default: True]
+* `--debug / --no-debug`: Enable debug messages  [default: no-debug]
 * `--repository-name TEXT`: Repository name for reporting purposes.  [env var: RUBRICAL_REPOSITORY]
 * `--pr-id INTEGER`: PR ID for reporting purposes.  [env var: RUBRICAL_PR_ID; default: 0]
 * `--gh-access-token TEXT`: Github access token for reporting.  Presence will enable Github reporting.  [env var: RUBRICAL_GH_TOKEN]
