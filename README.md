@@ -5,6 +5,7 @@
 A Python CLI to encourage (😅) people to update their dependencies!
 
 Supported package managers:
+* Python (requirements.txt)
 * Jsonnet
 * _More coming soon!_
 
@@ -51,6 +52,11 @@ The `rubrical.yaml` file is used to configure checks for your application.
 ```yaml
 version: 1
 package_managers:
+  - name: python
+    packages:
+      - name: Mopidy-Dirble
+        block: v1.2.1
+        warn: v1.2.2
   - name: jsonnet
     packages:
       - name: "xunleii/vector_jsonnet" # Name of the dependency
