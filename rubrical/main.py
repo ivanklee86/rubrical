@@ -32,7 +32,9 @@ def rubrical(
         envvar="RUBRICAL_GH_CUSTOM_URL",
         help="Github Enterprise custom url. e.g. https://github.custom.dev",
     ),
-    debug: bool = typer.Option(False, help="Enable debug messages"),
+    debug: bool = typer.Option(
+        False, envvar="RUBGRICAL_DEBUG", help="Enable debug messages"
+    ),
 ):
     """
     A CLI to encourage (😅) people to update their dependencies!
