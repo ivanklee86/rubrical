@@ -13,3 +13,8 @@ package_managers:
       - name: Mopidy-Dirble
         block: v1.1.1
         warn: v1.2.0
+  - name: go
+    packages:
+      - name: github.com/adrg/xdg
+        block: v0.3.0
+        warn: v0.4.0
