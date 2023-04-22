@@ -35,7 +35,7 @@ class Rubrical:
 
         for package_manager in self.configuration.package_managers:
             self.package_managers.append(
-                PACKAGE_MANAGER_MAPPING[package_manager.name]()
+                PACKAGE_MANAGER_MAPPING[package_manager.name]()  #  type:  ignore
             )
 
     def check_package_managers(
