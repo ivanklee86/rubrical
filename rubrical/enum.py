@@ -32,3 +32,4 @@ class PackageCheck(Enum):
 class SupportedPackageManagers(Enum):
     JSONNET = "jsonnet"
     PYTHON = "python"
+    GO = "go"
