@@ -6,6 +6,7 @@ A CLI to encourage (😅) people to update their dependencies!
 
 Supported package managers:
 * Python (requirements.txt)
+* Go (go.mod)
 * Jsonnet
 * _More coming soon!_
 

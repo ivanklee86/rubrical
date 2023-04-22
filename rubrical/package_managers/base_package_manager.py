@@ -44,5 +44,7 @@ class BasePackageManager(abc.ABC):
         self.packages[package_file_filename].append(package)
 
     @abc.abstractmethod
-    def parse_package_manager_file(self, package_file_filename: str, package_file: str):
+    def parse_package_manager_file(
+        self, package_file_filename: str, package_file: str
+    ) -> None:
         pass
