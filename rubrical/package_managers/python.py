@@ -6,7 +6,7 @@ from rubrical.schemas.package import Package
 
 
 class Python(BasePackageManager):
-    target_file = "requirements.txt"
+    target_files = ["requirements.txt"]
 
     def __init__(self) -> None:
         super().__init__()
@@ -14,7 +14,7 @@ class Python(BasePackageManager):
         self.name = SupportedPackageManagers.PYTHON.value
 
         self.specification_symbols = self.specification_symbols | {
-            DependencySpecifications.COMPATIBLE.value: ["~="]
+            DependencySpecifications.APPROX_EQ.value: ["~="]
         }
 
     def _set_package(self, package_file_filename: str, requirement, spec):

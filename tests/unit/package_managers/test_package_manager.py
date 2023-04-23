@@ -7,7 +7,7 @@ from tests.constants import FILES_FOLDER_PATH
 
 
 class TestPackageManager(BasePackageManager):
-    target_file = "test.json"
+    target_files = ["test.json"]
 
     def parse_package_manager_file(self, package_file_filename: str, package_file: str):
         file_json = json.loads(package_file)

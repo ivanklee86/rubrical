@@ -30,9 +30,20 @@ def test_semver_gt():
     assert result == PackageCheck.NOOP
 
 
-def test_semver_compatable():
+def test_semver_approx_eq():
     package = Package(
-        name="dep1", version="1", specifier=DependencySpecifications.COMPATIBLE
+        name="dep1", version="1", specifier=DependencySpecifications.APPROX_EQ
+    )
+
+    result = semversion.compare_package_semver(
+        package=package, package_requirement=SEMVER_PACKAGE_REQUIREMENT
+    )
+    assert result == PackageCheck.OK
+
+
+def test_semver_compatible():
+    package = Package(
+        name="dep1", version="1.1", specifier=DependencySpecifications.COMPATIBLE
     )
 
     result = semversion.compare_package_semver(
@@ -43,7 +54,7 @@ def test_semver_compatable():
 
 def test_semver_warn():
     package = Package(
-        name="dep1", version="1.7", specifier=DependencySpecifications.COMPATIBLE
+        name="dep1", version="1.7", specifier=DependencySpecifications.APPROX_EQ
     )
 
     result = semversion.compare_package_semver(

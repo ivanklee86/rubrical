@@ -6,7 +6,7 @@ from rubrical.schemas.package import Package
 
 
 class Go(BasePackageManager):
-    target_file = "go.mod"
+    target_files = ["go.mod"]
 
     def __init__(self) -> None:
         super().__init__()

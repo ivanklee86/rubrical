@@ -15,6 +15,7 @@ class DependencySpecifications(Enum):
     LTE = "LTE"
     NE = "NE"
     COMPATIBLE = "COMPATIBLE"
+    APPROX_EQ = "APPROX_EQ"
 
 
 class PackageTypes(Enum):
@@ -33,3 +34,4 @@ class SupportedPackageManagers(Enum):
     JSONNET = "jsonnet"
     PYTHON = "python"
     GO = "go"
+    NODEJS = "nodejs"

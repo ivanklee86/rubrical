@@ -28,7 +28,7 @@ class JsonnetFile(BaseModel):
 
 
 class Jsonnet(BasePackageManager):
-    target_file = "jsonnetfile.json"
+    target_files = ["jsonnetfile.json"]
 
     def __init__(self) -> None:
         super().__init__()
