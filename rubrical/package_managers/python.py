@@ -14,7 +14,7 @@ class Python(BasePackageManager):
         self.name = SupportedPackageManagers.PYTHON.value
 
         self.specification_symbols = self.specification_symbols | {
-            DependencySpecifications.COMPATIBLE.value: ["~="]
+            DependencySpecifications.APPROX_EQ.value: ["~="]
         }
 
     def _set_package(self, package_file_filename: str, requirement, spec):

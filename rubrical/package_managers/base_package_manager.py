@@ -1,6 +1,6 @@
 import abc
 from pathlib import Path
-from typing import Dict, List
+from typing import Dict, List, Tuple
 
 from rubrical.enum import DependencySpecifications
 from rubrical.schemas.package import Package
@@ -19,6 +19,7 @@ class BasePackageManager(abc.ABC):
         DependencySpecifications.LTE.value: ["<=", "=<"],
         DependencySpecifications.NE.value: ["!="],
         DependencySpecifications.COMPATIBLE.value: [],
+        DependencySpecifications.APPROX_EQ.value: [],
     }
 
     def __init__(self) -> None:
@@ -45,6 +46,22 @@ class BasePackageManager(abc.ABC):
 
     def append_package(self, package_file_filename: str, package: Package):
         self.packages[package_file_filename].append(package)
+
+    def match_from_specification_symbols(
+        self, version: str
+    ) -> Tuple[DependencySpecifications, str]:
+        specficiation = DependencySpecifications.EQ
+        sanitized_version = version
+
+        for key, specification_symbols in self.specification_symbols.items():
+            if any(symbol in version for symbol in specification_symbols):
+                specficiation = DependencySpecifications[key]
+
+                for symbol in specification_symbols:
+                    for symbol_char in symbol:
+                        sanitized_version = sanitized_version.replace(symbol_char, "")
+
+        return (specficiation, sanitized_version)
 
     @abc.abstractmethod
     def parse_package_manager_file(

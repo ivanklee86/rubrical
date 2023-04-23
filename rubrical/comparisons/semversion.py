@@ -31,8 +31,17 @@ def compare_package_semver(
         DependencySpecifications.GTE,
     ]:
         result = PackageCheck.NOOP
+    elif package.specifier == DependencySpecifications.APPROX_EQ:
+        parsed_version = __semver_conversion(package.version).split(".")
+        if len(parsed_version) < 3:
+            parsed_version += ["999999"] * (3 - len(parsed_version))
+        package_semver = ".".join(parsed_version)
     elif package.specifier == DependencySpecifications.COMPATIBLE:
         parsed_version = __semver_conversion(package.version).split(".")
+        for idx in reversed(range(len(parsed_version))):
+            if parsed_version[idx]:
+                parsed_version[idx] = "999999"
+                break
         if len(parsed_version) < 3:
             parsed_version += ["999999"] * (3 - len(parsed_version))
         package_semver = ".".join(parsed_version)
