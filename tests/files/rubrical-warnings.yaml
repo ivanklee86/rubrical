@@ -18,3 +18,8 @@ package_managers:
       - name: github.com/adrg/xdg
         block: v0.3.0
         warn: v0.4.0
+  - name: nodejs
+    packages:
+      - name: react
+        block: v17.0.1
+        warn: v17.0.2
