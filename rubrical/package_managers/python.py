@@ -6,7 +6,7 @@ from rubrical.schemas.package import Package
 
 
 class Python(BasePackageManager):
-    target_file = "requirements.txt"
+    target_files = ["requirements.txt"]
 
     def __init__(self) -> None:
         super().__init__()

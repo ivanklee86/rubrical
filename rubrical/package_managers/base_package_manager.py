@@ -8,7 +8,7 @@ from rubrical.schemas.package import Package
 
 class BasePackageManager(abc.ABC):
     name: str = ""
-    target_file: str = ""
+    target_files: List[str] = []
     found_files: Dict[str, str]
     packages: Dict[str, List[Package]]
     specification_symbols: Dict[str, List[str]] = {
@@ -28,7 +28,10 @@ class BasePackageManager(abc.ABC):
         self.packages = {}
 
     def read_package_manager_files(self, current_folder: Path):
-        package_manager_files = current_folder.rglob(self.target_file)
+        package_manager_files: List[Path] = []
+
+        for target_file in self.target_files:
+            package_manager_files.extend(current_folder.rglob(target_file))
 
         for package_manager_file in package_manager_files:
             with open(str(package_manager_file), "r") as file:
