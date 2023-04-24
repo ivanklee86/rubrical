@@ -1,7 +1,5 @@
 import json
 
-from benedict import benedict
-
 from rubrical.enum import DependencySpecifications, SupportedPackageManagers
 from rubrical.package_managers.base_package_manager import BasePackageManager
 from rubrical.schemas.package import Package
@@ -24,7 +22,7 @@ class NodeJS(BasePackageManager):
         self, package_file_filename: str, package_file_contents: str
     ):
         self.packages[package_file_filename] = []
-        package_json = benedict(json.loads(package_file_contents))
+        package_json = json.loads(package_file_contents)
 
         for dependency_key in [
             x for x in package_json.keys() if "dependencies" in x.lower()
