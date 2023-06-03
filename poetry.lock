@@ -1344,14 +1344,14 @@ testing = ["filelock"]
 
 [[package]]
 name = "python-benedict"
-version = "0.30.0"
-description = "python-benedict is a dict subclass with keylist/keypath support, normalized I/O operations (base64, csv, ini, json, pickle, plist, query-string, toml, xls, xml, yaml) and many utilities... for humans, obviously."
+version = "0.30.2"
+description = "python-benedict is a dict subclass with keylist/keypath/keyattr support, normalized I/O operations (base64, csv, ini, json, pickle, plist, query-string, toml, xls, xml, yaml) and many utilities... for humans, obviously."
 category = "main"
 optional = false
 python-versions = "*"
 files = [
-    {file = "python-benedict-0.30.0.tar.gz", hash = "sha256:431e2eef5758277224e71c152afad1dec34324ae7b441a4cad9945a705c631f7"},
-    {file = "python_benedict-0.30.0-py3-none-any.whl", hash = "sha256:11fc3c6d3e9d0c7a4d87dc4828fb13519cad1744a5b1b9616185c8ace23ce474"},
+    {file = "python-benedict-0.30.2.tar.gz", hash = "sha256:c1dff17fcf2066b7b5c0316c9383f398025806a6bd571a18839431e6be1f005d"},
+    {file = "python_benedict-0.30.2-py3-none-any.whl", hash = "sha256:f167df8ba56979c2e1f80d0449fb35627af05665fca1b1b4ec68a5435ef53898"},
 ]
 
 [package.dependencies]
@@ -1362,7 +1362,7 @@ openpyxl = {version = ">=3.0.0,<4.0.0", optional = true, markers = "extra == \"x
 phonenumbers = ">=8.12.0,<9.0.0"
 python-dateutil = ">=2.8.0,<3.0.0"
 python-fsutil = ">=0.9.3,<1.0.0"
-python-slugify = ">=6.0.1,<9.0.0"
+python-slugify = ">=7.0.0,<9.0.0"
 pyyaml = {version = ">=6.0,<7.0", optional = true, markers = "extra == \"yaml\""}
 requests = ">=2.26.0,<3.0.0"
 toml = {version = ">=0.10.2,<1.0.0", optional = true, markers = "extra == \"toml\""}
