@@ -31,8 +31,7 @@
     {
       "source": {
         "git": {
-          "remote": "git@github.com:jsonnet-libs/argo-workflows-libsonAWESOME.git",
-          "subdir": ""
+          "remote": "git@github.com:jsonnet-libs/argo-workflows-libsonAWESOME.git"
         }
       },
       "version": "random-branch"

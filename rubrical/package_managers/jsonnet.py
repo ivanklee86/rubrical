@@ -1,5 +1,5 @@
 import json
-from typing import List
+from typing import List, Optional
 
 from pydantic import BaseModel
 
@@ -11,7 +11,7 @@ from rubrical.schemas.package import Package
 
 class JsonnetDependencySourceGit(BaseModel):
     remote: str
-    subdir: str
+    subdir: Optional[str] = ""
 
 
 class JsonnetDependencySource(BaseModel):
