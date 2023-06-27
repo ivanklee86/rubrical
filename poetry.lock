@@ -1378,23 +1378,23 @@ testing = ["filelock"]
 
 [[package]]
 name = "python-benedict"
-version = "0.30.2"
+version = "0.31.0"
 description = "python-benedict is a dict subclass with keylist/keypath/keyattr support, normalized I/O operations (base64, csv, ini, json, pickle, plist, query-string, toml, xls, xml, yaml) and many utilities... for humans, obviously."
 category = "main"
 optional = false
 python-versions = "*"
 files = [
-    {file = "python-benedict-0.30.2.tar.gz", hash = "sha256:c1dff17fcf2066b7b5c0316c9383f398025806a6bd571a18839431e6be1f005d"},
-    {file = "python_benedict-0.30.2-py3-none-any.whl", hash = "sha256:f167df8ba56979c2e1f80d0449fb35627af05665fca1b1b4ec68a5435ef53898"},
+    {file = "python-benedict-0.31.0.tar.gz", hash = "sha256:845a30c9f18141d73402a2d3114dc02de151af0e307c1ae3b528e3b7dbf3f99e"},
+    {file = "python_benedict-0.31.0-py3-none-any.whl", hash = "sha256:c1e45d6dab753d1ac7b990cbf2b85701d8dbb1411528916a9c73c3b3270e82e7"},
 ]
 
 [package.dependencies]
 boto3 = {version = ">=1.24.89,<2.0.0", optional = true, markers = "extra == \"s3\""}
-ftfy = ">=6.0.0,<7.0.0"
-mailchecker = ">=4.1.0,<6.0.0"
+ftfy = {version = ">=6.0.0,<7.0.0", optional = true, markers = "extra == \"parse\""}
+mailchecker = {version = ">=4.1.0,<6.0.0", optional = true, markers = "extra == \"parse\""}
 openpyxl = {version = ">=3.0.0,<4.0.0", optional = true, markers = "extra == \"xls\""}
-phonenumbers = ">=8.12.0,<9.0.0"
-python-dateutil = ">=2.8.0,<3.0.0"
+phonenumbers = {version = ">=8.12.0,<9.0.0", optional = true, markers = "extra == \"parse\""}
+python-dateutil = {version = ">=2.8.0,<3.0.0", optional = true, markers = "extra == \"parse\""}
 python-fsutil = ">=0.9.3,<1.0.0"
 python-slugify = ">=7.0.0,<9.0.0"
 pyyaml = {version = ">=6.0,<7.0", optional = true, markers = "extra == \"yaml\""}
@@ -1404,8 +1404,9 @@ xlrd = {version = ">=2.0.0,<3.0.0", optional = true, markers = "extra == \"xls\"
 xmltodict = {version = ">=0.12.0,<1.0.0", optional = true, markers = "extra == \"xml\""}
 
 [package.extras]
-all = ["python-benedict[io,s3]"]
+all = ["python-benedict[io,parse,s3]"]
 io = ["python-benedict[toml,xls,xml,yaml]"]
+parse = ["ftfy (>=6.0.0,<7.0.0)", "mailchecker (>=4.1.0,<6.0.0)", "phonenumbers (>=8.12.0,<9.0.0)", "python-dateutil (>=2.8.0,<3.0.0)"]
 s3 = ["boto3 (>=1.24.89,<2.0.0)"]
 toml = ["toml (>=0.10.2,<1.0.0)"]
 xls = ["openpyxl (>=3.0.0,<4.0.0)", "xlrd (>=2.0.0,<3.0.0)"]
@@ -2078,4 +2079,4 @@ testing = ["big-O", "flake8 (<5)", "jaraco.functools", "jaraco.itertools", "more
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "5c72377087e612b4e02f7dcefb5e79d6b1c59299e74bcc766e889fea040a6d5d"
+content-hash = "e76cf99da09ae42e1a6ad4c901ba6f3aec605ddeefc13317b91c906d3e150d84"
