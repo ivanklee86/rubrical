@@ -12,11 +12,17 @@ def test_python():
     python.parse_package_manager_files()
 
     assert len(python.packages["requirements.txt"]) == 5
+    assert len(python.packages["pyproject.toml"]) == 2
 
     # Check single version specifiers.
     [dep] = [x for x in python.packages["requirements.txt"] if x.name == "docopt"]
     assert dep.version == "0.6.1"
     assert dep.specifier == DependencySpecifications.EQ
+
+    # Check pyproject.toml parsing
+    [dep] = [x for x in python.packages["pyproject.toml"] if x.name == "apscheduler"]
+    assert dep.version == "4.0.0"
+    assert dep.specifier == DependencySpecifications.LT
 
     # Check for multiple version specifiers.
     [dep] = [

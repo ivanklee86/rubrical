@@ -1,4 +1,6 @@
+import pyproject_parser
 import requirements
+import tomllib
 
 from rubrical.enum import DependencySpecifications, SupportedPackageManagers
 from rubrical.package_managers.base_package_manager import BasePackageManager
@@ -6,7 +8,7 @@ from rubrical.schemas.package import Package
 
 
 class Python(BasePackageManager):
-    target_files = ["requirements.txt"]
+    target_files = ["requirements.txt", "pyproject.toml"]
 
     def __init__(self) -> None:
         super().__init__()
@@ -29,25 +31,43 @@ class Python(BasePackageManager):
                     ),
                 )
 
+    def _parse_requirement(self, req, package_file_filename: str):
+        if req.specifier:
+            # Handle cases for single specifiers.
+            if len(req.specs) == 1:
+                [spec] = req.specs
+                self._set_package(package_file_filename, req, spec)
+            elif len(req.specs) > 1:
+                [spec] = [
+                    x
+                    for x in req.specs
+                    if x[0]
+                    in self.specification_symbols["GT"]
+                    + self.specification_symbols["GTE"]
+                ]
+                self._set_package(package_file_filename, req, spec)
+            else:
+                pass
+
     def parse_package_manager_file(
         self, package_file_filename: str, package_file_contents: str
     ) -> None:
         self.packages[package_file_filename] = []
 
-        for req in requirements.parse(package_file_contents):
-            if req.specifier:
-                # Handle cases for single specifiers.
-                if len(req.specs) == 1:
-                    [spec] = req.specs
-                    self._set_package(package_file_filename, req, spec)
-                elif len(req.specs) > 1:
-                    [spec] = [
-                        x
-                        for x in req.specs
-                        if x[0]
-                        in self.specification_symbols["GT"]
-                        + self.specification_symbols["GTE"]
-                    ]
-                    self._set_package(package_file_filename, req, spec)
-                else:
-                    pass
+        if "requirements.txt" in package_file_filename:
+            for req in requirements.parse(package_file_contents):
+                self._parse_requirement(
+                    req=req, package_file_filename=package_file_filename
+                )
+
+        elif "pyproject.toml" in package_file_filename:
+            pyproject_contents = tomllib.loads(package_file_contents)
+            parser = pyproject_parser.PyProject()
+            contents = parser.from_dict(pyproject_contents)
+
+            # Is not a Poetry file.
+            if contents.project and "dependencies" in contents.project.keys():
+                for req in contents.project["dependencies"]:
+                    # Hacky hack to use same parser as requirements.txt
+                    for fake_req in requirements.parse(req):
+                        self._parse_requirement(fake_req, package_file_filename)

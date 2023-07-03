@@ -65,6 +65,6 @@ class BasePackageManager(abc.ABC):
 
     @abc.abstractmethod
     def parse_package_manager_file(
-        self, package_file_filename: str, package_file: str
+        self, package_file_filename: str, package_file_contents: str
     ) -> None:
         pass

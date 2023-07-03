@@ -13,6 +13,9 @@ package_managers:
       - name: Mopidy-Dirble
         block: v0.1.1
         warn: v0.2.0
+      - name: apscheduler
+        block: v3.0.0
+        warn: v3.0.1
   - name: go
     packages:
       - name: github.com/adrg/xdg
