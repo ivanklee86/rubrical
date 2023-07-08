@@ -1,6 +1,7 @@
 import pyproject_parser
 import requirements
 import tomllib
+from requirements.requirement import Requirement
 
 from rubrical.enum import DependencySpecifications, SupportedPackageManagers
 from rubrical.package_managers.base_package_manager import BasePackageManager
@@ -31,7 +32,7 @@ class Python(BasePackageManager):
                     ),
                 )
 
-    def _parse_requirement(self, req, package_file_filename: str):
+    def _parse_requirement(self, req: Requirement, package_file_filename: str):
         if req.specifier:
             # Handle cases for single specifiers.
             if len(req.specs) == 1:
@@ -67,7 +68,7 @@ class Python(BasePackageManager):
 
             # Is not a Poetry file.
             if contents.project and "dependencies" in contents.project.keys():
-                for req in contents.project["dependencies"]:
+                for pyproject_req in contents.project["dependencies"]:
                     # Hacky hack to use same parser as requirements.txt
-                    for fake_req in requirements.parse(req):
+                    for fake_req in requirements.parse(str(pyproject_req)):
                         self._parse_requirement(fake_req, package_file_filename)
