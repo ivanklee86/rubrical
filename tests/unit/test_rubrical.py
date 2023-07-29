@@ -12,11 +12,11 @@ TEST_CONFIG_BLOCK = {
         {
             "name": "jsonnet",
             "packages": [
-                {"name": "xunleii/vector_jsonnet", "warn": "v0.1.2", "block": "v0.1.0"},
+                {"name": "xunleii/vector_jsonnet", "warn": "v0.1.3", "block": "v0.1.0"},
                 {
                     "name": "jsonnet-libs/argo-workflows-libsonnet",
                     "warn": "v1.1.3",
-                    "block": "v1.1.1",
+                    "block": "v1.1.2",
                 },
             ],
         }
@@ -29,10 +29,10 @@ TEST_CONFIG_WARNINGS = {
         {
             "name": "jsonnet",
             "packages": [
-                {"name": "xunleii/vector_jsonnet", "warn": "v0.1.2", "block": "v0.1.0"},
+                {"name": "xunleii/vector_jsonnet", "warn": "v0.1.3", "block": "v0.1.0"},
                 {
                     "name": "jsonnet-libs/argo-workflows-libsonnet",
-                    "warn": "v1.1.1",
+                    "warn": "v1.1.2",
                     "block": "v1.1.0",
                 },
             ],

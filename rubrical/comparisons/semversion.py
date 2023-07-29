@@ -48,11 +48,11 @@ def compare_package_semver(
 
     if not result:
         try:
-            warn_signal = SemverComparison.GT.value != semver.compare(
+            warn_signal = SemverComparison.LT.value == semver.compare(
                 package_semver,
                 __semver_conversion(package_requirement.warn),
             )
-            block_signal = SemverComparison.GT.value != semver.compare(
+            block_signal = SemverComparison.LT.value == semver.compare(
                 package_semver,
                 __semver_conversion(package_requirement.block),
             )

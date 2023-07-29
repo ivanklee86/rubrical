@@ -10,7 +10,7 @@ SEMVER_PACKAGE_REQUIREMENT = PackageRequirement(
 
 def test_semver_eq():
     package = Package(
-        name="dep1", version="v1.0.0", specifier=DependencySpecifications.EQ
+        name="dep1", version="v0.9.999", specifier=DependencySpecifications.EQ
     )
 
     result = semversion.compare_package_semver(

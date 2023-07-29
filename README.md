@@ -58,8 +58,8 @@ package_managers:
   - name: jsonnet
     packages:
       - name: "xunleii/vector_jsonnet" # Name of the dependency
-        block: v0.1.0  # If dependency is older than this, error.
-        warn: v0.1.2  # If dependency is older than this, warn.
+        block: v0.1.0  # If dependency is less than this, error.
+        warn: v0.1.2  # If dependency is less than this, warn.
   - name: python
     packages:
       - name: Mopidy-Dirble

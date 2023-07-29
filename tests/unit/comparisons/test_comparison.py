@@ -21,10 +21,10 @@ def test_dependency_semver():
     assert PackageCheck.BLOCK == check_package(
         SEMVER_PACKAGE_REQUIREMENT, SEMVER_OLD_PACKAGE
     )
-    assert PackageCheck.BLOCK == check_package(
+    assert PackageCheck.WARN == check_package(
         SEMVER_PACKAGE_REQUIREMENT, SEMVER_PACKAGE
     )
-    assert PackageCheck.WARN == check_package(
+    assert PackageCheck.OK == check_package(
         SEMVER_PACKAGE_REQUIREMENT, SEMVER_NEWER_PACKAGE
     )
     assert PackageCheck.OK == check_package(
