@@ -67,3 +67,21 @@ tasks:
     cmds:
       - task: docker-build
       - docker run --rm -it -v `pwd`/tests/files:/code --entrypoint sh --name rubrical rubrical:latest
+
+  integration-block:
+    desc: Run rubrical with block configuration.
+    dir: tests/files
+    cmds:
+      - poetry run rubrical --config rubrical.yaml
+
+  integration-warn:
+    desc: Run rubrical with warn configuration.
+    dir: tests/files
+    cmds:
+      - poetry run rubrical --config rubrical-warnings.yaml
+
+  integration-clean:
+    desc: Run rubrical with clean configuration.
+    dir: tests/files
+    cmds:
+      - poetry run rubrical --config rubrical-clean.yaml

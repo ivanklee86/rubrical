@@ -24,10 +24,10 @@ def terminal_report(
         # Only report unsuccessful checks.
         for result in [x for x in check_results if x.check != PackageCheck.OK]:
             if result.check == PackageCheck.BLOCK:
-                result_text = f"❌ {result.version_package} <= {result.version_block}, update to > {result.version_warn}"
+                result_text = f"❌ {result.version_package} < {result.version_block}, update to >= {result.version_block}"
             elif result.check == PackageCheck.WARN:
                 # Terminal is cranky about the emoji, needs two spaces.
-                result_text = f"⚠️  {result.version_package} <= {result.version_warn}"
+                result_text = f"🚧 {result.version_package} < {result.version_warn}, update to >= {result.version_warn}"
 
             table.add_row(result.file, result.name, result_text)
 

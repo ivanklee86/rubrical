@@ -27,9 +27,9 @@ def _generate_report(reporting_data: Dict[str, List[PackageCheckResult]]):
 
             for result in not_ok_results:
                 if result.check == PackageCheck.BLOCK:
-                    test += f"| {result.file} | {result.name} | ❌ {result.version_package} <= {result.version_block}, update to > {result.version_warn} |\n"
+                    test += f"| {result.file} | {result.name} | ❌ {result.version_package} < {result.version_block}, update to >= {result.version_block} |\n"
                 elif result.check == PackageCheck.WARN:
-                    test += f"| {result.file} | {result.name} | ⚠️ {result.version_package} <= {result.version_warn} |\n"
+                    test += f"| {result.file} | {result.name} | ⚠️ {result.version_package} < {result.version_warn}, update to >= {result.version_warn} |\n"
         else:
             test += "🟢 All dependencies up to date!"
 
