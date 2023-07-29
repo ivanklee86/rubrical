@@ -14,7 +14,7 @@ DUMMY_RESULTS = {
             check=PackageCheck.BLOCK,
             version_package="1.1.1",
             version_block="1.1.2",
-            version_warn="1.1.3",
+            version_warn="1.1.4",
         ),
         PackageCheckResult(
             name="one",
@@ -22,7 +22,7 @@ DUMMY_RESULTS = {
             check=PackageCheck.WARN,
             version_package="1.1.3",
             version_block="1.1.2",
-            version_warn="1.1.3",
+            version_warn="1.1.4",
         ),
         PackageCheckResult(
             name="one",
@@ -48,8 +48,8 @@ DUMMY_RESULTS = {
 
 def test_gh_report_contents():
     text = gh._generate_report(DUMMY_RESULTS)
-    assert "1.1.3 <= 1.1.3" in text
-    assert "1.1.1 <= 1.1.2, update to > 1.1.3" in text
+    assert "1.1.1 < 1.1.2, update to >= 1.1.4" in text
+    assert "1.1.3 < 1.1.4, update to >= 1.1.4" in text
 
 
 def test_gh_report_noop(secrets):  # noqa: F811
