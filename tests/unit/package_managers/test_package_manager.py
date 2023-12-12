@@ -1,8 +1,9 @@
 import json
 from pathlib import Path
 
+from rubrical.enum import DependencySpecifications
 from rubrical.package_managers.base_package_manager import BasePackageManager
-from rubrical.schemas.package import Package
+from rubrical.schemas.package import Package, Specification
 from tests.constants import FILES_FOLDER_PATH
 
 
@@ -15,7 +16,18 @@ class TestPackageManager(BasePackageManager):
         self.packages[package_file_filename] = []
 
         for dependency in file_json["dependencies"]:
-            self.packages[package_file_filename].append(Package(**dependency))
+            self.packages[package_file_filename].append(
+                Package(
+                    name=dependency["name"],
+                    raw_constraint="",
+                    version_constraints=[
+                        Specification(
+                            version=dependency["version"],
+                            specifier=DependencySpecifications.EQ,
+                        )
+                    ],
+                )
+            )
 
 
 def test_find_and_load():

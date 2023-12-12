@@ -6,7 +6,7 @@ from pydantic import BaseModel
 from rubrical.enum import DependencySpecifications, SupportedPackageManagers
 from rubrical.package_managers.base_package_manager import BasePackageManager
 from rubrical.package_managers.utilities import git
-from rubrical.schemas.package import Package
+from rubrical.schemas.package import Package, Specification
 
 
 class JsonnetDependencySourceGit(BaseModel):
@@ -47,7 +47,12 @@ class Jsonnet(BasePackageManager):
             self.packages[package_file_filename].append(
                 Package(
                     name=git.repository_from_url(dependency.source.git.remote),
-                    version=dependency.version,
-                    specifier=DependencySpecifications.EQ,
+                    raw_constraint=f"{git.repository_from_url(dependency.source.git.remote)} {dependency.version}",
+                    version_constraints=[
+                        Specification(
+                            version=dependency.version,
+                            specifier=DependencySpecifications.EQ,
+                        )
+                    ],
                 )
             )

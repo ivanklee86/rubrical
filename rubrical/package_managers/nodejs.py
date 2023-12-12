@@ -1,8 +1,9 @@
 import json
+from typing import List
 
 from rubrical.enum import DependencySpecifications, SupportedPackageManagers
 from rubrical.package_managers.base_package_manager import BasePackageManager
-from rubrical.schemas.package import Package
+from rubrical.schemas.package import Package, Specification
 
 
 class NodeJS(BasePackageManager):
@@ -35,20 +36,29 @@ class NodeJS(BasePackageManager):
                         self.packages[package_file_filename].append(
                             Package(
                                 name=package,
-                                version=version[:-2],
-                                specifier=DependencySpecifications.APPROX_EQ,
+                                raw_constraint=f"{package} {version}",
+                                version_constraints=[
+                                    Specification(
+                                        version=version[:-2],
+                                        specifier=DependencySpecifications.APPROX_EQ,
+                                    )
+                                ],
                             )
                         )
                     else:
                         (
-                            specier,
+                            specifier,
                             sanitized_version,
                         ) = self.match_from_specification_symbols(version)
                         self.packages[package_file_filename].append(
                             Package(
                                 name=package,
-                                version=sanitized_version,
-                                specifier=specier,
+                                raw_constraint=f"{package} {version}",
+                                version_constraints=[
+                                    Specification(
+                                        version=sanitized_version, specifier=specifier
+                                    )
+                                ],
                             )
                         )
                 elif (
@@ -60,8 +70,17 @@ class NodeJS(BasePackageManager):
                     self.packages[package_file_filename].append(
                         Package(
                             name=package,
-                            version=range_versions[0],
-                            specifier=DependencySpecifications.GTE,
+                            raw_constraint=f"{package} {version}",
+                            version_constraints=[
+                                Specification(
+                                    version=range_versions[0],
+                                    specifier=DependencySpecifications.GTE,
+                                ),
+                                Specification(
+                                    version=range_versions[1],
+                                    specifier=DependencySpecifications.LTE,
+                                ),
+                            ],
                         )
                     )
                 else:  # Handle standard range based definitions
@@ -69,24 +88,26 @@ class NodeJS(BasePackageManager):
                     if len(range_versions) != 2:
                         pass  # Tomfoolery
                     else:
-                        [lower_bound_version] = [
-                            x
-                            for x in range_versions
-                            if any(
-                                symbol in x
-                                for symbol in self.specification_symbols["GT"]
-                                + self.specification_symbols["GTE"]
+                        version_constraints: List[Specification] = []
+
+                        for parsed_version in range_versions:
+                            (
+                                specifier,
+                                sanitized_version,
+                            ) = self.match_from_specification_symbols(parsed_version)
+
+                            version_constraints.append(
+                                Specification(
+                                    version=sanitized_version,
+                                    specifier=specifier,
+                                )
                             )
-                        ]
-                        (
-                            specier,
-                            sanitized_version,
-                        ) = self.match_from_specification_symbols(lower_bound_version)
+
                         self.packages[package_file_filename].append(
                             Package(
                                 name=package,
-                                version=sanitized_version,
-                                specifier=specier,
+                                raw_constraint=f"{package} {version}",
+                                version_constraints=version_constraints,
                             )
                         )
 

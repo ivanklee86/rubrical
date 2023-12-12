@@ -90,7 +90,7 @@ class Rubrical:
                 for package_requirements in configuration.packages:
                     if self.debug:
                         console.print_debug(
-                            f"Checking {package.name} @ {package.version}."
+                            f"Checking {package.name} @ {package.raw_constraint}."
                         )
 
                     if package_requirements.name == package.name:
@@ -99,14 +99,14 @@ class Rubrical:
                                 name=package.name,
                                 file=file,
                                 check=check_package(package_requirements, package),
-                                version_package=package.version,
+                                version_package=package.raw_constraint,
                                 version_warn=package_requirements.warn,
                                 version_block=package_requirements.block,
                             )
                         )
                         if self.debug:
                             console.print_debug(
-                                f"Check result for {package.name} @ {package.version} is {check_results[-1].check.value}."
+                                f"Check result for {package.name} @ {package.raw_constraint} is {check_results[-1].check.value}."
                             )
 
         return check_results
