@@ -16,15 +16,19 @@ def test_nodejs():
 
     # Check single version specifiers.
     [dep] = [x for x in nodejs.packages["complex/package.json"] if x.name == "til"]
-    assert dep.version == "1.2"
-    assert dep.specifier == DependencySpecifications.APPROX_EQ
+    assert dep.version_constraints[0].version == "1.2"
+    assert dep.version_constraints[0].specifier == DependencySpecifications.APPROX_EQ
 
     # Check for multiple version specifiers in dash-based ranges
     [dep] = [x for x in nodejs.packages["complex/package.json"] if x.name == "foo"]
-    assert dep.version == "1.0.0"
-    assert dep.specifier == DependencySpecifications.GTE
+    assert dep.version_constraints[0].version == "1.0.0"
+    assert dep.version_constraints[0].specifier == DependencySpecifications.GTE
+    assert dep.version_constraints[1].version == "2.9999.9999"
+    assert dep.version_constraints[1].specifier == DependencySpecifications.LTE
 
     # Check for multiple version specifiers in dash-based ranges
     [dep] = [x for x in nodejs.packages["complex/package.json"] if x.name == "baz"]
-    assert dep.version == "1.0.2"
-    assert dep.specifier == DependencySpecifications.GT
+    assert dep.version_constraints[0].version == "1.0.2"
+    assert dep.version_constraints[0].specifier == DependencySpecifications.GT
+    assert dep.version_constraints[1].version == "2.3.4"
+    assert dep.version_constraints[1].specifier == DependencySpecifications.LTE

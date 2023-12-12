@@ -2,7 +2,7 @@ import re
 
 from rubrical.enum import DependencySpecifications, SupportedPackageManagers
 from rubrical.package_managers.base_package_manager import BasePackageManager
-from rubrical.schemas.package import Package
+from rubrical.schemas.package import Package, Specification
 
 
 class Go(BasePackageManager):
@@ -33,7 +33,12 @@ class Go(BasePackageManager):
             self.packages[package_file_filename].append(
                 Package(
                     name=module_specs[0],
-                    version=module_specs[1],
-                    specifier=DependencySpecifications.EQ,
+                    raw_constraint=module,
+                    version_constraints=[
+                        Specification(
+                            version=module_specs[1],
+                            specifier=DependencySpecifications.EQ,
+                        )
+                    ],
                 )
             )

@@ -1,3 +1,5 @@
+from typing import List
+
 import pyproject_parser
 import requirements
 import tomllib
@@ -5,7 +7,7 @@ from requirements.requirement import Requirement
 
 from rubrical.enum import DependencySpecifications, SupportedPackageManagers
 from rubrical.package_managers.base_package_manager import BasePackageManager
-from rubrical.schemas.package import Package
+from rubrical.schemas.package import Package, Specification
 
 
 class Python(BasePackageManager):
@@ -20,35 +22,31 @@ class Python(BasePackageManager):
             DependencySpecifications.APPROX_EQ.value: ["~="]
         }
 
-    def _set_package(self, package_file_filename: str, requirement, spec):
-        for key, value in self.specification_symbols.items():
-            if spec[0] in value:
-                self.append_package(
-                    package_file_filename,
-                    Package(
-                        name=requirement.name,
+    def _parse_requirement(self, req: Requirement, package_file_filename: str):
+        if req.specifier and req.specs:
+            version_constraints: List[Specification] = []
+
+            for spec in req.specs:
+                specifier = DependencySpecifications.EQ
+                for key, value in self.specification_symbols.items():
+                    if spec[0] in value:
+                        specifier = DependencySpecifications[key]
+
+                version_constraints.append(
+                    Specification(
                         version=spec[1],
-                        specifier=DependencySpecifications(key),
-                    ),
+                        specifier=specifier,
+                    )
                 )
 
-    def _parse_requirement(self, req: Requirement, package_file_filename: str):
-        if req.specifier:
-            # Handle cases for single specifiers.
-            if len(req.specs) == 1:
-                [spec] = req.specs
-                self._set_package(package_file_filename, req, spec)
-            elif len(req.specs) > 1:
-                [spec] = [
-                    x
-                    for x in req.specs
-                    if x[0]
-                    in self.specification_symbols["GT"]
-                    + self.specification_symbols["GTE"]
-                ]
-                self._set_package(package_file_filename, req, spec)
-            else:
-                pass
+            self.append_package(
+                package_file_filename,
+                Package(
+                    name=req.name,
+                    raw_constraint=req.line,
+                    version_constraints=version_constraints,
+                ),
+            )
 
     def parse_package_manager_file(
         self, package_file_filename: str, package_file_contents: str

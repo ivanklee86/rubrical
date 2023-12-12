@@ -13,4 +13,7 @@ def test_jsonnet():
     assert jsonnet.packages
     assert len(jsonnet.packages["jsonnetfile.json"]) == 4
     assert jsonnet.packages["jsonnetfile.json"][1].name == "xunleii/vector_jsonnet"
-    assert jsonnet.packages["jsonnetfile.json"][1].version == "v0.1.2"
+    assert (
+        jsonnet.packages["jsonnetfile.json"][1].version_constraints[0].version
+        == "v0.1.2"
+    )

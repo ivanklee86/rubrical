@@ -1,11 +1,17 @@
-from typing import Optional
-
-from pydantic import BaseModel
+from dataclasses import dataclass
+from typing import List
 
 from rubrical.enum import DependencySpecifications
 
 
-class Package(BaseModel):
-    name: str
+@dataclass
+class Specification:
     version: str
-    specifier: Optional[DependencySpecifications] = DependencySpecifications.EQ
+    specifier: DependencySpecifications
+
+
+@dataclass
+class Package:
+    name: str
+    raw_constraint: str
+    version_constraints: List[Specification]
