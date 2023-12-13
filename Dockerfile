@@ -1,11 +1,11 @@
-FROM python:3.11-slim
+FROM python:3.12-slim
 
 ENV PYTHONDONTWRITEBYTECODE 1 \
     PYTHONUNBUFFERED 1
 
 RUN apt-get update \
     && apt-get install curl -y \
-    && curl -sSL https://install.python-poetry.org | python - --version 1.3.2
+    && curl -sSL https://install.python-poetry.org | python - --version 1.7.1
 
 ENV PATH="/root/.local/bin:$PATH"
 
