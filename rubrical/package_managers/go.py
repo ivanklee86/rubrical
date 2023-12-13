@@ -19,7 +19,7 @@ class Go(BasePackageManager):
         self.packages[package_file_filename] = []
         modules = []
 
-        go_import_regex = re.compile("\(([^)]+)\)")
+        go_import_regex = re.compile("\\(([^)]+)\\)")
         matched_groups = go_import_regex.findall(package_file_contents)
         for group in matched_groups:
             lines = group.split("\n")
