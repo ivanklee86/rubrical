@@ -5,7 +5,7 @@
 A CLI to encourage (😅) people to update their dependencies!
 
 Supported package managers:
-* Python (requirements.txt)
+* Python (requirements.txt, pyproject.toml (vanilla & poetry))
 * Go (go.mod)
 * Node.js (package.lock)
 * Jsonnet
