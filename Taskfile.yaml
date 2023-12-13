@@ -53,7 +53,7 @@ tasks:
   docker-build:
     desc: Builds Docker container for local testing.
     cmds:
-      - docker image rm rubrical
+      - docker image rm rubrical || true
       - docker build -t rubrical .
 
   docker:
