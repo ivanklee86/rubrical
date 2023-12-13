@@ -45,26 +45,31 @@ def report_github(
     warnings_found: bool,
     blocks_found: bool,
 ):
-    if warnings_found or blocks_found:
-        rubrical_report_exists = False
-
-        # Set up Github
-        if custom_url:
-            g = Github(base_url=f"{custom_url}/api/v3", login_or_token=access_token)
-        else:
-            g = Github(access_token)
-        repo = g.get_repo(repository_name)
-        pr = repo.get_pull(pr_id)
-
-        for issue_comment in pr.get_issue_comments():
-            if (
-                "[Rubrical](https://github.com/ivanklee86/rubrical) Report"
-                in issue_comment.body
-            ):
-                issue_comment.edit(_generate_report(reporting_data))
-                rubrical_report_exists = True
-
-        if not rubrical_report_exists:
-            pr.create_issue_comment(_generate_report(reporting_data))
+    # Set up Github
+    if custom_url:
+        g = Github(base_url=f"{custom_url}/api/v3", login_or_token=access_token)
     else:
-        console.print_message("Clean report, skipping post to Github comment.")
+        g = Github(access_token)
+    repo = g.get_repo(repository_name)
+    pr = repo.get_pull(pr_id)
+
+    # Find comment if it exists.
+    rubrical_comment = None
+    for issue_comment in pr.get_issue_comments():
+        if (
+            "[Rubrical](https://github.com/ivanklee86/rubrical) Report"
+            in issue_comment.body
+        ):
+            rubrical_comment = issue_comment
+
+    if warnings_found or blocks_found:
+        console.print_message("Posting results to Github comment.")
+        if rubrical_comment:
+            rubrical_comment.edit(_generate_report(reporting_data))
+        else:
+            pr.create_issue_comment(_generate_report(reporting_data))
+    elif rubrical_comment:
+        console.print_message("Cleaning up old report.")
+        rubrical_comment.delete()
+    else:
+        console.print_message("Nothing to report, skipping Github.")
