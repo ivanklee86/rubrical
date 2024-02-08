@@ -70,7 +70,7 @@ setuptools-scm = "^8.0.0"
 twine = "^4.0.2"
 pre-commit = "^3.4.0"
 isort = "^5.13.1"
-ruff = "^0.1.0"
+ruff = "^0.2.0"
 python-dotenv = "^1.0.0"
 
 [tool.poetry-dynamic-versioning]
