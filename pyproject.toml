@@ -58,9 +58,9 @@ pyproject-parser = "^0.9.1"
 setuptools = "^69.0.0"
 
 [tool.poetry.group.dev.dependencies]
-black = "^23.12.0"
+black = "^24.0.0"
 mypy = "^1.7.1"
-pytest = "^7.4.3"
+pytest = "^8.0.0"
 pytest-cov = "^4.0.0"
 pytest-flake8 = "^1.1.1"
 pytest-html = "^4.0.0"
@@ -70,7 +70,7 @@ setuptools-scm = "^8.0.0"
 twine = "^4.0.2"
 pre-commit = "^3.4.0"
 isort = "^5.13.1"
-ruff = "^0.1.0"
+ruff = "^0.2.0"
 python-dotenv = "^1.0.0"
 
 [tool.poetry-dynamic-versioning]
