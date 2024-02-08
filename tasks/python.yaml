@@ -1,0 +1,41 @@
+version: '3'
+
+tasks:
+  install:
+    desc: Install dependencies.
+    cmds:
+      - poetry install
+
+  fmt:
+    desc: Run linting and fix issues.
+    cmds:
+      - poetry run black .
+      - poetry run ruff rubrical tests --fix
+
+  lint:
+    desc: Run linting tasks.
+    cmds:
+      - poetry run black .
+      - poetry run ruff rubrical tests
+      - poetry run mypy rubrical
+
+  test:
+    desc: Run unit and integration tests
+    cmds:
+      - poetry run pytest tests/unit tests/integration
+
+  test-cov:
+    desc: Run unit and integration tests with coverage
+    cmds:
+      - poetry run pytest --cov rubrical --cov-report term --cov-report html:test_results/cov_html --cov-report xml:test_results/cov.xml tests/unit tests/integration
+
+  build:
+    desc: Build artifact
+    cmds:
+      - poetry build
+
+  publish:
+    desc: Publish package to pypi
+    cmds:
+      - task: build
+      - poetry publish --username $PYPI_USERNAME --password $PYPI_PASSWORD

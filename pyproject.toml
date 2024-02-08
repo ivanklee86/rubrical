@@ -29,7 +29,7 @@ profile = "black"
 
 [tool.poetry]
 name = "rubrical"
-version = "0.0.0"
+version = "0.4.1-post.17+b3fac42"
 description = "A CLI to encourage (😅) people to update their dependencies!"
 authors = ["Ivan Lee <ivanklee86@gmail.com>"]
 license = "MPL-2.0"
@@ -72,9 +72,11 @@ pre-commit = "^3.4.0"
 isort = "^5.13.1"
 ruff = "^0.2.0"
 python-dotenv = "^1.0.0"
+mkdocs = "^1.5.3"
+mkdocs-material = "^9.5.4"
 
 [tool.poetry-dynamic-versioning]
-enable = true
+enable = false
 vcs = "git"
 style = "semver"
 
