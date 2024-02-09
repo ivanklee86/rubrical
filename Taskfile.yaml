@@ -7,7 +7,7 @@ vars:
 includes:
   python: ./tasks/python.yaml
   docker: ./tasks/docker.yaml
-  integration: ./tasks/interation.yaml
+  integration: ./tasks/integration.yaml
 
 tasks:
   default:
