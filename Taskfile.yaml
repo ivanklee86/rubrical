@@ -5,9 +5,10 @@ vars:
   GREETING: Hello, World!
 
 includes:
-  python: ./tasks/python.yaml
   docker: ./tasks/docker.yaml
+  docs: ./tasks/docs.yaml
   integration: ./tasks/integration.yaml
+  python: ./tasks/python.yaml
 
 tasks:
   default:

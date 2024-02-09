@@ -1,0 +1,13 @@
+version: '3'
+
+tasks:
+  serve:
+    desc: Run mkdocs server locally.
+    cmds:
+      - poetry run mkdocs serve
+
+  release:
+    desc: Publish docs to Github Pages.
+    cmds:
+      - poetry install --no-root
+      - poetry run mkdocs gh-deploy --force
