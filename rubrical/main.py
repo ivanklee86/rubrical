@@ -52,7 +52,7 @@ def grade(
                 **benedict(config, format=(config.suffix[1:]))
             )
         except ValidationError as e:
-            console.print_raw(e)
+            console.print_raw(str(e))
     else:
         raise ValueError(
             "Rubrical only supports YAML, JSON, or TOML configuration files"

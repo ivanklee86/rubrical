@@ -23,7 +23,7 @@ def validate(
         try:
             RubricalConfig(**benedict(config, format=(config.suffix[1:])))
         except ValidationError as e:
-            console.print_raw(e)
+            console.print_raw(str(e))
             console.print_error("Configuration error found!", "🔴")
     else:
         raise ValueError(
