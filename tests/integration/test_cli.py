@@ -14,6 +14,7 @@ def test_cli_basic():
     result = runner.invoke(
         app,
         [
+            "grade",
             "--config",
             str(Path(BASE_TEST_PATH, "files", "rubrical.yaml")),
             "--target",
@@ -29,6 +30,7 @@ def test_cli_warning():
     result = runner.invoke(
         app,
         [
+            "grade",
             "--config",
             str(Path(BASE_TEST_PATH, "files", "rubrical-warnings.yaml")),
             "--target",
@@ -43,6 +45,7 @@ def test_cli_clean():
     result = runner.invoke(
         app,
         [
+            "grade",
             "--config",
             str(Path(BASE_TEST_PATH, "files", "rubrical-clean.yaml")),
             "--target",
@@ -59,6 +62,7 @@ def test_cli_gh_report(secrets, github_pr_clean):  # noqa: F811
     result = runner.invoke(
         app,
         [
+            "grade",
             "--config",
             str(Path(BASE_TEST_PATH, "files", "rubrical.yaml")),
             "--target",

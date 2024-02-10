@@ -1,7 +1,9 @@
+import json
 from pathlib import Path
 
 import typer
 from benedict import benedict
+from pydantic import ValidationError
 
 from rubrical.reporters import gh
 from rubrical.rubrical import Rubrical
@@ -12,7 +14,15 @@ app = typer.Typer()
 
 
 @app.command()
-def rubrical(
+def jsonschema():
+    """
+    Prints configuration jsonschema.
+    """
+    console.print_message(json.dumps(RubricalConfig.model_json_schema(), indent=2))
+
+
+@app.command()
+def grade(
     config: Path = typer.Option(Path("rubrical.yaml"), help="Path to configuration"),
     target: Path = typer.Option(Path().absolute(), help="Path to configuration"),
     block: bool = typer.Option(True, "/--no-block", help="Don't fail if blocks found."),
@@ -44,7 +54,12 @@ def rubrical(
 
     console.print_message("Loading configuration.", "📃")
     if config.suffix in [".yaml", ".json", ".toml"]:
-        configuration = RubricalConfig(**benedict(config, format=(config.suffix[1:])))
+        try:
+            configuration = RubricalConfig(
+                **benedict(config, format=(config.suffix[1:]))
+            )
+        except ValidationError as e:
+            console.print_raw(e)
     else:
         raise ValueError(
             "Rubrical only supports YAML, JSON, or TOML configuration files"

@@ -1,8 +1,8 @@
 from typing import List, Optional
 
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 
-from rubrical.enum import PackageTypes
+from rubrical.enum import PackageTypes, SupportedPackageManagers
 
 
 class PackageRequirement(BaseModel):
@@ -13,7 +13,8 @@ class PackageRequirement(BaseModel):
 
 
 class PackageManager(BaseModel):
-    name: str
+    model_config = ConfigDict(use_enum_values=True)
+    name: SupportedPackageManagers
     packages: List[PackageRequirement]
 
 

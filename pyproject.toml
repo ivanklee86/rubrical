@@ -13,13 +13,15 @@ addopts= """
 log_file_level="INFO"
 
 [tool.ruff]
+
+[tool.ruff.lint]
 # Enable Pyflakes `E` and `F` codes by default.
 select = ["E", "F", "PL", "YTT", "I"]
 ignore = ["E501", "PLR2004"]
 
 fixable = ["I"]
 
-[tool.ruff.pylint]
+[tool.ruff.lint.pylint]
 max-args = 10
 
 [tool.isort]
@@ -29,7 +31,7 @@ profile = "black"
 
 [tool.poetry]
 name = "rubrical"
-version = "0.4.1-post.17+b3fac42"
+version = "0.0.0"
 description = "A CLI to encourage (😅) people to update their dependencies!"
 authors = ["Ivan Lee <ivanklee86@gmail.com>"]
 license = "MPL-2.0"
@@ -76,7 +78,7 @@ mkdocs = "^1.5.3"
 mkdocs-material = "^9.5.4"
 
 [tool.poetry-dynamic-versioning]
-enable = false
+enable = true
 vcs = "git"
 style = "semver"
 
