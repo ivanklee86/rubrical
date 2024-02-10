@@ -30,7 +30,12 @@ theme:
 
 nav:
   - Home: 'index.md'
-  - Development: 'development.md'
+  - User Guide:
+    - Installation: "installation.md"
+    - Usage: "usage.md"
+    - Reporting: "reporting.md"
+    - Commands: "commands.md"
+  - Developer Guide: "development.md"
 
 markdown_extensions:
   - admonition

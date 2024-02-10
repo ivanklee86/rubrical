@@ -20,4 +20,4 @@ COPY . .
 
 RUN poetry install --no-dev --no-interaction --no-ansi
 
-ENTRYPOINT ["poetry", "run", "rubrical"]
+ENTRYPOINT ["poetry", "run", "rubrical", "grade"]
