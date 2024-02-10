@@ -18,3 +18,9 @@ tasks:
     dir: tests/files
     cmds:
       - poetry run rubrical --config rubrical-clean.yaml
+
+  mixed:
+    desc: Run rubrical with mixed configuration.  (Used for docs)
+    dir: tests/files
+    cmds:
+      - poetry run rubrical --config rubrical-mixed.yaml

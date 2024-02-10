@@ -11,7 +11,7 @@ Supported package managers:
 * Jsonnet
 * _More coming soon!_
 
-![rubrical](docs/images/rubrical.png)
+![rubrical](https://github.com/ivanklee86/rubrical/blob/main/docs/images/rubrical.png?raw=true)
 
 ## Installation
 
