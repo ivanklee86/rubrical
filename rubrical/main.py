@@ -1,4 +1,3 @@
-import json
 from pathlib import Path
 
 import typer
@@ -8,17 +7,11 @@ from pydantic import ValidationError
 from rubrical.reporters import gh
 from rubrical.rubrical import Rubrical
 from rubrical.schemas.configuration import RubricalConfig
+from rubrical.subcommands import configs
 from rubrical.utilities import console
 
 app = typer.Typer()
-
-
-@app.command()
-def jsonschema():
-    """
-    Prints configuration jsonschema.
-    """
-    console.print_message(json.dumps(RubricalConfig.model_json_schema(), indent=2))
+app.add_typer(configs.app, name="configs")
 
 
 @app.command()
