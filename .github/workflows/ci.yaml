@@ -30,6 +30,8 @@ jobs:
           task python:test-cov
         env:
           RUBRICAL_TEST_GITHUB_ACCESS_TOKEN: ${{ secrets.RUBRICAL_TEST_GITHUB_ACCESS_TOKEN }}
+      - name: Doc tests
+        run: task docs:test
       - uses: codecov/codecov-action@v4
         with:
           files: test_results/cov.xml

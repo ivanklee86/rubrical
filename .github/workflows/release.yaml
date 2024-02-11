@@ -23,11 +23,11 @@ jobs:
         uses: arduino/setup-task@v1
       - name: Install packages
         run: |
-          task install
+          task python:install
           poetry self add "poetry-dynamic-versioning[plugin]"
       - name: Publish package
         run: |
-          task publish
+          task python:publish
         env:
           PYPI_USERNAME: "__token__"
           PYPI_PASSWORD: ${{ secrets.PYPI_TOKEN }}
