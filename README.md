@@ -18,13 +18,11 @@ You can (should!) use tools like [renovate](https://github.com/renovatebot/renov
 
 `rubrical` breaks the cycle by putting a check inside your CI/CD pipelines. (Golden pipelines or shared workflows are highly recommended!)  Now teams have a tool to automatically (automagically!) communicated when a dependency needs to be upgraded!
 
-## Supported features
+For more information, checkout the [documentation](https://ivanklee86.github.io/rubrical/)!
+
+## Features
 - Set warning (notify users their dependency will be out of date soon) and block (exit with error code) levels.
-- Supports different languages (Is your favorite language not here?  File an issue with some examples! 🤲)
-  - Python (requirements.txt, pyproject.toml (vanilla & poetry))
-  - Go (go.mod)
-  - Node.js (package.lock)
-  - Jsonnet (jsonnetfile.json)
-- Results in Github/GHE PRs.
+- Supports different languages (Python, Go, Node.js, and Jsonnet) and package manager formats (e.g. pip, poetry).
+- Post results to Github/GHE PRs.
 
 ![rubrical](https://github.com/ivanklee86/rubrical/blob/main/docs/images/rubrical.png?raw=true)
