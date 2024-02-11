@@ -14,6 +14,7 @@ def test_cli_basic():
     result = runner.invoke(
         app,
         [
+            "grade",
             "--config",
             str(Path(BASE_TEST_PATH, "files", "rubrical.yaml")),
             "--target",
@@ -29,6 +30,7 @@ def test_cli_warning():
     result = runner.invoke(
         app,
         [
+            "grade",
             "--config",
             str(Path(BASE_TEST_PATH, "files", "rubrical-warnings.yaml")),
             "--target",
@@ -43,6 +45,7 @@ def test_cli_clean():
     result = runner.invoke(
         app,
         [
+            "grade",
             "--config",
             str(Path(BASE_TEST_PATH, "files", "rubrical-clean.yaml")),
             "--target",
@@ -59,6 +62,7 @@ def test_cli_gh_report(secrets, github_pr_clean):  # noqa: F811
     result = runner.invoke(
         app,
         [
+            "grade",
             "--config",
             str(Path(BASE_TEST_PATH, "files", "rubrical.yaml")),
             "--target",
@@ -81,3 +85,37 @@ def test_cli_gh_report(secrets, github_pr_clean):  # noqa: F811
             comment_count += 1
 
     assert comment_count == 1
+
+
+def test_cli_configs_jsonschema():
+    result = runner.invoke(
+        app,
+        ["configs", "jsonschema"],
+    )
+    assert not result.exit_code
+
+
+def test_cli_configs_validate_successful():
+    result = runner.invoke(
+        app,
+        [
+            "configs",
+            "validate",
+            "--config",
+            str(Path(BASE_TEST_PATH, "files", "rubrical.yaml")),
+        ],
+    )
+    assert not result.exit_code
+
+
+def test_cli_configs_validate_failure():
+    result = runner.invoke(
+        app,
+        [
+            "configs",
+            "validate",
+            "--config",
+            str(Path(BASE_TEST_PATH, "files", "rubrical-error.yaml")),
+        ],
+    )
+    assert result.exit_code

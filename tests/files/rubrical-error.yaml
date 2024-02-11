@@ -1,0 +1,11 @@
+version: 1
+package_managers:
+  - name: jsonnet
+    packages:
+      - name: "jsonnet-libs/argo-workflows-libsonnet"
+        block: v0.1.2
+  - name: ruby
+    packages:
+      - name: github.com/adrg/xdg
+        block: v0.5.0
+        warn: v0.6.0

@@ -4,84 +4,15 @@ version: '3'
 vars:
   GREETING: Hello, World!
 
+includes:
+  docker: ./tasks/docker.yaml
+  docs: ./tasks/docs.yaml
+  integration: ./tasks/integration.yaml
+  python: ./tasks/python.yaml
+
 tasks:
   default:
     cmds:
-      - task: install
-      - task: lint
-      - task: test
-
-  install:
-    desc: Install dependencies.
-    cmds:
-      - poetry install
-
-  fmt:
-    desc: Run linting and fix issues.
-    cmds:
-      - poetry run black .
-      - poetry run ruff rubrical tests --fix
-
-  lint:
-    desc: Run linting tasks.
-    cmds:
-      - poetry run black .
-      - poetry run ruff rubrical tests
-      - poetry run mypy rubrical
-
-  test:
-    desc: Run unit and integration tests
-    cmds:
-      - poetry run pytest tests/unit tests/integration
-
-  test-cov:
-    desc: Run unit and integration tests with coverage
-    cmds:
-      - poetry run pytest --cov rubrical --cov-report term --cov-report html:test_results/cov_html --cov-report xml:test_results/cov.xml tests/unit tests/integration
-
-  build:
-    desc: Build artifact
-    cmds:
-      - poetry build
-
-  publish:
-    desc: Publish package to pypi
-    cmds:
-      - task: build
-      - poetry publish --username $PYPI_USERNAME --password $PYPI_PASSWORD
-
-  docker-build:
-    desc: Builds Docker container for local testing.
-    cmds:
-      - docker image rm rubrical || true
-      - docker build -t rubrical .
-
-  docker:
-    desc: Runs Rubrical in Docker container.
-    cmds:
-      - task: docker-build
-      - docker run --rm -it --name rubrical -v `pwd`/tests/files:/code rubrical:latest --config /code/rubrical.yaml --target /code
-
-  docker-shell:
-    desc: Runs Rubrical in Docker container.
-    cmds:
-      - task: docker-build
-      - docker run --rm -it -v `pwd`/tests/files:/code --entrypoint sh --name rubrical rubrical:latest
-
-  integration-block:
-    desc: Run rubrical with block configuration.
-    dir: tests/files
-    cmds:
-      - poetry run rubrical --config rubrical.yaml
-
-  integration-warn:
-    desc: Run rubrical with warn configuration.
-    dir: tests/files
-    cmds:
-      - poetry run rubrical --config rubrical-warnings.yaml
-
-  integration-clean:
-    desc: Run rubrical with clean configuration.
-    dir: tests/files
-    cmds:
-      - poetry run rubrical --config rubrical-clean.yaml
+      - task: python:install
+      - task: python:lint
+      - task: python:test

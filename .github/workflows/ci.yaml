@@ -21,13 +21,13 @@ jobs:
         uses: arduino/setup-task@v1
       - name: Install packages
         run: |
-          task install
+          task python:install
       - name: Linting
         run: |
-          task lint
+          task python:lint
       - name: Unit tests
         run: |
-          task test-cov
+          task python:test-cov
         env:
           RUBRICAL_TEST_GITHUB_ACCESS_TOKEN: ${{ secrets.RUBRICAL_TEST_GITHUB_ACCESS_TOKEN }}
       - uses: codecov/codecov-action@v4

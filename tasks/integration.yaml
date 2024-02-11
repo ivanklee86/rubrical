@@ -1,0 +1,26 @@
+version: '3'
+
+tasks:
+  block:
+    desc: Run rubrical with block configuration.
+    dir: tests/files
+    cmds:
+      - poetry run rubrical --config rubrical.yaml
+
+  warn:
+    desc: Run rubrical with warn configuration.
+    dir: tests/files
+    cmds:
+      - poetry run rubrical --config rubrical-warnings.yaml
+
+  clean:
+    desc: Run rubrical with clean configuration.
+    dir: tests/files
+    cmds:
+      - poetry run rubrical --config rubrical-clean.yaml
+
+  mixed:
+    desc: Run rubrical with mixed configuration.  (Used for docs)
+    dir: tests/files
+    cmds:
+      - poetry run rubrical --config rubrical-mixed.yaml

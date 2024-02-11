@@ -1,0 +1,19 @@
+version: '3'
+
+tasks:
+  serve:
+    desc: Run mkdocs server locally.
+    cmds:
+      - poetry run mkdocs serve
+
+  release:
+    desc: Publish docs to Github Pages.
+    cmds:
+      - poetry install --no-root
+      - poetry run mkdocs gh-deploy --force
+
+  gen:
+    desc: "Generates CLI docs"
+    cmds:
+      - poetry run pip install -U typer-cli
+      - poetry run typer rubrical/main.py utils docs --output docs/commands.md
