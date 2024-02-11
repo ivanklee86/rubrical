@@ -1,4 +1,12 @@
-## Package
+## Installation
+
+### Package
+
+**Requirements**
+
+* Python 3.12
+
+**Installation**
 
 Rubrical can be installed from [pypi](https://pypi.org/).
 
@@ -17,3 +25,10 @@ docker run --rm -it --name rubrical \
   --config /code/rubrical.yaml \
   --target /code
 ```
+
+## Usage
+
+1. Create a [configuration](installation_and_usage.md) file.  This can be commited to your code repositories but to get the most out of rubrical it's highly recommended to maintain a centralized configuration in a repository, gist, etc.
+2. In your code repository, run `rubrical grade --config /path/to/config`
+3. ???
+4. Profit!
