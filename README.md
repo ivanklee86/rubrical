@@ -7,8 +7,10 @@ A CLI to encourage (😅) people to update their dependencies!
 ## raison d'etre
 
 ```gherkin
-Scenario: A team publishes an update to a new library that needs to be adopted. (New feature, breaking changes, security fixes, etc)
-  Given your company has a microservice architecture (or >3 repositories to update across >2 teams )
+Scenario: A team publishes an update to a new library that needs to be adopted.
+            (New feature, breaking changes, security fixes, etc)
+  Given your company has a microservice architecture
+          (or >3 repositories to update across >2 teams )
   Then you go to each team and beg/bargin/plead for them to update their packages
 ```
 
