@@ -31,8 +31,9 @@ theme:
 nav:
   - Home: 'index.md'
   - User Guide:
-    - Installation: "installation.md"
-    - Usage: "usage.md"
+    - Installation and Usage: "installation_and_usage.md"
+    - Featuers and Supported Formats: "features_and_supported_formats.md"
+    - Configuration: "configuration.md"
     - Reporting: "reporting.md"
     - Commands: "commands.md"
   - Developer Guide: "development.md"
