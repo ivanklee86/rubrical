@@ -36,7 +36,11 @@ class BasePackageManager(abc.ABC):
             package_manager_files.extend(current_folder.rglob(target_file))
 
         for package_manager_file in package_manager_files:
-            if any(x not in str(package_manager_file) for x in self.denylist_pathnames):
+            if self.denylist_pathnames and any(
+                x in str(package_manager_file) for x in self.denylist_pathnames
+            ):
+                pass
+            else:
                 with open(str(package_manager_file), "r") as file:
                     self.found_files[
                         str(package_manager_file.relative_to(current_folder))
