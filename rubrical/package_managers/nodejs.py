@@ -8,6 +8,7 @@ from rubrical.schemas.package import Package, Specification
 
 class NodeJS(BasePackageManager):
     target_files = ["package.json"]
+    denylist_pathnames = ["node_modules"]
 
     def __init__(self) -> None:
         super().__init__()
