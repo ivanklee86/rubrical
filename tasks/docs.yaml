@@ -12,6 +12,11 @@ tasks:
       - poetry install --no-root
       - poetry run mkdocs gh-deploy --force
 
+  test:
+    desc: Make sure docs build.
+    cmds:
+      - poetry run mkdocs build --strict
+
   gen:
     desc: "Generates CLI docs"
     cmds:
