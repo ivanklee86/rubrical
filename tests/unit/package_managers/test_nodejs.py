@@ -13,6 +13,7 @@ def test_nodejs():
 
     assert len(nodejs.packages["package.json"]) == 104
     assert len(nodejs.packages["complex/package.json"]) == 11
+    assert "node_modules/buffer/package.json" not in nodejs.packages
 
     # Check single version specifiers.
     [dep] = [x for x in nodejs.packages["complex/package.json"] if x.name == "til"]

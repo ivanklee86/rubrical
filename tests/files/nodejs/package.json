@@ -136,6 +136,11 @@
       "typescript": "5.0.4",
       "webpack": "5.78.0"
     },
+    "peerDependenciesMeta": {
+      "supports-color": {
+        "optional": true
+      }
+    },
     "electronmon": {
       "patterns": [
         "!app/**",

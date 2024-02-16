@@ -8,6 +8,8 @@ from rubrical.schemas.package import Package, Specification
 
 class NodeJS(BasePackageManager):
     target_files = ["package.json"]
+    denylist_pathnames = ["node_modules"]
+    dependency_keys = ["dependencies", "devDependencies", "peerDependencies"]
 
     def __init__(self) -> None:
         super().__init__()
@@ -26,7 +28,7 @@ class NodeJS(BasePackageManager):
         package_json = json.loads(package_file_contents)
 
         for dependency_key in [
-            x for x in package_json.keys() if "dependencies" in x.lower()
+            x for x in package_json.keys() if x in self.dependency_keys
         ]:
             dependency_section = package_json[dependency_key]
 
