@@ -31,10 +31,11 @@ def _generate_report(reporting_data: Dict[str, List[PackageCheckResult]]):
                     rep += f"| {result.file} | {result.name} | ⚠️ {result.version_package} < {result.version_warn}, update to >= {result.version_warn} |\n"
         else:
             rep += "🟢 All dependencies up to date!\n"
-            
+
         rep += "\n"
 
     return rep.rstrip()
+
 
 def report_github(
     access_token: str,
