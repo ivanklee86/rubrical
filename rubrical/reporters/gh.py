@@ -8,13 +8,12 @@ from rubrical.utilities import console
 
 
 def _generate_report(reporting_data: Dict[str, List[PackageCheckResult]]):
-    test = """
+    rep = """
 ## [Rubrical](https://github.com/ivanklee86/rubrical) Report
 
 """
-
     for package_manager in reporting_data.keys():
-        test += f"### {package_manager}\n\n"
+        rep += f"### {package_manager}\n\n"
 
         not_ok_results = [
             x
@@ -22,18 +21,20 @@ def _generate_report(reporting_data: Dict[str, List[PackageCheckResult]]):
             if x.check in [PackageCheck.BLOCK, PackageCheck.WARN]
         ]
         if not_ok_results:
-            test += "| File | Dependency | Result |\n"
-            test += "|------|------------|--------|\n"
+            rep += "| File | Dependency | Result |\n"
+            rep += "|------|------------|--------|\n"
 
             for result in not_ok_results:
                 if result.check == PackageCheck.BLOCK:
-                    test += f"| {result.file} | {result.name} | ❌ {result.version_package} < {result.version_block}, update to >= {result.version_warn} |\n"
+                    rep += f"| {result.file} | {result.name} | ❌ {result.version_package} < {result.version_block}, update to >= {result.version_warn} |\n"
                 elif result.check == PackageCheck.WARN:
-                    test += f"| {result.file} | {result.name} | ⚠️ {result.version_package} < {result.version_warn}, update to >= {result.version_warn} |\n"
+                    rep += f"| {result.file} | {result.name} | ⚠️ {result.version_package} < {result.version_warn}, update to >= {result.version_warn} |\n"
         else:
-            test += "🟢 All dependencies up to date!"
+            rep += "🟢 All dependencies up to date!\n"
 
-    return test
+        rep += "\n"
+
+    return rep.rstrip()
 
 
 def report_github(
