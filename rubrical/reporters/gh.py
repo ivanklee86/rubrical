@@ -31,7 +31,7 @@ def _generate_report(reporting_data: Dict[str, List[PackageCheckResult]]):
                 elif result.check == PackageCheck.WARN:
                     test += f"| {result.file} | {result.name} | ⚠️ {result.version_package} < {result.version_warn}, update to >= {result.version_warn} |\n"
         else:
-            test += "🟢 All dependencies up to date!"
+            test += "🟢 All dependencies up to date!\n"
 
     return test
 
