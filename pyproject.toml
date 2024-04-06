@@ -49,7 +49,7 @@ rubrical = "rubrical.main:app"
 
 [tool.poetry.dependencies]
 python = "^3.12"
-typer = {extras = ["all"], version = "^0.9.0"}
+typer = {extras = ["all"], version = "^0.12.0"}
 pydantic = "^2.5.2"
 semver = "^3.0.2"
 pygithub = "^2.0.0"
@@ -72,7 +72,7 @@ setuptools-scm = "^8.0.0"
 twine = "^5.0.0"
 pre-commit = "^3.4.0"
 isort = "^5.13.1"
-ruff = "^0.2.0"
+ruff = "^0.3.0"
 python-dotenv = "^1.0.0"
 mkdocs = "^1.5.3"
 mkdocs-material = "^9.5.4"
