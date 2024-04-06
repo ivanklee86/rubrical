@@ -10,13 +10,13 @@ tasks:
     desc: Run linting and fix issues.
     cmds:
       - poetry run black .
-      - poetry run ruff rubrical tests --fix
+      - poetry run ruff check rubrical tests --fix
 
   lint:
     desc: Run linting tasks.
     cmds:
       - poetry run black .
-      - poetry run ruff rubrical tests
+      - poetry run ruff check rubrical tests
       - poetry run mypy rubrical
 
   test:

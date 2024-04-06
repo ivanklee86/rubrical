@@ -17,4 +17,7 @@ RUN pip install -U pip
 # Install task
 RUN sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d
 
+# Git configure
+RUN git config --global push.autoSetupRemote true
+
 ENV PATH="$HOME/.venv/bin:$PATH"
