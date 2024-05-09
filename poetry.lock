@@ -597,18 +597,18 @@ files = [
 
 [[package]]
 name = "dom-toml"
-version = "1.0.0"
+version = "2.0.0"
 description = "Dom's tools for Tom's Obvious, Minimal Language."
 optional = false
 python-versions = ">=3.6.1"
 files = [
-    {file = "dom_toml-1.0.0-py3-none-any.whl", hash = "sha256:b20e66b191a6e41efdb4b8849db0ece42b798b511e7d099130691e121ef56d42"},
-    {file = "dom_toml-1.0.0.tar.gz", hash = "sha256:2b8d4d1cdbca1839a4ef8582719ed9023410b7ae93094166d57a5bcbdfe2e305"},
+    {file = "dom_toml-2.0.0-py3-none-any.whl", hash = "sha256:0b6d02a72bcbc6be8175c61afc30623bbb6b74c4650f2a806fbc3fb7fe86935d"},
+    {file = "dom_toml-2.0.0.tar.gz", hash = "sha256:3c07e8436538994974127b1ae037661d1a779ac915c44fd06b3ab5fe140ff589"},
 ]
 
 [package.dependencies]
 domdf-python-tools = ">=2.8.0"
-toml = ">=0.10.2"
+tomli = ">=1.2.3"
 
 [[package]]
 name = "domdf-python-tools"
@@ -2341,6 +2341,17 @@ files = [
 ]
 
 [[package]]
+name = "tomli"
+version = "2.0.1"
+description = "A lil' TOML parser"
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "tomli-2.0.1-py3-none-any.whl", hash = "sha256:939de3e7a6161af0c887ef91b7d41a53e7c5a1ca976325f429cb46ea9bc30ecc"},
+    {file = "tomli-2.0.1.tar.gz", hash = "sha256:de526c12914f0c550d15924c62d72abc48d6fe7364aa87328337a31007fe8a4f"},
+]
+
+[[package]]
 name = "twine"
 version = "5.0.0"
 description = "Collection of utilities for publishing packages on PyPI"
@@ -2614,4 +2625,4 @@ testing = ["big-O", "jaraco.functools", "jaraco.itertools", "more-itertools", "p
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.12"
-content-hash = "4c8cf7b816e562dd4b436e4f35ab55f8d8f02c48b051b75a5338c6b07e3d0ad5"
+content-hash = "d396c5976c272824145463a76241b345f44bc2972c2a0323b9e7bda1730ec931"
