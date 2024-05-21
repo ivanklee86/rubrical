@@ -1640,13 +1640,13 @@ tests = ["hypothesis (>=3.27.0)", "pytest (>=3.2.1,!=3.3.0)"]
 
 [[package]]
 name = "pyproject-parser"
-version = "0.11.0"
+version = "0.11.1"
 description = "Parser for 'pyproject.toml'"
 optional = false
 python-versions = ">=3.6.1"
 files = [
-    {file = "pyproject-parser-0.11.0.tar.gz", hash = "sha256:2b3a73e99f1ad6c6416e8777f4a34e98986899191880f32f481a024d5c9fb43b"},
-    {file = "pyproject_parser-0.11.0-py3-none-any.whl", hash = "sha256:5bc91cf61958b888c74e8f9fc6039d886bc250f168838046352344d18ca9ba5d"},
+    {file = "pyproject-parser-0.11.1.tar.gz", hash = "sha256:d1e8edbba3a5480eb0ff3ffe8f6943ba2905199878aff1cb05984900a6618201"},
+    {file = "pyproject_parser-0.11.1-py3-none-any.whl", hash = "sha256:ce5e62aa78ef79e0d8dbdcf60ec39cb8f6469e6e08ff4921ea6d4738f71f8f9a"},
 ]
 
 [package.dependencies]
