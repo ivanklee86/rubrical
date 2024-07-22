@@ -38,4 +38,4 @@ def test_find_and_load():
 
     assert test_manager.packages
     assert len(test_manager.packages["test.json"]) == 2
-    assert type(test_manager.packages["submodule/test.json"][0]) == Package
+    assert type(test_manager.packages["submodule/test.json"][0]) is Package
