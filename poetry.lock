@@ -2005,13 +2005,13 @@ requests = ">=2.0.1,<3.0.0"
 
 [[package]]
 name = "requirements-parser"
-version = "0.9.0"
+version = "0.10.0"
 description = "This is a small Python module for parsing Pip requirement files."
 optional = false
 python-versions = "<4.0,>=3.8"
 files = [
-    {file = "requirements_parser-0.9.0-py3-none-any.whl", hash = "sha256:40298fd2bb423798fc52ca4550adf1944d75c998fd2316b5b6959842dbc70a32"},
-    {file = "requirements_parser-0.9.0.tar.gz", hash = "sha256:588f587ab76732d59df4c64bd81f1b4a4f1aaaa9b3eb7ad4f5890685446f03e8"},
+    {file = "requirements_parser-0.10.0-py3-none-any.whl", hash = "sha256:3c165f679f2c69fc8b4910a8cd86cea1f2c125d8624eb272e90db86dfddff064"},
+    {file = "requirements_parser-0.10.0.tar.gz", hash = "sha256:8eebcb5abc2ec300b5d4ff7777354564cab495af524336438d72688672d49dc6"},
 ]
 
 [package.dependencies]
@@ -2516,4 +2516,4 @@ test = ["big-O", "importlib-resources", "jaraco.functools", "jaraco.itertools", 
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.12"
-content-hash = "e2b84f13fe0919b4d29ccdd11965687a890f863c6ad958af88f193b14d4d14cd"
+content-hash = "da4c9e8074b5e4dfd14b1e4e5d4fa2ade742ec402b78b0097c35b0eb182fa053"
