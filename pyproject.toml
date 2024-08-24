@@ -55,7 +55,7 @@ semver = "^3.0.2"
 pygithub = "^2.0.0"
 python-benedict = {extras = ["all"], version = "^0.33.0"}
 pyyaml = "^6.0"
-requirements-parser = "^0.10.0"
+requirements-parser = "^0.11.0"
 pyproject-parser = "^0.11.0"
 setuptools = "^73.0.0"
 dom-toml = "^2.0.0"
