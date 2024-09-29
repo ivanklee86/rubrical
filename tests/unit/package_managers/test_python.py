@@ -39,3 +39,12 @@ def test_python():
         Specification(version="1.6", specifier=DependencySpecifications.LT)
         in dep.version_constraints
     )
+
+
+def test_poetry():
+    python = Python()
+
+    python.read_package_manager_files(Path(FILES_FOLDER_PATH, "poetry"))
+    python.parse_package_manager_files()
+
+    print("hi")
