@@ -1,4 +1,5 @@
 import abc
+from dataclasses import dataclass
 from pathlib import Path
 from typing import Dict, List, Tuple
 
@@ -6,11 +7,18 @@ from rubrical.enum import DependencySpecifications
 from rubrical.schemas.package import Package
 
 
+@dataclass
+class PackageManagerFileDetails:
+    name: str
+    path: Path
+    contents: str
+
+
 class BasePackageManager(abc.ABC):
     name: str = ""
     target_files: List[str] = []
     denylist_pathnames: List[str] = []
-    found_files: Dict[str, str]
+    found_files: Dict[str, PackageManagerFileDetails]
     packages: Dict[str, List[Package]]
     specification_symbols: Dict[str, List[str]] = {
         DependencySpecifications.EQ.value: ["=="],
@@ -42,13 +50,15 @@ class BasePackageManager(abc.ABC):
                 pass
             else:
                 with open(str(package_manager_file), "r") as file:
-                    self.found_files[
-                        str(package_manager_file.relative_to(current_folder))
-                    ] = file.read()
+                    file_name = str(package_manager_file.relative_to(current_folder))
+
+                    self.found_files[file_name] = PackageManagerFileDetails(
+                        name=file_name, path=package_manager_file, contents=file.read()
+                    )
 
     def parse_package_manager_files(self):
-        for file in self.found_files.items():
-            self.parse_package_manager_file(*file)
+        for file in self.found_files.values():
+            self.parse_package_manager_file(file)
 
     def append_package(self, package_file_filename: str, package: Package):
         self.packages[package_file_filename].append(package)
@@ -71,6 +81,6 @@ class BasePackageManager(abc.ABC):
 
     @abc.abstractmethod
     def parse_package_manager_file(
-        self, package_file_filename: str, package_file_contents: str
+        self, package_manager_file_details: PackageManagerFileDetails
     ) -> None:
         pass

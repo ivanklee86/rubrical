@@ -2,7 +2,10 @@ import json
 from typing import List
 
 from rubrical.enum import DependencySpecifications, SupportedPackageManagers
-from rubrical.package_managers.base_package_manager import BasePackageManager
+from rubrical.package_managers.base_package_manager import (
+    BasePackageManager,
+    PackageManagerFileDetails,
+)
 from rubrical.schemas.package import Package, Specification
 
 
@@ -22,10 +25,10 @@ class NodeJS(BasePackageManager):
         }
 
     def _parse_packagelock(
-        self, package_file_filename: str, package_file_contents: str
+        self, package_manager_file_details: PackageManagerFileDetails
     ):
-        self.packages[package_file_filename] = []
-        package_json = json.loads(package_file_contents)
+        self.packages[package_manager_file_details.name] = []
+        package_json = json.loads(package_manager_file_details.contents)
 
         for dependency_key in [
             x for x in package_json.keys() if x in self.dependency_keys
@@ -35,7 +38,7 @@ class NodeJS(BasePackageManager):
             for package, version in dependency_section.items():
                 if " " not in version:  # Handle most cases through symbol matching
                     if version[-2:] == ".x":  # Handle 1.2.x
-                        self.packages[package_file_filename].append(
+                        self.packages[package_manager_file_details.name].append(
                             Package(
                                 name=package,
                                 raw_constraint=f"{package} {version}",
@@ -52,7 +55,7 @@ class NodeJS(BasePackageManager):
                             specifier,
                             sanitized_version,
                         ) = self.match_from_specification_symbols(version)
-                        self.packages[package_file_filename].append(
+                        self.packages[package_manager_file_details.name].append(
                             Package(
                                 name=package,
                                 raw_constraint=f"{package} {version}",
@@ -69,7 +72,7 @@ class NodeJS(BasePackageManager):
                     pass
                 elif "-" in version:  # Handle range
                     range_versions = [x.strip(" ") for x in version.split("-")]
-                    self.packages[package_file_filename].append(
+                    self.packages[package_manager_file_details.name].append(
                         Package(
                             name=package,
                             raw_constraint=f"{package} {version}",
@@ -105,7 +108,7 @@ class NodeJS(BasePackageManager):
                                 )
                             )
 
-                        self.packages[package_file_filename].append(
+                        self.packages[package_manager_file_details.name].append(
                             Package(
                                 name=package,
                                 raw_constraint=f"{package} {version}",
@@ -114,7 +117,7 @@ class NodeJS(BasePackageManager):
                         )
 
     def parse_package_manager_file(
-        self, package_file_filename: str, package_file_contents: str
+        self, package_manager_file_details: PackageManagerFileDetails
     ) -> None:
-        if "package.json" in package_file_filename:
-            self._parse_packagelock(package_file_filename, package_file_contents)
+        if "package.json" in package_manager_file_details.name:
+            self._parse_packagelock(package_manager_file_details)

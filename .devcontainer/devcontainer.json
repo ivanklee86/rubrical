@@ -8,7 +8,7 @@
 			// Append -bullseye or -buster to pin to an OS version.
 			// Use -bullseye variants on local on arm64/Apple Silicon.
 			"VARIANT": "3.12",
-			"POETRY_VERSION": "1.7.1",
+			"POETRY_VERSION": "1.8.2",
 			// Options
 			"NODE_VERSION": "lts/*"
 		}
