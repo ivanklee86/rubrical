@@ -5,10 +5,6 @@ ignore_missing_imports = true
 
 [tool.pytest.ini_options]
 addopts= """
-    --cov rubrical \
-    --cov-report term \
-    --cov-report html:test_results/cov_html \
-    --cov-report xml:test_results/cov.xml \
     --html=test_results/results.html \
     --self-contained-html \
     --junitxml=test_results/results.xml \
@@ -16,20 +12,17 @@ addopts= """
 """
 log_file_level="INFO"
 
-[tool.pylint]
-load-plugins="pylint.extensions.no_self_use"
+[tool.ruff]
 
-[tool.pylint.messages_control]
-disable = [
-    "line-too-long",
-    "missing-class-docstring",
-    "missing-module-docstring",
-    "missing-function-docstring",
-    "logging-fstring-interpolation"
-]
-max-attributes = 25
-max-args = 25
-max-locals = 25
+[tool.ruff.lint]
+# Enable Pyflakes `E` and `F` codes by default.
+select = ["E", "F", "PL", "YTT", "I"]
+ignore = ["E501", "PLR2004"]
+
+fixable = ["I"]
+
+[tool.ruff.lint.pylint]
+max-args = 10
 
 [tool.isort]
 profile = "black"
@@ -38,37 +31,59 @@ profile = "black"
 
 [tool.poetry]
 name = "rubrical"
-version = "0.0.1"
-description = "A Python CLI to encourage (😅) people to update their dependencies!"
+version = "0.0.0"
+description = "A CLI to encourage (😅) people to update their dependencies!"
 authors = ["Ivan Lee <ivanklee86@gmail.com>"]
-license = "MIT"
+license = "MPL-2.0"
 homepage = "https://github.com/ivanklee86/rubrical"
 repository = "https://github.com/ivanklee86/rubrical"
 readme = "README.md"
+classifiers=[
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Topic :: Software Development :: Build Tools",
+]
 
 [tool.poetry.scripts]
 rubrical = "rubrical.main:app"
 
 [tool.poetry.dependencies]
-python = "^3.11"
-typer = {extras = ["all"], version = "^0.7.0"}
-
+python = "^3.12"
+typer = {extras = ["all"], version = "^0.12.0"}
+pydantic = "^2.5.2"
+semver = "^3.0.2"
+pygithub = "^2.0.0"
+python-benedict = {extras = ["all"], version = "^0.34.0"}
+pyyaml = "^6.0"
+requirements-parser = "^0.11.0"
+pyproject-parser = "^0.11.0"
+setuptools = "^75.0.0"
+dom-toml = "^2.0.0"
+requirements-detector = "^1.3.2"
+toml = "^0.10.2"
 
 [tool.poetry.group.dev.dependencies]
-black = "^22.10.0"
-mypy = "^0.991"
-pytest = "^7.2.0"
-pylint = "^2.15.7"
-pytest-cov = "^4.0.0"
-pytest-flake8 = "^1.1.1"
-pytest-html = "^3.2.0"
+black = "^24.0.0"
+mypy = "^1.7.1"
+pytest = "^8.0.0"
+pytest-cov = "^6.0.0"
+pytest-html = "^4.0.0"
 pytest-mock = "^3.10.0"
 pytest-xdist = "^3.0.2"
-setuptools-scm = "^7.0.5"
-twine = "^4.0.2"
-pre-commit = "^2.20.0"
-isort = "^5.10.1"
+setuptools-scm = "^8.0.0"
+twine = "^5.0.0"
+pre-commit = "^4.0.0"
+isort = "^5.13.1"
+ruff = "^0.7.0"
+python-dotenv = "^1.0.0"
+mkdocs = "^1.5.3"
+mkdocs-material = "^9.5.4"
+
+[tool.poetry-dynamic-versioning]
+enable = true
+vcs = "git"
+style = "semver"
 
 [build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+requires = ["poetry-core>=1.0.0", "poetry-dynamic-versioning"]
+build-backend = "poetry_dynamic_versioning.backend"

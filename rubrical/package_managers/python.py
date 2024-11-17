@@ -4,9 +4,13 @@ import pyproject_parser
 import requirements
 import tomllib
 from requirements.requirement import Requirement
+from requirements_detector import find_requirements
 
 from rubrical.enum import DependencySpecifications, SupportedPackageManagers
-from rubrical.package_managers.base_package_manager import BasePackageManager
+from rubrical.package_managers.base_package_manager import (
+    BasePackageManager,
+    PackageManagerFileDetails,
+)
 from rubrical.schemas.package import Package, Specification
 
 
@@ -49,18 +53,18 @@ class Python(BasePackageManager):
             )
 
     def parse_package_manager_file(
-        self, package_file_filename: str, package_file_contents: str
+        self, package_manager_file_details: PackageManagerFileDetails
     ) -> None:
-        self.packages[package_file_filename] = []
+        self.packages[package_manager_file_details.name] = []
 
-        if "requirements.txt" in package_file_filename:
-            for req in requirements.parse(package_file_contents):
+        if "requirements.txt" in package_manager_file_details.name:
+            for req in requirements.parse(package_manager_file_details.contents):
                 self._parse_requirement(
-                    req=req, package_file_filename=package_file_filename
+                    req=req, package_file_filename=package_manager_file_details.name
                 )
 
-        elif "pyproject.toml" in package_file_filename:
-            pyproject_contents = tomllib.loads(package_file_contents)
+        elif "pyproject.toml" in package_manager_file_details.name:
+            pyproject_contents = tomllib.loads(package_manager_file_details.contents)
             parser = pyproject_parser.PyProject()
             contents = parser.from_dict(pyproject_contents)
 
@@ -69,4 +73,17 @@ class Python(BasePackageManager):
                 for pyproject_req in contents.project["dependencies"]:
                     # Hacky hack to use same parser as requirements.txt
                     for fake_req in requirements.parse(str(pyproject_req)):
-                        self._parse_requirement(fake_req, package_file_filename)
+                        self._parse_requirement(
+                            fake_req, package_manager_file_details.name
+                        )
+            elif contents.tool and "poetry" in contents.tool.keys():
+                poetry_requirements = find_requirements(
+                    package_manager_file_details.path.parent
+                )
+                for poetry_requirement in poetry_requirements:
+                    reqs = requirements.parse(str(poetry_requirement))
+                    for req in reqs:
+                        self._parse_requirement(
+                            req=req,
+                            package_file_filename=package_manager_file_details.name,
+                        )

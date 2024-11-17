@@ -1,7 +1,10 @@
 import re
 
 from rubrical.enum import DependencySpecifications, SupportedPackageManagers
-from rubrical.package_managers.base_package_manager import BasePackageManager
+from rubrical.package_managers.base_package_manager import (
+    BasePackageManager,
+    PackageManagerFileDetails,
+)
 from rubrical.schemas.package import Package, Specification
 
 
@@ -14,13 +17,13 @@ class Go(BasePackageManager):
         self.name = SupportedPackageManagers.GO.value
 
     def parse_package_manager_file(
-        self, package_file_filename: str, package_file_contents: str
+        self, package_manager_file_details: PackageManagerFileDetails
     ) -> None:
-        self.packages[package_file_filename] = []
+        self.packages[package_manager_file_details.name] = []
         modules = []
 
         go_import_regex = re.compile("\\(([^)]+)\\)")
-        matched_groups = go_import_regex.findall(package_file_contents)
+        matched_groups = go_import_regex.findall(package_manager_file_details.contents)
         for group in matched_groups:
             lines = group.split("\n")
             modules.extend(
@@ -30,7 +33,7 @@ class Go(BasePackageManager):
         for module in modules:
             module_specs = module.split(" ")
 
-            self.packages[package_file_filename].append(
+            self.packages[package_manager_file_details.name].append(
                 Package(
                     name=module_specs[0],
                     raw_constraint=module,
