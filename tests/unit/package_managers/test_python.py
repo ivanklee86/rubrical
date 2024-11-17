@@ -47,4 +47,5 @@ def test_poetry():
     python.read_package_manager_files(Path(FILES_FOLDER_PATH, "poetry"))
     python.parse_package_manager_files()
 
-    print("hi")
+    [dep] = [x for x in python.packages["pyproject.toml"] if x.name == "pydantic"]
+    assert len(dep.version_constraints) == 2

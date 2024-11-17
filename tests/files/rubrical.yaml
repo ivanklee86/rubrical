@@ -19,6 +19,9 @@ package_managers:
       - name: flake8
         block: v6.0.0
         warn: v7.0.0
+      - name: pydantic
+        block: v3.1.0
+        warn: v3.2.0
   - name: go
     packages:
       - name: github.com/adrg/xdg

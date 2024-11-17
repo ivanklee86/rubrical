@@ -4,6 +4,7 @@ import pyproject_parser
 import requirements
 import tomllib
 from requirements.requirement import Requirement
+from requirements_detector import find_requirements
 
 from rubrical.enum import DependencySpecifications, SupportedPackageManagers
 from rubrical.package_managers.base_package_manager import (
@@ -76,4 +77,13 @@ class Python(BasePackageManager):
                             fake_req, package_manager_file_details.name
                         )
             elif contents.tool and "poetry" in contents.tool.keys():
-                print("I'm a poetry package!")
+                poetry_requirements = find_requirements(
+                    package_manager_file_details.path.parent
+                )
+                for poetry_requirement in poetry_requirements:
+                    reqs = requirements.parse(str(poetry_requirement))
+                    for req in reqs:
+                        self._parse_requirement(
+                            req=req,
+                            package_file_filename=package_manager_file_details.name,
+                        )

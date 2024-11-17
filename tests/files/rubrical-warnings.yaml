@@ -16,6 +16,9 @@ package_managers:
       - name: apscheduler
         block: v3.0.0
         warn: v4.0.0
+      - name: pydantic
+        block: v2.5.5
+        warn: v3.1.0
   - name: go
     packages:
       - name: github.com/adrg/xdg
