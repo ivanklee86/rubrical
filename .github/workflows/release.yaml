@@ -11,6 +11,7 @@ env:
 jobs:
   pypi:
     runs-on: ubuntu-latest
+    environment: ppypi
     steps:
       - uses: actions/checkout@v4
       - name: Install poetry
@@ -21,16 +22,17 @@ jobs:
           cache: 'poetry'
       - name: Install Task
         uses: arduino/setup-task@v1
-      - name: Install packages
+      - name: Install dependencies
         run: |
           task python:install
           poetry self add "poetry-dynamic-versioning[plugin]"
-      - name: Publish package
+      - name: Build package
         run: |
-          task python:publish
+          task python:build
+      - name: Publish package to Pypi
+        uses: pypa/gh-action-pypi-publish@release/v1
         env:
-          PYPI_USERNAME: "__token__"
-          PYPI_PASSWORD: ${{ secrets.PYPI_TOKEN }}
+          repository-url: https://pypi.org/p/rubrical
 
   docker:
     runs-on: ubuntu-latest
