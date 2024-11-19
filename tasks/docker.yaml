@@ -18,3 +18,8 @@ tasks:
     cmds:
       - task: docker-build
       - docker run --rm -it -v `pwd`/tests/files:/code --entrypoint sh --name rubrical rubrical:latest
+
+  dockerfile:
+    desc: Build Dockerfile for local testing.
+    cmds:
+      - docker build -t dockerfile -f ./.devcontainer/Dockerfile .

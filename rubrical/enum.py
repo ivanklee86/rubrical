@@ -35,3 +35,13 @@ class SupportedPackageManagers(Enum):
     PYTHON = "python"
     GO = "go"
     NODEJS = "nodejs"
+
+
+class GithubAuthType(Enum):
+    TOKEN = "token"
+    APP = "app"
+
+
+class ReportType(Enum):
+    GITHUB_APP = "github_app"
+    GITHUB_COMMENT = "github_comment"

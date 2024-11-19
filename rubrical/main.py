@@ -1,9 +1,11 @@
 from pathlib import Path
+from typing import List
 
 import typer
 from benedict import benedict
 from pydantic import ValidationError
 
+from rubrical.enum import ReportType
 from rubrical.reporters import gh
 from rubrical.rubrical import Rubrical
 from rubrical.schemas.configuration import RubricalConfig
@@ -15,7 +17,7 @@ app.add_typer(configs.app, name="configs")
 
 
 @app.command()
-def grade(
+def grade(  # noqa: PLR0913
     config: Path = typer.Option(Path("rubrical.yaml"), help="Path to configuration"),
     target: Path = typer.Option(Path().absolute(), help="Path to configuration"),
     block: bool = typer.Option(True, "/--no-block", help="Don't fail if blocks found."),
@@ -25,10 +27,23 @@ def grade(
     pr_id: int = typer.Option(
         0, envvar="RUBRICAL_PR_ID", help="PR ID for reporting purposes."
     ),
+    report_type: List[ReportType] = typer.Option(
+        "", envvar="RUBRICAL_REPORT_TYPE", help="Report type"
+    ),
     gh_access_token: str = typer.Option(
         "",
         envvar="RUBRICAL_GH_TOKEN",
-        help="Github access token for reporting.  Presence will enable Github reporting.",
+        help="Github access token for reporting.",
+    ),
+    gh_app_id: str = typer.Option(
+        "",
+        envvar="RUBRICAL_APP_ID",
+        help="Github App ID for reporting.",
+    ),
+    gh_private_key: str = typer.Option(
+        "",
+        envvar="RUBRICAL_PRIVATE_KEY",
+        help="Github Private Key for reporting.",
     ),
     gh_custom_url: str = typer.Option(
         "",
