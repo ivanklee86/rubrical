@@ -10,8 +10,10 @@ env:
 
 jobs:
   pypi:
+    permissions:
+      id-token: write
     runs-on: ubuntu-latest
-    environment: ppypi
+    environment: pypi
     steps:
       - uses: actions/checkout@v4
       - name: Install poetry

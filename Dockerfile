@@ -14,8 +14,7 @@ WORKDIR /usr/app
 COPY pyproject.toml poetry.lock ./
 
 RUN poetry config virtualenvs.create false \
-    && poetry install --no-dev --no-interaction --no-ansi \
-    && poetry self add poetry-plugin-export
+    && poetry install --no-dev --no-interaction --no-ansi
 
 COPY . .
 
