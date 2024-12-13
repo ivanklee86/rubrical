@@ -48,7 +48,7 @@ classifiers=[
 rubrical = "rubrical.main:app"
 
 [tool.poetry.dependencies]
-python = "^3.12"
+python = "^3.13"
 typer = {extras = ["all"], version = "^0.13.0"}
 pydantic = "^2.5.2"
 semver = "^3.0.2"
