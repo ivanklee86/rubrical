@@ -12,7 +12,7 @@ def _generate_report(reporting_data: Dict[str, List[PackageCheckResult]]):
 ## [Rubrical](https://github.com/ivanklee86/rubrical) Report
 
 """
-    for package_manager in reporting_data.keys():
+    for package_manager in reporting_data.keys():  # noqa: PLC0206
         rep += f"### {package_manager}\n\n"
 
         not_ok_results = [
