@@ -48,8 +48,8 @@ classifiers=[
 rubrical = "rubrical.main:app"
 
 [tool.poetry.dependencies]
-python = "^3.13"
-typer = {extras = ["all"], version = "^0.15.0"}
+python = "^3.12"
+typer = {extras = ["all"], version = "^0.13.0"}
 pydantic = "^2.5.2"
 semver = "^3.0.2"
 pygithub = "^2.0.0"
@@ -71,10 +71,10 @@ pytest-html = "^4.0.0"
 pytest-mock = "^3.10.0"
 pytest-xdist = "^3.0.2"
 setuptools-scm = "^8.0.0"
-twine = "^6.0.0"
+twine = "^5.0.0"
 pre-commit = "^4.0.0"
 isort = "^5.13.1"
-ruff = "^0.8.0"
+ruff = "^0.7.0"
 python-dotenv = "^1.0.0"
 mkdocs = "^1.5.3"
 mkdocs-material = "^9.5.4"
