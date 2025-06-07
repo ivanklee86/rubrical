@@ -1619,13 +1619,13 @@ tests = ["hypothesis (>=3.27.0)", "pytest (>=3.2.1,!=3.3.0)"]
 
 [[package]]
 name = "pyproject-parser"
-version = "0.12.0"
+version = "0.13.0"
 description = "Parser for 'pyproject.toml'"
 optional = false
 python-versions = ">=3.6.1"
 files = [
-    {file = "pyproject_parser-0.12.0-py3-none-any.whl", hash = "sha256:f6356ef9145f9c5c9e20088896970afbabd46e4db2757a6c02d884e2008ca12a"},
-    {file = "pyproject_parser-0.12.0.tar.gz", hash = "sha256:2df9c4a6ac796126399a64a91fa3fe76a9a1d6ce5753d26701b85dc4e04e87ab"},
+    {file = "pyproject_parser-0.13.0-py3-none-any.whl", hash = "sha256:e967a66e84ade12497016af86f25a60d0fdb8c8e6e4bae0dc9d3707aeaf03bb5"},
+    {file = "pyproject_parser-0.13.0.tar.gz", hash = "sha256:ff1ddb5d426c6d8b38ad73cda2d5caf3f568852cb4e0cf869345c89e8ca0fb76"},
 ]
 
 [package.dependencies]
@@ -2654,4 +2654,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.12"
-content-hash = "2b96f178031d47178b34afba13378eab186d445f2863654db40034cc29cce19d"
+content-hash = "c823c3b3085a6ad30897b207b1ced1d3a87c7696db487cc1ccab96bf70bf6ca6"
