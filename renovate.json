@@ -4,7 +4,7 @@
     "config:recommended"
   ],
   "schedule": [
-    "on the first friday of the month"
+    "every 2 weeks on friday"
   ],
   "automerge": true,
   "platformAutomerge": true,
@@ -13,6 +13,5 @@
       "matchManagers": ["poetry"],
       "groupName": "Poetry dependencies"
     }
-  ],
-  "timezone": "UTC"
+  ]
 }
