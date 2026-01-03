@@ -1,4 +1,69 @@
 
+[project]
+name = "rubrical"
+version = "0.0.0"
+description = "A CLI to encourage (😅) people to update their dependencies!"
+authors = [
+    {name = "Ivan Lee", email = "ivanklee86@gmail.com"}
+]
+license = {text = "MPL-2.0"}
+readme = "README.md"
+requires-python = ">=3.12"
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Topic :: Software Development :: Build Tools",
+]
+dependencies = [
+    "typer[all]>=0.21.0",
+    "pydantic>=2.0.0",
+    "semver>=3.0.2",
+    "pygithub>=2.0.0",
+    "python-benedict[all]>=0.35.0",
+    "pyyaml>=6.0",
+    "requirements-parser>=0.13.0",
+    "pyproject-parser>=0.14.0",
+    "setuptools>=80.0.0",
+    "dom-toml>=2.0.0",
+    "requirements-detector>=1.3.2",
+    "toml>=0.10.2",
+]
+
+[project.optional-dependencies]
+dev = [
+    "mypy>=1.7.1",
+    "pytest>=9.0.0",
+    "pytest-cov>=7.0.0",
+    "pytest-html>=4.0.0",
+    "pytest-mock>=3.10.0",
+    "pytest-xdist>=3.0.2",
+    "setuptools-scm>=9.0.0",
+    "twine>=6.0.0",
+    "pre-commit>=4.0.0",
+    "isort>=7.0.0",
+    "ruff>=0.14.0",
+    "python-dotenv>=1.0.0",
+    "mkdocs>=1.0.0",
+    "mkdocs-material>=9.0.0",
+]
+
+[project.scripts]
+rubrical = "rubrical.main:app"
+
+[project.urls]
+Homepage = "https://github.com/ivanklee86/rubrical"
+Repository = "https://github.com/ivanklee86/rubrical"
+
+[build-system]
+requires = ["hatchling", "hatch-vcs"]
+build-backend = "hatchling.build"
+
+[tool.hatch.version]
+source = "vcs"
+
+[tool.hatch.build.hooks.vcs]
+version-file = "rubrical/_version.py"
+
 [tool.mypy]
 strict_optional = false
 ignore_missing_imports = true
@@ -24,66 +89,4 @@ fixable = ["I"]
 [tool.ruff.lint.pylint]
 max-args = 10
 
-[tool.isort]
-profile = "black"
-
 [tool.setuptools_scm]
-
-[tool.poetry]
-name = "rubrical"
-version = "0.0.0"
-description = "A CLI to encourage (😅) people to update their dependencies!"
-authors = ["Ivan Lee <ivanklee86@gmail.com>"]
-license = "MPL-2.0"
-homepage = "https://github.com/ivanklee86/rubrical"
-repository = "https://github.com/ivanklee86/rubrical"
-readme = "README.md"
-classifiers=[
-    "Development Status :: 4 - Beta",
-    "Intended Audience :: Developers",
-    "Topic :: Software Development :: Build Tools",
-]
-
-[tool.poetry.scripts]
-rubrical = "rubrical.main:app"
-
-[tool.poetry.dependencies]
-python = "^3.12"
-typer = {extras = ["all"], version = "^0.21.0"}
-pydantic = "^2.0.0"
-semver = "^3.0.2"
-pygithub = "^2.0.0"
-python-benedict = {extras = ["all"], version = "^0.35.0"}
-pyyaml = "^6.0"
-requirements-parser = "^0.13.0"
-pyproject-parser = "^0.14.0"
-setuptools = "^80.0.0"
-dom-toml = "^2.0.0"
-requirements-detector = "^1.3.2"
-toml = "^0.10.2"
-
-[tool.poetry.group.dev.dependencies]
-black = "^25.0.0"
-mypy = "^1.7.1"
-pytest = "^9.0.0"
-pytest-cov = "^7.0.0"
-pytest-html = "^4.0.0"
-pytest-mock = "^3.10.0"
-pytest-xdist = "^3.0.2"
-setuptools-scm = "^9.0.0"
-twine = "^6.0.0"
-pre-commit = "^4.0.0"
-isort = "^7.0.0"
-ruff = "^0.14.0"
-python-dotenv = "^1.0.0"
-mkdocs = "^1.0.0"
-mkdocs-material = "^9.0.0"
-
-[tool.poetry-dynamic-versioning]
-enable = true
-vcs = "git"
-style = "semver"
-
-[build-system]
-requires = ["poetry-core>=1.0.0", "poetry-dynamic-versioning"]
-build-backend = "poetry_dynamic_versioning.backend"

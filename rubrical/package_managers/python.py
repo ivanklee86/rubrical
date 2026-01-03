@@ -1,8 +1,8 @@
+import tomllib
 from typing import List
 
 import pyproject_parser
 import requirements
-import tomllib
 from requirements.requirement import Requirement
 from requirements_detector import find_requirements
 
