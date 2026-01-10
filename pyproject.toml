@@ -15,7 +15,7 @@ classifiers = [
     "Topic :: Software Development :: Build Tools",
 ]
 dependencies = [
-    "typer[all]>=0.21.0",
+    "typer[standard]>=0.21.1",
     "pydantic>=2.0.0",
     "semver>=3.0.2",
     "pygithub>=2.0.0",
@@ -45,6 +45,7 @@ dev = [
     "mkdocs>=1.0.0",
     "mkdocs-material>=9.0.0",
     "ty>=0.0.8",
+    "pip>=25.3",
 ]
 
 [project.scripts]
