@@ -1,5 +1,5 @@
 # See here for image contents: https://github.com/microsoft/vscode-dev-containers/blob/main/containers/go/.devcontainer/Dockerfile
-ARG BASE="debian-12"
+ARG BASE="debian"
 FROM mcr.microsoft.com/devcontainers/base:${BASE}
 
 # Setup

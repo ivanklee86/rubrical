@@ -3,9 +3,7 @@
 	"build": {
 		"dockerfile": "Dockerfile",
 		"context": "..",
-		"args": {
-			"BASE": "12",
-		}
+		"args": {}
 	},
 
 	// Configure tool-specific properties.
