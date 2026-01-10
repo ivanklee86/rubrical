@@ -1,0 +1,92 @@
+
+[project]
+name = "rubrical"
+version = "0.0.0"
+description = "A CLI to encourage (😅) people to update their dependencies!"
+authors = [
+    {name = "Ivan Lee", email = "ivanklee86@gmail.com"}
+]
+license = {text = "MPL-2.0"}
+readme = "README.md"
+requires-python = ">=3.14"
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Topic :: Software Development :: Build Tools",
+]
+dependencies = [
+    "typer[all]>=0.21.0",
+    "pydantic>=2.0.0",
+    "semver>=3.0.2",
+    "pygithub>=2.0.0",
+    "python-benedict[all]>=0.35.0",
+    "pyyaml>=6.0",
+    "requirements-parser>=0.13.0",
+    "pyproject-parser>=0.14.0",
+    "setuptools>=80.0.0",
+    "dom-toml>=2.0.0",
+    "requirements-detector>=1.3.2",
+    "toml>=0.10.2",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.0.0",
+    "pytest-cov>=7.0.0",
+    "pytest-html>=4.0.0",
+    "pytest-mock>=3.10.0",
+    "pytest-xdist>=3.0.2",
+    "setuptools-scm>=9.0.0",
+    "twine>=6.0.0",
+    "pre-commit>=4.0.0",
+    "isort>=7.0.0",
+    "ruff>=0.14.0",
+    "python-dotenv>=1.0.0",
+    "mkdocs>=1.0.0",
+    "mkdocs-material>=9.0.0",
+    "ty>=0.0.8",
+]
+
+[project.scripts]
+rubrical = "rubrical.main:app"
+
+[project.urls]
+Homepage = "https://github.com/ivanklee86/rubrical"
+Repository = "https://github.com/ivanklee86/rubrical"
+
+[build-system]
+requires = ["hatchling", "hatch-vcs"]
+build-backend = "hatchling.build"
+
+[tool.hatch.version]
+source = "vcs"
+
+[tool.hatch.build.hooks.vcs]
+version-file = "rubrical/_version.py"
+
+[tool.mypy]
+strict_optional = false
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+addopts= """
+    --html=test_results/results.html \
+    --self-contained-html \
+    --junitxml=test_results/results.xml \
+    --disable-warnings
+"""
+log_file_level="INFO"
+
+[tool.ruff]
+
+[tool.ruff.lint]
+# Enable Pyflakes `E` and `F` codes by default.
+select = ["E", "F", "PL", "YTT", "I"]
+ignore = ["E501", "PLR2004"]
+
+fixable = ["I"]
+
+[tool.ruff.lint.pylint]
+max-args = 10
+
+[tool.setuptools_scm]
