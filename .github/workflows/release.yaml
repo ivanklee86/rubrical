@@ -16,8 +16,10 @@ jobs:
     environment: pypi
     steps:
       - uses: actions/checkout@v6
-      - name: Install poetry
-        run: pipx install poetry
+      - name: Set up uv
+        uses: astral-sh/setup-uv@v7
+        with:
+          enable-cache: true
       - uses: actions/setup-python@v6
         with:
           python-version-file: ".python-version"
