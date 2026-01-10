@@ -1,5 +1,3 @@
-from typing import List
-
 import semver
 
 from rubrical.comparisons.utils import max_status, results_to_status
@@ -70,7 +68,7 @@ def __evaluate_specification(
 def compare_package_semver(
     package_requirement: PackageRequirement, package: Package
 ) -> PackageCheck:
-    raw_result: List[PackageCheck] = list(
+    raw_result = list(
         map(
             lambda x: __evaluate_specification(package_requirement, x),
             package.version_constraints,

@@ -67,7 +67,7 @@ def test_gh_report_contents():
 
 def test_gh_report_noop(secrets):  # noqa: F811
     gh.report_github(
-        access_token=os.getenv("RUBRICAL_TEST_GITHUB_ACCESS_TOKEN"),
+        access_token=os.getenv("RUBRICAL_TEST_GITHUB_ACCESS_TOKEN", ""),
         custom_url="",
         repository_name=GITHUB_REPO_NAME,
         pr_id=GITHUB_TEST_PR,
@@ -82,7 +82,7 @@ def test_gh_report(secrets, github_pr_clean):  # noqa: F811
 
     # Test creation.
     gh.report_github(
-        access_token=os.getenv("RUBRICAL_TEST_GITHUB_ACCESS_TOKEN"),
+        access_token=os.getenv("RUBRICAL_TEST_GITHUB_ACCESS_TOKEN", ""),
         custom_url="",
         repository_name=GITHUB_REPO_NAME,
         pr_id=GITHUB_TEST_PR,
@@ -101,7 +101,7 @@ def test_gh_report(secrets, github_pr_clean):  # noqa: F811
 
     # Test upsert
     gh.report_github(
-        access_token=os.getenv("RUBRICAL_TEST_GITHUB_ACCESS_TOKEN"),
+        access_token=os.getenv("RUBRICAL_TEST_GITHUB_ACCESS_TOKEN", ""),
         custom_url="",
         repository_name=GITHUB_REPO_NAME,
         pr_id=GITHUB_TEST_PR,
@@ -124,7 +124,7 @@ def test_gh_cleanup(secrets, github_pr_clean):  # noqa: F811
 
     # Test creation.
     gh.report_github(
-        access_token=os.getenv("RUBRICAL_TEST_GITHUB_ACCESS_TOKEN"),
+        access_token=os.getenv("RUBRICAL_TEST_GITHUB_ACCESS_TOKEN", ""),
         custom_url="",
         repository_name=GITHUB_REPO_NAME,
         pr_id=GITHUB_TEST_PR,
@@ -143,7 +143,7 @@ def test_gh_cleanup(secrets, github_pr_clean):  # noqa: F811
 
     # Test cleanup
     gh.report_github(
-        access_token=os.getenv("RUBRICAL_TEST_GITHUB_ACCESS_TOKEN"),
+        access_token=os.getenv("RUBRICAL_TEST_GITHUB_ACCESS_TOKEN", ""),
         custom_url="",
         repository_name=GITHUB_REPO_NAME,
         pr_id=GITHUB_TEST_PR,

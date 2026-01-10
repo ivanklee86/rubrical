@@ -4,21 +4,21 @@ tasks:
   serve:
     desc: Run mkdocs server locally.
     cmds:
-      - poetry run mkdocs serve
+      - uv run mkdocs serve
 
   release:
     desc: Publish docs to Github Pages.
     cmds:
-      - poetry install --no-root
-      - poetry run mkdocs gh-deploy --force
+      - uv install --no-root
+      - uv run mkdocs gh-deploy --force
 
   test:
     desc: Make sure docs build.
     cmds:
-      - poetry run mkdocs build --strict
+      - uv run mkdocs build --strict
 
   gen:
     desc: "Generates CLI docs"
     cmds:
-      - poetry run pip install -U typer-cli
-      - poetry run typer rubrical/main.py utils docs --output docs/commands.md
+      - uv run pip install -U typer-cli
+      - uv run typer rubrical/main.py utils docs --output docs/commands.md

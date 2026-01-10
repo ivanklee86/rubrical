@@ -1,12 +1,12 @@
 
 [project]
 name = "rubrical"
-dynamic = ["version"]
+version = "0.0.0"
 description = "A CLI to encourage (😅) people to update their dependencies!"
 authors = [
     {name = "Ivan Lee", email = "ivanklee86@gmail.com"}
 ]
-license-files = ["LICENSE"]
+license = {text = "MPL-2.0"}
 readme = "README.md"
 requires-python = ">=3.14"
 classifiers = [
@@ -55,8 +55,14 @@ Homepage = "https://github.com/ivanklee86/rubrical"
 Repository = "https://github.com/ivanklee86/rubrical"
 
 [build-system]
-requires = ["setuptools", "wheel", "setuptools_scm[toml]>=6.2"]
-build-backend = "setuptools.build_meta"
+requires = ["hatchling", "hatch-vcs"]
+build-backend = "hatchling.build"
+
+[tool.hatch.version]
+source = "vcs"
+
+[tool.hatch.build.hooks.vcs]
+version-file = "rubrical/_version.py"
 
 [tool.mypy]
 strict_optional = false
@@ -83,9 +89,4 @@ fixable = ["I"]
 [tool.ruff.lint.pylint]
 max-args = 10
 
-[tool.setuptools.packages.find]
-where = ["."]
-include = ["rubrical*"]
-
 [tool.setuptools_scm]
-version_file = "rubrical/_version.py"

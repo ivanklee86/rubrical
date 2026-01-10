@@ -4,7 +4,12 @@ from rubrical.schemas.configuration import PackageRequirement
 from rubrical.schemas.package import Package, Specification
 
 SEMVER_PACKAGE_REQUIREMENT = PackageRequirement(
-    **{"name": "dep1", "type": "semver", "warn": "v1.1.1", "block": "v1.0.0"}
+    **{
+        "name": "dep1",
+        "type": "semver",
+        "warn": "v1.1.1",
+        "block": "v1.0.0",
+    }  # ty: ignore
 )
 
 

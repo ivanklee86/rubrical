@@ -11,14 +11,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
-      - name: Install poetry
-        run: pipx install poetry
       - uses: actions/setup-python@v6
         with:
-          python-version: '3.14'
-          cache: 'poetry'
+          python-version-file: ".python-version"
+          cache: 'pip'
+          cache-dependency-path: 'uv.lock'
       - name: Install Task
         uses: arduino/setup-task@v1
+      - name: Set up uv
+        uses: astral-sh/setup-uv@v7
+        with:
+          enable-cache: true
       - name: Install packages
         run: |
           task python:install

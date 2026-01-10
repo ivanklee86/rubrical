@@ -1,8 +1,8 @@
+import tomllib
 from typing import List
 
 import pyproject_parser
 import requirements
-import tomllib
 from requirements.requirement import Requirement
 from requirements_detector import find_requirements
 
@@ -46,7 +46,7 @@ class Python(BasePackageManager):
             self.append_package(
                 package_file_filename,
                 Package(
-                    name=req.name,
+                    name=req.name,  # ty: ignore
                     raw_constraint=req.line,
                     version_constraints=version_constraints,
                 ),

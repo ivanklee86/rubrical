@@ -21,6 +21,6 @@ TEST_CONFIG = {
 
 
 def test_config_load():
-    test_config = RubricalConfig(**TEST_CONFIG)
+    test_config = RubricalConfig(**TEST_CONFIG)  # ty: ignore
     assert len(test_config.package_managers) == 1
     assert len(test_config.package_managers[0].packages) == 2

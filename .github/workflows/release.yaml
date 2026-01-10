@@ -16,18 +16,17 @@ jobs:
     environment: pypi
     steps:
       - uses: actions/checkout@v6
-      - name: Install poetry
-        run: pipx install poetry
+      - name: Set up uv
+        uses: astral-sh/setup-uv@v7
+        with:
+          enable-cache: true
       - uses: actions/setup-python@v6
         with:
-          python-version: '3.14'
-          cache: 'poetry'
+          python-version-file: ".python-version"
+          cache: 'pip'
+          cache-dependency-path: 'uv.lock'
       - name: Install Task
         uses: arduino/setup-task@v1
-      - name: Install dependencies
-        run: |
-          task python:install
-          poetry self add "poetry-dynamic-versioning[plugin]"
       - name: Build package
         run: |
           task python:build

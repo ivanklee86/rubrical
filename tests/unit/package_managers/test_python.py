@@ -49,3 +49,14 @@ def test_poetry():
 
     [dep] = [x for x in python.packages["pyproject.toml"] if x.name == "pydantic"]
     assert len(dep.version_constraints) == 2
+
+
+def test_uv():
+    python = Python()
+
+    python.read_package_manager_files(Path(FILES_FOLDER_PATH, "uv"))
+    python.parse_package_manager_files()
+
+    [dep] = [x for x in python.packages["pyproject.toml"] if x.name == "pydantic"]
+    assert dep.version_constraints[0].version == "2.0.0"
+    assert dep.version_constraints[0].specifier == DependencySpecifications.GTE

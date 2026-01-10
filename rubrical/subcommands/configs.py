@@ -21,7 +21,7 @@ def validate(
     console.print_message("Loading configuration.", "📃")
     if config.suffix in [".yaml", ".json", ".toml"]:
         try:
-            RubricalConfig(**benedict(config, format=(config.suffix[1:])))
+            RubricalConfig(**benedict(config, format=(config.suffix[1:])))  # ty: ignore
         except ValidationError as e:
             console.print_raw(str(e))
             console.print_error("Configuration error found!", "🔴")
