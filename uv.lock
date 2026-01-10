@@ -1311,7 +1311,6 @@ wheels = [
 
 [[package]]
 name = "rubrical"
-version = "0.0.0"
 source = { editable = "." }
 dependencies = [
     { name = "dom-toml" },
