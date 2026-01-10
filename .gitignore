@@ -132,3 +132,4 @@ dmypy.json
 test_results
 *.scratchpad.*
 GENERATED.md
+_version.py

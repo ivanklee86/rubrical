@@ -1,21 +1,30 @@
 FROM python:3.14-slim
 
-ENV PYTHONDONTWRITEBYTECODE 1 \
-    PYTHONUNBUFFERED 1
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1
 
+# Install uv by copying the binary from the official image
 COPY --from=ghcr.io/astral-sh/uv:debian /usr/local/bin/uv /usr/local/bin
 
-ENV PATH="/root/.local/bin:$PATH"
+WORKDIR /app
 
-WORKDIR /usr/app
+# Create an isolated virtual environment
+RUN python -m venv /app/.venv
+ENV VIRTUAL_ENV=/app/.venv
+ENV PATH="/app/.venv/bin:$PATH"
 
-COPY pyproject.toml poetry.lock ./
+# Copy project metadata first for better Docker layer caching
+COPY pyproject.toml ./
+COPY uv.lock ./
 
-RUN poetry config virtualenvs.create false \
-    && poetry install --no-dev --no-interaction --no-ansi
+# Install runtime dependencies only (exclude dev and skip installing the project)
+RUN uv sync --no-dev --no-install-project
 
+# Copy the application source
 COPY . .
 
-RUN poetry install --no-dev --no-interaction --no-ansi
+# Ensure the project itself is installed and entrypoints are available
+RUN uv sync --no-dev
 
-ENTRYPOINT ["poetry", "run", "rubrical", "grade"]
+# Run the CLI
+ENTRYPOINT ["rubrical", "grade"]
