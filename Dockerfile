@@ -1,10 +1,14 @@
-FROM python:3.14-slim
+FROM dhi.io/python:3.14-debian13-sfw-dev
 
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1
 
+# Install git (needed for setuptools_scm version detection)
+RUN apt-get update && apt-get install -y --no-install-recommends git \
+    && rm -rf /var/lib/apt/lists/*
+
 # Install uv by copying the binary from the official image
-COPY --from=ghcr.io/astral-sh/uv:debian /usr/local/bin/uv /usr/local/bin
+COPY --from=ghcr.io/astral-sh/uv:debian /usr/local/bin/uv /bin
 
 WORKDIR /app
 
