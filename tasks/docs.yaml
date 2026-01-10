@@ -9,7 +9,7 @@ tasks:
   release:
     desc: Publish docs to Github Pages.
     cmds:
-      - uv install --no-root
+      - uv sync --extra dev
       - uv run mkdocs gh-deploy --force
 
   test:
