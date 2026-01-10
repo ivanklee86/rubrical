@@ -4,11 +4,21 @@ from rubrical.schemas.configuration import PackageRequirement
 from rubrical.schemas.package import Package, Specification
 
 SEMVER_PACKAGE_REQUIREMENT = PackageRequirement(
-    **{"name": "dep1", "type": "semver", "warn": "v1.0.1", "block": "v1.0.0"}
+    **{
+        "name": "dep1",
+        "type": "semver",
+        "warn": "v1.0.1",
+        "block": "v1.0.0",
+    }  # ty: ignore
 )
 
 GENERIC_PACKAGE_REQUIREMENT = PackageRequirement(
-    **{"name": "dep1", "type": "generic", "warn": "v1.0.1", "block": "v1.0.0"}
+    **{
+        "name": "dep1",
+        "type": "generic",
+        "warn": "v1.0.1",
+        "block": "v1.0.0",
+    }  # ty: ignore
 )
 
 SEMVER_PACKAGE = Package(
@@ -64,7 +74,12 @@ def test_dependency_generic():
 
 def test_dependency_actuallysemver():
     requirement = PackageRequirement(
-        **{"name": "dep1", "type": "semver", "warn": "v1.11.1", "block": "v1.11.0"}
+        **{
+            "name": "dep1",
+            "type": "semver",
+            "warn": "v1.11.1",
+            "block": "v1.11.0",
+        }  # ty: ignore
     )
 
     package = Package(
@@ -80,7 +95,12 @@ def test_dependency_actuallysemver():
 
 def test_dependency_branch():
     requirement = PackageRequirement(
-        **{"name": "dep1", "type": "semver", "warn": "v1.11.1", "block": "v1.11.0"}
+        **{
+            "name": "dep1",
+            "type": "semver",
+            "warn": "v1.11.1",
+            "block": "v1.11.0",
+        }  # ty: ignore
     )
 
     package = Package(

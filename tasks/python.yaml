@@ -4,7 +4,7 @@ tasks:
   install:
     desc: Install dependencies.
     cmds:
-      - uv sync --extra dev
+      - uv sync --group dev
 
   fmt:
     desc: Run linting and fix issues.
@@ -16,7 +16,7 @@ tasks:
     desc: Run linting tasks.
     cmds:
       - uv run ruff check rubrical tests
-      - uv run mypy rubrical
+      - uv run ty check
 
   test:
     desc: Run unit and integration tests

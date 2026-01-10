@@ -62,7 +62,7 @@ TEST_JSONNET_FOLDER = Path(FILES_FOLDER_PATH, "jsonnet")
 
 
 def test_rubrical_single():
-    test_config = RubricalConfig(**TEST_CONFIG_BLOCK)
+    test_config = RubricalConfig(**TEST_CONFIG_BLOCK)  # ty: ignore
     rubrical = Rubrical(test_config, TEST_JSONNET_FOLDER)
     result = rubrical.check_package_manager(rubrical.package_managers[0])
 
@@ -76,7 +76,7 @@ def test_rubrical_single():
 
 
 def test_rubrical_blocks():
-    test_config = RubricalConfig(**TEST_CONFIG_BLOCK)
+    test_config = RubricalConfig(**TEST_CONFIG_BLOCK)  # ty: ignore
     rubrical = Rubrical(test_config, TEST_JSONNET_FOLDER)
     (warnings_found, blocks_found, check_results) = rubrical.check_package_managers()
 
@@ -86,7 +86,7 @@ def test_rubrical_blocks():
 
 
 def test_rubrical_warnings():
-    test_config = RubricalConfig(**TEST_CONFIG_WARNINGS)
+    test_config = RubricalConfig(**TEST_CONFIG_WARNINGS)  # ty: ignore
     rubrical = Rubrical(test_config, TEST_JSONNET_FOLDER)
     (warnings_found, blocks_found, check_results) = rubrical.check_package_managers()
 
@@ -96,7 +96,7 @@ def test_rubrical_warnings():
 
 
 def test_rubrical_clean():
-    test_config = RubricalConfig(**TEST_CONFIG_CLEAN)
+    test_config = RubricalConfig(**TEST_CONFIG_CLEAN)  # ty: ignore
     rubrical = Rubrical(test_config, TEST_JSONNET_FOLDER)
     (warnings_found, blocks_found, check_results) = rubrical.check_package_managers()
 

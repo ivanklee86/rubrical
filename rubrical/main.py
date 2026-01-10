@@ -49,7 +49,7 @@ def grade(
     if config.suffix in [".yaml", ".json", ".toml"]:
         try:
             configuration = RubricalConfig(
-                **benedict(config, format=(config.suffix[1:]))
+                **benedict(config, format=(config.suffix[1:]))  # ty: ignore
             )
         except ValidationError as e:
             console.print_raw(str(e))

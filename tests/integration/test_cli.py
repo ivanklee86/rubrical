@@ -72,8 +72,8 @@ def test_cli_gh_report(secrets, github_pr_clean):  # noqa: F811
             "--pr-id",
             GITHUB_TEST_PR,
             "--gh-access-token",
-            os.getenv("RUBRICAL_TEST_GITHUB_ACCESS_TOKEN"),
-        ],
+            os.getenv("RUBRICAL_TEST_GITHUB_ACCESS_TOKEN", ""),
+        ],  # ty: ignore
     )
     assert result.exit_code == 1
     assert "update to" in result.stdout

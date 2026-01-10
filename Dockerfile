@@ -3,9 +3,7 @@ FROM python:3.14-slim
 ENV PYTHONDONTWRITEBYTECODE 1 \
     PYTHONUNBUFFERED 1
 
-RUN apt-get update \
-    && apt-get install curl -y \
-    && curl -sSL https://install.python-poetry.org | python - --version 1.7.1
+COPY --from=ghcr.io/astral-sh/uv:debian /usr/local/bin/uv /usr/local/bin
 
 ENV PATH="/root/.local/bin:$PATH"
 

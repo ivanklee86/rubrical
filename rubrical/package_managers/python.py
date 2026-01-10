@@ -46,7 +46,7 @@ class Python(BasePackageManager):
             self.append_package(
                 package_file_filename,
                 Package(
-                    name=req.name,
+                    name=req.name,  # ty: ignore
                     raw_constraint=req.line,
                     version_constraints=version_constraints,
                 ),

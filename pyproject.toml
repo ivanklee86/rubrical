@@ -29,9 +29,8 @@ dependencies = [
     "toml>=0.10.2",
 ]
 
-[project.optional-dependencies]
+[dependency-groups]
 dev = [
-    "mypy>=1.7.1",
     "pytest>=9.0.0",
     "pytest-cov>=7.0.0",
     "pytest-html>=4.0.0",
@@ -45,6 +44,7 @@ dev = [
     "python-dotenv>=1.0.0",
     "mkdocs>=1.0.0",
     "mkdocs-material>=9.0.0",
+    "ty>=0.0.8",
 ]
 
 [project.scripts]
