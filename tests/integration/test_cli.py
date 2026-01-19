@@ -1,11 +1,10 @@
-import os
 from pathlib import Path
 
 from typer.testing import CliRunner
 
 from rubrical.main import app
 from tests.constants import BASE_TEST_PATH, GITHUB_REPO_NAME, GITHUB_TEST_PR
-from tests.fixtures import github_pr_clean, secrets  # noqa: F401
+from tests.fixtures import github_pr_clean, github_token  # noqa: F401
 
 runner = CliRunner()
 
@@ -56,7 +55,7 @@ def test_cli_clean():
     assert "up to date" in result.stdout
 
 
-def test_cli_gh_report(secrets, github_pr_clean):  # noqa: F811
+def test_cli_gh_report(github_token, github_pr_clean):  # noqa: F811
     pr = github_pr_clean
 
     result = runner.invoke(
@@ -72,7 +71,7 @@ def test_cli_gh_report(secrets, github_pr_clean):  # noqa: F811
             "--pr-id",
             GITHUB_TEST_PR,
             "--gh-access-token",
-            os.getenv("RUBRICAL_TEST_GITHUB_ACCESS_TOKEN", ""),
+            github_token,
         ],  # ty: ignore
     )
     assert result.exit_code == 1

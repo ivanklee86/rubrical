@@ -5,6 +5,9 @@ set -ex
 uv sync --group dev
 uv run pre-commit install
 
+# Install Claude
+curl -fsSL https://claude.ai/install.sh | bash
+
 # Configure git
 if [ "$CODESPACES" != "true" ]; then
     echo "Running locally, configure gpg."
