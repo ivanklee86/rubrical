@@ -13,7 +13,7 @@ jobs:
         with:
           python-version-file: ".python-version"
       - name: Install Task
-        uses: arduino/setup-task@v1
+        uses: arduino/setup-task@v3.0.0
       - name: Set up uv
         uses: astral-sh/setup-uv@v7
         with:
