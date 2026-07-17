@@ -55,7 +55,7 @@
 	"postCreateCommand": "bash ./.devcontainer/post_install.sh",
 
 	"features": {
-		"ghcr.io/devcontainers/features/docker-in-docker:2": {
+		"ghcr.io/devcontainers/features/docker-in-docker:4": {
 			"dockerDashComposeVersion": "v2",
 			"moby": false
 		}
