@@ -1,0 +1,8 @@
+version: '3'
+
+tasks:
+  gen:
+    desc: Regenerate .devcontainer/devcontainer.json from gantry.yaml.
+    dir: .devcontainer
+    cmds:
+      - gantry build --config gantry.yaml --write
