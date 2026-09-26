@@ -38,6 +38,14 @@ jobs:
       - uses: codecov/codecov-action@v6
         with:
           files: test_results/cov.xml
+  pre-commit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - name: Run pre-commit hooks via prek
+        uses: j178/prek-action@4e14d07f9231acabce116ccfca13b13dd9755ece # v3.0.0
+        with:
+          prek-version: 0.5.3
   docker:
     runs-on: ubuntu-latest
     permissions:

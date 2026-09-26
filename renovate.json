@@ -10,8 +10,10 @@
   "platformAutomerge": true,
   "packageRules": [
     {
-      "matchManagers": ["poetry"],
-      "groupName": "Poetry dependencies"
+      "matchManagers": ["devcontainer"],
+      "groupName": "devcontainer dependencies",
+      "automerge": true,
+      "platformAutomerge": true
     }
   ]
 }
