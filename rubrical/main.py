@@ -1,4 +1,5 @@
 from pathlib import Path
+from typing import Optional
 
 import typer
 
@@ -16,7 +17,12 @@ app.add_typer(configs.app, name="configs")
 def grade(
     config: Path = typer.Option(Path("rubrical.yaml"), help="Path to configuration"),
     target: Path = typer.Option(Path().absolute(), help="Path to configuration"),
-    block: bool = typer.Option(True, "/--no-block", help="Don't fail if blocks found."),
+    block: Optional[bool] = typer.Option(
+        None,
+        "--block/--no-block",
+        help="Fail if blocks found.  Overrides blocking_mode in the configuration.",
+        show_default="blocking_mode from configuration",
+    ),
     repository_name: str = typer.Option(
         "", envvar="RUBRICAL_REPOSITORY", help="Repository name for reporting purposes."
     ),
@@ -64,8 +70,14 @@ def grade(
             blocks_found=blocks_found,
         )
 
-    if blocks_found and block:
+    should_block = configuration.blocking_mode if block is None else block
+
+    if blocks_found and should_block:
         console.print_error("Blocked dependencies found!", "🛑")
+    elif blocks_found:
+        console.print_header(
+            "Blocked dependencies found, but blocking is disabled.", "🚧"
+        )
     elif warnings_found:
         console.print_header(
             "Warnings, some dependencies may need updating soon!", "☢️ "

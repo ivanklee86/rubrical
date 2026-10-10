@@ -2,6 +2,7 @@ Rubrical uses a YAML/JSON/TOml file is used to configure checks for your applica
 
 ```yaml
 version: 1
+blocking_mode: true  # Optional, default true.  If false, blocked dependencies are reported but rubrical exits 0.
 package_managers:
   - name: jsonnet
     packages:
@@ -24,3 +25,5 @@ package_managers:
         block: v17.0.3
         warn: v17.0.4
 ```
+
+The `--block/--no-block` flag on `rubrical grade` overrides `blocking_mode` when given.

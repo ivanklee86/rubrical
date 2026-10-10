@@ -20,5 +20,5 @@ class PackageManager(BaseModel):
 
 class RubricalConfig(BaseModel):
     version: int
-    blocking_mode: Optional[bool] = True
+    blocking_mode: bool = True
     package_managers: List[PackageManager]
