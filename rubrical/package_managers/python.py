@@ -1,3 +1,4 @@
+import re
 import tomllib
 from typing import List
 
@@ -25,6 +26,10 @@ class Python(BasePackageManager):
         self.specification_symbols = self.specification_symbols | {
             DependencySpecifications.APPROX_EQ.value: ["~="]
         }
+
+    def normalize_name(self, name: str) -> str:
+        # PEP 503: names are case-insensitive and treat runs of -, _, . as equal.
+        return re.sub(r"[-_.]+", "-", name).lower()
 
     def _parse_requirement(self, req: Requirement, package_file_filename: str):
         if req.specifier and req.specs:

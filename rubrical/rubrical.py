@@ -93,7 +93,9 @@ class Rubrical:
                             f"Checking {package.name} @ {package.raw_constraint}."
                         )
 
-                    if package_requirements.name == package.name:
+                    if package_manager.normalize_name(
+                        package_requirements.name
+                    ) == package_manager.normalize_name(package.name):
                         check_results.append(
                             PackageCheckResult(
                                 name=package.name,
