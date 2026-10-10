@@ -1,14 +1,13 @@
 from pathlib import Path
+from typing import Optional
 
 import typer
-from benedict import benedict
-from pydantic import ValidationError
 
 from rubrical.reporters import gh
 from rubrical.rubrical import Rubrical
-from rubrical.schemas.configuration import RubricalConfig
 from rubrical.subcommands import configs
 from rubrical.utilities import console
+from rubrical.utilities.config import load_config
 
 app = typer.Typer()
 app.add_typer(configs.app, name="configs")
@@ -18,7 +17,12 @@ app.add_typer(configs.app, name="configs")
 def grade(
     config: Path = typer.Option(Path("rubrical.yaml"), help="Path to configuration"),
     target: Path = typer.Option(Path().absolute(), help="Path to configuration"),
-    block: bool = typer.Option(True, "/--no-block", help="Don't fail if blocks found."),
+    block: Optional[bool] = typer.Option(
+        None,
+        "--block/--no-block",
+        help="Fail if blocks found.  Overrides blocking_mode in the configuration.",
+        show_default="blocking_mode from configuration",
+    ),
     repository_name: str = typer.Option(
         "", envvar="RUBRICAL_REPOSITORY", help="Repository name for reporting purposes."
     ),
@@ -36,7 +40,10 @@ def grade(
         help="Github Enterprise custom url. e.g. https://github.custom.dev",
     ),
     debug: bool = typer.Option(
-        False, envvar="RUBGRICAL_DEBUG", help="Enable debug messages"
+        False,
+        # RUBGRICAL_DEBUG is a misspelling kept for backwards compatibility.
+        envvar=["RUBRICAL_DEBUG", "RUBGRICAL_DEBUG"],
+        help="Enable debug messages",
     ),
 ):
     """
@@ -45,18 +52,7 @@ def grade(
 
     console.print_header("Rubrical starting!", "⚙️ ")
 
-    console.print_message("Loading configuration.", "📃")
-    if config.suffix in [".yaml", ".json", ".toml"]:
-        try:
-            configuration = RubricalConfig(
-                **benedict(config, format=(config.suffix[1:]))  # ty: ignore
-            )
-        except ValidationError as e:
-            console.print_raw(str(e))
-    else:
-        raise ValueError(
-            "Rubrical only supports YAML, JSON, or TOML configuration files"
-        )
+    configuration = load_config(config)
 
     rubrical = Rubrical(
         configuration=configuration, repository_path=target, debug=debug
@@ -74,8 +70,14 @@ def grade(
             blocks_found=blocks_found,
         )
 
-    if blocks_found and block:
+    should_block = configuration.blocking_mode if block is None else block
+
+    if blocks_found and should_block:
         console.print_error("Blocked dependencies found!", "🛑")
+    elif blocks_found:
+        console.print_header(
+            "Blocked dependencies found, but blocking is disabled.", "🚧"
+        )
     elif warnings_found:
         console.print_header(
             "Warnings, some dependencies may need updating soon!", "☢️ "

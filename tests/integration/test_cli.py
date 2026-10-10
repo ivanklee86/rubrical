@@ -118,3 +118,83 @@ def test_cli_configs_validate_failure():
         ],
     )
     assert result.exit_code
+
+
+def test_cli_grade_invalid_config():
+    result = runner.invoke(
+        app,
+        [
+            "grade",
+            "--config",
+            str(Path(BASE_TEST_PATH, "files", "rubrical-error.yaml")),
+            "--target",
+            str(Path(BASE_TEST_PATH)),
+        ],
+    )
+    assert result.exit_code == 1
+    assert not isinstance(result.exception, NameError)
+    assert "Configuration error found!" in result.stdout
+
+
+def test_cli_debug_envvar():
+    result = runner.invoke(
+        app,
+        [
+            "grade",
+            "--config",
+            str(Path(BASE_TEST_PATH, "files", "rubrical-clean.yaml")),
+            "--target",
+            str(Path(BASE_TEST_PATH)),
+        ],
+        env={"RUBRICAL_DEBUG": "1"},
+    )
+    assert not result.exit_code
+    assert "Debug:" in result.stdout
+
+
+def test_cli_no_block_flag():
+    result = runner.invoke(
+        app,
+        [
+            "grade",
+            "--config",
+            str(Path(BASE_TEST_PATH, "files", "rubrical.yaml")),
+            "--target",
+            str(Path(BASE_TEST_PATH)),
+            "--no-block",
+        ],
+    )
+    assert not result.exit_code
+    assert "blocking is disabled" in result.stdout
+    assert "up to date" not in result.stdout
+
+
+def test_cli_blocking_mode_config():
+    result = runner.invoke(
+        app,
+        [
+            "grade",
+            "--config",
+            str(Path(BASE_TEST_PATH, "files", "rubrical-nonblocking.yaml")),
+            "--target",
+            str(Path(BASE_TEST_PATH)),
+        ],
+    )
+    assert not result.exit_code
+    assert "blocking is disabled" in result.stdout
+
+
+def test_cli_block_flag_overrides_blocking_mode_config():
+    result = runner.invoke(
+        app,
+        [
+            "grade",
+            "--config",
+            str(Path(BASE_TEST_PATH, "files", "rubrical-nonblocking.yaml")),
+            "--target",
+            str(Path(BASE_TEST_PATH)),
+            "--block",
+        ],
+    )
+    assert result.exit_code == 1
+    assert "Blocked dependencies found!" in result.stdout
