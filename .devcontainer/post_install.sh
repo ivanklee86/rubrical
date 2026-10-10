@@ -1,9 +1,8 @@
 #!/bin/bash
 set -ex
 
-# Install pre-commit hooks
+# Install dependencies (prek hooks are installed by the install-prek postCreateCommand)
 uv sync --group dev
-uv run pre-commit install
 
 # Configure git
 if [ "$CODESPACES" != "true" ]; then

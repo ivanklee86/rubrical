@@ -1,0 +1,15 @@
+version: 1
+
+output_path: devcontainer.json
+
+overlays:
+  - repo: https://github.com/ivanklee86/devcontainers
+    ref: main
+    files:
+      - devcontainer_configs/bases/python/devcontainer.json
+      - devcontainer_configs/features/prek.libsonnet
+
+  - repo: ..
+    subdirectory: .devcontainer
+    files:
+      - rubrical.libsonnet

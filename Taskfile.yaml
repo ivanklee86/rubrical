@@ -6,6 +6,7 @@ vars:
 
 includes:
   docker: ./tasks/docker.yaml
+  devcontainer: ./tasks/devcontainer.yaml
   docs: ./tasks/docs.yaml
   integration: ./tasks/integration.yaml
   python: ./tasks/python.yaml

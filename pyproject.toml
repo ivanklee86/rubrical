@@ -38,7 +38,6 @@ dev = [
     "pytest-xdist>=3.0.2",
     "setuptools-scm>=9.0.0",
     "twine>=6.0.0",
-    "pre-commit>=4.0.0",
     "isort>=7.0.0",
     "ruff>=0.14.0",
     "python-dotenv>=1.0.0",
