@@ -1,14 +1,12 @@
 from pathlib import Path
 
 import typer
-from benedict import benedict
-from pydantic import ValidationError
 
 from rubrical.reporters import gh
 from rubrical.rubrical import Rubrical
-from rubrical.schemas.configuration import RubricalConfig
 from rubrical.subcommands import configs
 from rubrical.utilities import console
+from rubrical.utilities.config import load_config
 
 app = typer.Typer()
 app.add_typer(configs.app, name="configs")
@@ -45,18 +43,7 @@ def grade(
 
     console.print_header("Rubrical starting!", "⚙️ ")
 
-    console.print_message("Loading configuration.", "📃")
-    if config.suffix in [".yaml", ".json", ".toml"]:
-        try:
-            configuration = RubricalConfig(
-                **benedict(config, format=(config.suffix[1:]))  # ty: ignore
-            )
-        except ValidationError as e:
-            console.print_raw(str(e))
-    else:
-        raise ValueError(
-            "Rubrical only supports YAML, JSON, or TOML configuration files"
-        )
+    configuration = load_config(config)
 
     rubrical = Rubrical(
         configuration=configuration, repository_path=target, debug=debug

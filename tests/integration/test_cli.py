@@ -118,3 +118,19 @@ def test_cli_configs_validate_failure():
         ],
     )
     assert result.exit_code
+
+
+def test_cli_grade_invalid_config():
+    result = runner.invoke(
+        app,
+        [
+            "grade",
+            "--config",
+            str(Path(BASE_TEST_PATH, "files", "rubrical-error.yaml")),
+            "--target",
+            str(Path(BASE_TEST_PATH)),
+        ],
+    )
+    assert result.exit_code == 1
+    assert not isinstance(result.exception, NameError)
+    assert "Configuration error found!" in result.stdout
