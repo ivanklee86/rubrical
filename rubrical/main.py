@@ -34,7 +34,10 @@ def grade(
         help="Github Enterprise custom url. e.g. https://github.custom.dev",
     ),
     debug: bool = typer.Option(
-        False, envvar="RUBGRICAL_DEBUG", help="Enable debug messages"
+        False,
+        # RUBGRICAL_DEBUG is a misspelling kept for backwards compatibility.
+        envvar=["RUBRICAL_DEBUG", "RUBGRICAL_DEBUG"],
+        help="Enable debug messages",
     ),
 ):
     """

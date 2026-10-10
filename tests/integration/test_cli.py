@@ -134,3 +134,19 @@ def test_cli_grade_invalid_config():
     assert result.exit_code == 1
     assert not isinstance(result.exception, NameError)
     assert "Configuration error found!" in result.stdout
+
+
+def test_cli_debug_envvar():
+    result = runner.invoke(
+        app,
+        [
+            "grade",
+            "--config",
+            str(Path(BASE_TEST_PATH, "files", "rubrical-clean.yaml")),
+            "--target",
+            str(Path(BASE_TEST_PATH)),
+        ],
+        env={"RUBRICAL_DEBUG": "1"},
+    )
+    assert not result.exit_code
+    assert "Debug:" in result.stdout
