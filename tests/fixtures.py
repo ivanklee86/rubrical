@@ -15,8 +15,18 @@ def secrets():
 
 
 @pytest.fixture
-def github_pr_clean():
-    g = Github(os.getenv("RUBRICAL_TEST_GITHUB_ACCESS_TOKEN"))
+def github_token():
+    """Provide GitHub token, skipping test if not available."""
+    load_dotenv()
+    token = os.getenv("RUBRICAL_TEST_GITHUB_ACCESS_TOKEN")
+    if not token:
+        pytest.skip("RUBRICAL_TEST_GITHUB_ACCESS_TOKEN not set - skipping GitHub test")
+    return token
+
+
+@pytest.fixture
+def github_pr_clean(github_token):
+    g = Github(github_token)
     repo = g.get_repo(GITHUB_REPO_NAME)
     pr = repo.get_pull(GITHUB_TEST_PR)
 
