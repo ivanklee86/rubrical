@@ -68,7 +68,7 @@ Each subclass of `BasePackageManager`:
 | `go` | `go.mod` | Regex over `( … )` blocks. Lines containing `indirect` are skipped. Every entry is `EQ`. |
 | `jsonnet` | `jsonnetfile.json` | Pydantic models for the file. The name comes from `git.repository_from_url(remote)` as `owner/repo`. The version (which may be a branch) is `EQ`. |
 | `python` | `requirements.txt`, `pyproject.toml` | `requirements-parser` for each line. In `pyproject.toml`, PEP 621 `project.dependencies` are re-parsed through `requirements.parse`. Poetry (`tool.poetry`) goes through `requirements_detector.find_requirements(parent_dir)`. Requirements with no version specifier are dropped. |
-| `nodejs` | `package.json` (skips `node_modules`) | Reads `dependencies`, `devDependencies`, and `peerDependencies`. Whitespace between an operator and its version is removed first (`>= 1.2.3` → `>=1.2.3`). Partial versions and X-ranges (`1`, `1.2`, `1.x`, `1.x.x`, `1.2.*`) become `APPROX_EQ`. `a - b` becomes `GTE`+`LTE`. Two-part `>=a <b` is parsed per part. `||` and other multi-part ranges are skipped. |
+| `nodejs` | `package.json` (skips `node_modules`) | Reads `dependencies`, `devDependencies`, and `peerDependencies`. Whitespace between an operator and its version is removed first (`>= 1.2.3` → `>=1.2.3`), and runs of whitespace between comparators are collapsed. Partial versions and X-ranges (`1`, `1.2`, `1.x`, `1.x.x`, `1.2.*`) become `APPROX_EQ`. `a - b` becomes `GTE`+`LTE`. Two-part `>=a <b` is parsed per part. `\|\|` and other multi-part ranges are skipped. |
 
 ## Language pattern
 

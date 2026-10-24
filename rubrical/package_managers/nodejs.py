@@ -42,7 +42,10 @@ class NodeJS(BasePackageManager):
             dependency_section = package_json[dependency_key]
 
             for package, raw_version in dependency_section.items():
-                version = OPERATOR_WHITESPACE.sub(r"\1", raw_version.strip())
+                # Also collapse runs of whitespace between comparators, e.g. `>=1  <2`.
+                version = " ".join(
+                    OPERATOR_WHITESPACE.sub(r"\1", raw_version.strip()).split()
+                )
 
                 if " " not in version:  # Handle most cases through symbol matching
                     if x_range := X_RANGE.match(version):  # Handle 1, 1.2, 1.2.x

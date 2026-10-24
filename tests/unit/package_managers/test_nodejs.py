@@ -65,6 +65,7 @@ def test_nodejs_whitespace_after_operator():
             "caret": "^ 1.2.3",
             "tilde": "~ 1.2.3",
             "hyphen": "1.0.0 - 2.0.0",
+            "double-space": ">= 1.2.3  < 2.0.0",
         }
     )
 
@@ -82,6 +83,10 @@ def test_nodejs_whitespace_after_operator():
     assert _specifications(packages["hyphen"]) == [
         ("1.0.0", DependencySpecifications.GTE),
         ("2.0.0", DependencySpecifications.LTE),
+    ]
+    assert _specifications(packages["double-space"]) == [
+        ("1.2.3", DependencySpecifications.GTE),
+        ("2.0.0", DependencySpecifications.LT),
     ]
 
 
