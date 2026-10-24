@@ -26,7 +26,7 @@ tasks:
   test-cov:
     desc: Run unit and integration tests with coverage
     cmds:
-      - uv run pytest --cov rubrical --cov-report term --cov-report html:test_results/cov_html --cov-report xml:test_results/cov.xml tests/unit tests/integration
+      - uv run pytest --cov rubrical --cov-report term --cov-report html:test_results/cov_html --cov-report lcov:test_results/cov.lcov tests/unit tests/integration
 
   build:
     desc: Build artifact

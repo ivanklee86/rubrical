@@ -9,6 +9,11 @@ on:
 jobs:
   main:
     runs-on: ubuntu-latest
+    # actions: write is for octocov's artifact:// datastore, pull-requests: write for its PR comment.
+    permissions:
+      contents: read
+      pull-requests: write
+      actions: write
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-python@v6
@@ -35,9 +40,12 @@ jobs:
           RUBRICAL_TEST_GITHUB_ACCESS_TOKEN: ${{ secrets.RUBRICAL_TEST_GITHUB_ACCESS_TOKEN }}
       - name: Doc tests
         run: task docs:test
-      - uses: codecov/codecov-action@v7
+      - name: Report coverage via octocov
+        # SHA-pinned rather than the mutable tag: this step runs with actions: write.
+        uses: k1LoW/octocov-action@a167dc0dee441b7ffc45e1b862ab55ec0d87f278 # v1.5.2
         with:
-          files: test_results/cov.xml
+          config: .octocov.yml
+          version: v0.79.0
   pre-commit:
     runs-on: ubuntu-latest
     steps:

@@ -1,0 +1,16 @@
+coverage:
+  paths:
+    - test_results/cov.lcov
+  # Carried over from the old codecov.yaml: project target 90% (allowed to drop
+  # 0.5 points vs main) and patch target 85%.
+  acceptable: current >= 90% && diff >= -0.5% && patch >= 85%
+report:
+  datastores:
+    - artifact://${GITHUB_REPOSITORY}
+  if: is_default_branch
+diff:
+  datastores:
+    - artifact://${GITHUB_REPOSITORY}
+  if: is_pull_request
+comment:
+  if: is_pull_request
