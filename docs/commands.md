@@ -36,6 +36,7 @@ $ grade [OPTIONS]
 * `--pr-id INTEGER`: PR ID for reporting purposes.  [env var: RUBRICAL_PR_ID; default: 0]
 * `--gh-access-token TEXT`: Github access token for reporting.  Presence will enable Github reporting.  [env var: RUBRICAL_GH_TOKEN]
 * `--gh-custom-url TEXT`: Github Enterprise custom url. e.g. https://github.custom.dev  [env var: RUBRICAL_GH_CUSTOM_URL]
+* `--report-id TEXT`: Keep a separate Github comment per report ID, e.g. one per service in a monorepo.  [env var: RUBRICAL_REPORT_ID]
 * `--debug / --no-debug`: Enable debug messages  [env var: RUBRICAL_DEBUG, RUBGRICAL_DEBUG; default: no-debug]
 * `--help`: Show this message and exit.
 

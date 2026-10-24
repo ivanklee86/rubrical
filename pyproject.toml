@@ -67,9 +67,14 @@ addopts= """
     --html=test_results/results.html \
     --self-contained-html \
     --junitxml=test_results/results.xml \
-    --disable-warnings
+    --disable-warnings \
+    -rs
 """
 log_file_level="INFO"
+log_level="INFO"
+markers = [
+    "github: talks to the live GitHub API and needs RUBRICAL_TEST_GITHUB_ACCESS_TOKEN",
+]
 
 [tool.ruff]
 

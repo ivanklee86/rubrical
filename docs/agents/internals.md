@@ -77,7 +77,10 @@ Each subclass of `BasePackageManager`:
 
 - **Terminal**: one table per manager, listing only `WARN` and `BLOCK` results and printed only when there is at least one. Otherwise a single success line is printed.
 - **Exit status**: `should_block` is the `--block/--no-block` flag when given, otherwise `blocking_mode` from the config (default `true`). Blocks with `should_block` exit 1. Blocks without it print a "blocking is disabled" header and exit 0.
-- **GitHub**: enabled when `RUBRICAL_GH_TOKEN` is set. It also needs `RUBRICAL_REPOSITORY` and `RUBRICAL_PR_ID`, and optionally `RUBRICAL_GH_CUSTOM_URL` (which uses `<url>/api/v3`). The existing comment is found by the marker string `[Rubrical](https://github.com/ivanklee86/rubrical) Report`. If there are warnings or blocks, the comment is edited or created. If the run is clean, any old comment is deleted.
+- **GitHub**: enabled when `RUBRICAL_GH_TOKEN` is set. It also needs `RUBRICAL_REPOSITORY` and `RUBRICAL_PR_ID`, and optionally `RUBRICAL_GH_CUSTOM_URL` (which uses `<url>/api/v3`) and `RUBRICAL_REPORT_ID` (`--report-id`). If there are warnings or blocks, the comment is edited or created. If the run is clean, any old comment is deleted. Comments are matched within a scope ([ADR 0002](../adrs/0002-github-report-id.md)):
+  - **With a report ID**: comments that start with `<!-- rubrical:report-id=<id> -->` (a comment that only quotes the marker further down is ignored). Duplicates converge: the oldest match is kept and the rest are deleted.
+  - **Without a report ID (legacy)**: comments containing `[Rubrical](https://github.com/ivanklee86/rubrical) Report` and no report-ID marker. The last match is used and any others are left alone, as before.
+  - In both scopes, a 404 on `edit()` (the comment was deleted concurrently) falls back to creating a new comment, and a 404 on `delete()` counts as done. Every comment ID found, created, edited or deleted is logged through the `rubrical.reporters.gh` logger.
 
 ## Common changes
 
@@ -100,7 +103,7 @@ Each subclass of `BasePackageManager`:
   - `task python:lint`, which runs `ruff` and `ty check`
   - `task python:test`, which runs `pytest tests/unit tests/integration`
   - `task docs:test`, which runs `mkdocs build --strict`
-- Tests use fixture repos in `tests/files/`. Unit tests instantiate a manager, then call `read_package_manager_files(path)` and `parse_package_manager_files()`, then assert on `.packages[relpath]`. Integration tests drive `main.app` through `typer.testing.CliRunner` with `--target tests/`. GitHub tests need `RUBRICAL_TEST_GITHUB_ACCESS_TOKEN`; without it they skip. They target PR #27 of `ivanklee86/rubrical`.
+- Tests use fixture repos in `tests/files/`. Unit tests instantiate a manager, then call `read_package_manager_files(path)` and `parse_package_manager_files()`, then assert on `.packages[relpath]`. Integration tests drive `main.app` through `typer.testing.CliRunner` with `--target tests/`. The GitHub reporter's logic is unit tested offline in `tests/unit/reporters/test_gh.py` against an in-memory fake of PyGithub. Live GitHub tests are marked `github`, need `RUBRICAL_TEST_GITHUB_ACCESS_TOKEN` (without it they skip, and `-rs` lists them), and target PR #27 of `ivanklee86/rubrical`. They use the `github_report` fixture in `tests/fixtures.py`, which gives each test a unique report ID (`test-<run id>-<attempt>-<test>-<random>`), so concurrent CI runs never touch each other's comments. The fixture deletes only that test's comments at teardown, and at setup it sweeps `test-` comments older than 6 hours that were left by cancelled runs. Run `pytest -o log_cli=true -m github` to watch the comment IDs each test touches.
 - The version comes from `setuptools_scm` and is written to `rubrical/_version.py`, which is untracked. The Docker image (`Dockerfile`) uses `ENTRYPOINT ["rubrical", "grade"]`.
 
 ## Known quirks

@@ -13,6 +13,13 @@ app = typer.Typer()
 app.add_typer(configs.app, name="configs")
 
 
+def _validate_report_id(report_id: str) -> str:
+    try:
+        return gh.validate_report_id(report_id)
+    except ValueError as e:
+        raise typer.BadParameter(str(e)) from e
+
+
 @app.command()
 def grade(
     config: Path = typer.Option(Path("rubrical.yaml"), help="Path to configuration"),
@@ -38,6 +45,12 @@ def grade(
         "",
         envvar="RUBRICAL_GH_CUSTOM_URL",
         help="Github Enterprise custom url. e.g. https://github.custom.dev",
+    ),
+    report_id: str = typer.Option(
+        "",
+        envvar="RUBRICAL_REPORT_ID",
+        callback=_validate_report_id,
+        help="Keep a separate Github comment per report ID, e.g. one per service in a monorepo.",
     ),
     debug: bool = typer.Option(
         False,
@@ -68,6 +81,7 @@ def grade(
             reporting_data=check_results,
             warnings_found=warnings_found,
             blocks_found=blocks_found,
+            report_id=report_id,
         )
 
     should_block = configuration.blocking_mode if block is None else block

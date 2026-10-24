@@ -6,6 +6,11 @@ on:
       - 'main'
   pull_request:
 
+# Cancel superseded PR runs (Renovate force-pushes in bursts). Runs on main always finish, so octocov keeps its baseline.
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
 jobs:
   main:
     runs-on: ubuntu-latest
