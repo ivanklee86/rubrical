@@ -8,7 +8,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends git \
     && rm -rf /var/lib/apt/lists/*
 
 # Install uv by copying the binary from the official image
-COPY --from=ghcr.io/astral-sh/uv:debian /usr/local/bin/uv /bin
+COPY --from=ghcr.io/astral-sh/uv:0.13.5-debian@sha256:477cd3e9492fa6199f4d524198fa75ec03f1c7a64c566cdc7e05fe290042fa3a /usr/local/bin/uv /bin
 
 WORKDIR /app
 
