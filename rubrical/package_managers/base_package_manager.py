@@ -1,17 +1,13 @@
 import abc
-from dataclasses import dataclass
 from pathlib import Path
 from typing import Dict, List, Tuple
 
 from rubrical.enum import DependencySpecifications
 from rubrical.schemas.package import Package
+from rubrical.utilities.files import FileDetails, find_files
 
-
-@dataclass
-class PackageManagerFileDetails:
-    name: str
-    path: Path
-    contents: str
+# Kept for existing imports; package manager and language files share FileDetails.
+PackageManagerFileDetails = FileDetails
 
 
 class BasePackageManager(abc.ABC):
@@ -38,23 +34,9 @@ class BasePackageManager(abc.ABC):
         self.packages = {}
 
     def read_package_manager_files(self, current_folder: Path):
-        package_manager_files: List[Path] = []
-
-        for target_file in self.target_files:
-            package_manager_files.extend(current_folder.rglob(target_file))
-
-        for package_manager_file in package_manager_files:
-            if self.denylist_pathnames and any(
-                x in str(package_manager_file) for x in self.denylist_pathnames
-            ):
-                pass
-            else:
-                with open(str(package_manager_file), "r") as file:
-                    file_name = str(package_manager_file.relative_to(current_folder))
-
-                    self.found_files[file_name] = PackageManagerFileDetails(
-                        name=file_name, path=package_manager_file, contents=file.read()
-                    )
+        self.found_files.update(
+            find_files(current_folder, self.target_files, self.denylist_pathnames)
+        )
 
     def parse_package_manager_files(self):
         for file in self.found_files.values():

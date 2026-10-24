@@ -1,0 +1,11 @@
+{
+  "name": "engines-caret",
+  "version": "1.0.0",
+  "engines": {
+    "node": "^20.11.0",
+    "npm": ">=10.0.0"
+  },
+  "dependencies": {
+    "chalk": "5.2.0"
+  }
+}

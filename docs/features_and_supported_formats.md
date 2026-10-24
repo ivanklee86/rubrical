@@ -12,3 +12,13 @@
 | Go | `go.mod` |
 | Node.js | `package.json` |
 | jsonnet | `jsonnetfile.json` |
+
+## Language versions
+
+`rubrical` can also check the language version a repository declares.  See [configuration](configuration.md#languages).
+
+| Language | Declarations |
+|----------|--------------|
+| Python | `pyproject.toml` (`requires-python` & Poetry `python`) |
+| Go | `go.mod` (`go` directive) |
+| Node.js | `package.json` (`engines.node`) |

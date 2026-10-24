@@ -158,6 +158,28 @@ def test_gh_report_contents():
     assert gh.REPORT_ID_PREFIX not in text
 
 
+def test_gh_report_escapes_pipes_in_table_cells():
+    # A `||` range must stay in its table cell instead of adding columns.
+    text = gh._generate_report(
+        {
+            "languages": [
+                PackageCheckResult(
+                    name="nodejs",
+                    file="package.json",
+                    check=PackageCheck.WARN,
+                    version_package='engines.node "^18.18.0 || >=21.1.0"',
+                    version_block="v18.0.0",
+                    version_warn="v20.0.0",
+                )
+            ]
+        }
+    )
+
+    [row] = [x for x in text.splitlines() if x.startswith("| package.json")]
+    assert 'engines.node "^18.18.0 \\|\\| >=21.1.0"' in row
+    assert row.replace("\\|", "").count("|") == 4
+
+
 def test_gh_report_contents_with_report_id():
     text = gh._generate_report(DUMMY_RESULTS, "service-a")
     assert text.startswith("<!-- rubrical:report-id=service-a -->")

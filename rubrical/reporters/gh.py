@@ -28,6 +28,11 @@ def report_id_marker(report_id: str) -> str:
     return f"{REPORT_ID_PREFIX}{report_id} -->"
 
 
+def _escape_cell(text: str) -> str:
+    # `|` separates markdown table columns, e.g. in `^18 || ^20` ranges.
+    return text.replace("|", "\\|")
+
+
 def _generate_report(
     reporting_data: Dict[str, List[PackageCheckResult]], report_id: str = ""
 ):
@@ -51,10 +56,11 @@ def _generate_report(
             rep += "|------|------------|--------|\n"
 
             for result in not_ok_results:
+                version_package = _escape_cell(result.version_package)
                 if result.check == PackageCheck.BLOCK:
-                    rep += f"| {result.file} | {result.name} | ❌ {result.version_package} < {result.version_block}, update to >= {result.version_warn} |\n"
+                    rep += f"| {result.file} | {result.name} | ❌ {version_package} < {result.version_block}, update to >= {result.version_warn} |\n"
                 elif result.check == PackageCheck.WARN:
-                    rep += f"| {result.file} | {result.name} | ⚠️ {result.version_package} < {result.version_warn}, update to >= {result.version_warn} |\n"
+                    rep += f"| {result.file} | {result.name} | ⚠️ {version_package} < {result.version_warn}, update to >= {result.version_warn} |\n"
         else:
             rep += "🟢 All dependencies up to date!\n"
 

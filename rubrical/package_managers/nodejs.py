@@ -1,4 +1,5 @@
 import json
+import re
 from typing import List
 
 from rubrical.enum import DependencySpecifications, SupportedPackageManagers
@@ -7,6 +8,11 @@ from rubrical.package_managers.base_package_manager import (
     PackageManagerFileDetails,
 )
 from rubrical.schemas.package import Package, Specification
+
+# node-semver ignores whitespace between an operator and its version, e.g. `>= 1.2.3`.
+OPERATOR_WHITESPACE = re.compile(r"(<=|>=|=<|=>|<|>|=|\^|~)\s+")
+# Partial versions are X-ranges, e.g. `1`, `1.2`, `1.x`, `1.2.*`, `1.x.x`.
+X_RANGE = re.compile(r"^(\d+(?:\.\d+)?)(?:\.[xX*])*$")
 
 
 class NodeJS(BasePackageManager):
@@ -35,16 +41,18 @@ class NodeJS(BasePackageManager):
         ]:
             dependency_section = package_json[dependency_key]
 
-            for package, version in dependency_section.items():
+            for package, raw_version in dependency_section.items():
+                version = OPERATOR_WHITESPACE.sub(r"\1", raw_version.strip())
+
                 if " " not in version:  # Handle most cases through symbol matching
-                    if version[-2:] == ".x":  # Handle 1.2.x
+                    if x_range := X_RANGE.match(version):  # Handle 1, 1.2, 1.2.x
                         self.packages[package_manager_file_details.name].append(
                             Package(
                                 name=package,
-                                raw_constraint=f"{package} {version}",
+                                raw_constraint=f"{package} {raw_version}",
                                 version_constraints=[
                                     Specification(
-                                        version=version[:-2],
+                                        version=x_range.group(1),
                                         specifier=DependencySpecifications.APPROX_EQ,
                                     )
                                 ],
@@ -58,7 +66,7 @@ class NodeJS(BasePackageManager):
                         self.packages[package_manager_file_details.name].append(
                             Package(
                                 name=package,
-                                raw_constraint=f"{package} {version}",
+                                raw_constraint=f"{package} {raw_version}",
                                 version_constraints=[
                                     Specification(
                                         version=sanitized_version, specifier=specifier
@@ -75,7 +83,7 @@ class NodeJS(BasePackageManager):
                     self.packages[package_manager_file_details.name].append(
                         Package(
                             name=package,
-                            raw_constraint=f"{package} {version}",
+                            raw_constraint=f"{package} {raw_version}",
                             version_constraints=[
                                 Specification(
                                     version=range_versions[0],
@@ -111,7 +119,7 @@ class NodeJS(BasePackageManager):
                         self.packages[package_manager_file_details.name].append(
                             Package(
                                 name=package,
-                                raw_constraint=f"{package} {version}",
+                                raw_constraint=f"{package} {raw_version}",
                                 version_constraints=version_constraints,
                             )
                         )

@@ -70,7 +70,7 @@ def grade(
     rubrical = Rubrical(
         configuration=configuration, repository_path=target, debug=debug
     )
-    (warnings_found, blocks_found, check_results) = rubrical.check_package_managers()
+    (warnings_found, blocks_found, check_results) = rubrical.check_all()
 
     if gh_access_token:
         gh.report_github(

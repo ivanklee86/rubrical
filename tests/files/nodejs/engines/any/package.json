@@ -1,0 +1,10 @@
+{
+  "name": "engines-any",
+  "version": "1.0.0",
+  "engines": {
+    "node": "*"
+  },
+  "dependencies": {
+    "chalk": "5.2.0"
+  }
+}
