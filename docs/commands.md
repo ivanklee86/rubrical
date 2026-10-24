@@ -31,12 +31,12 @@ $ grade [OPTIONS]
 
 * `--config PATH`: Path to configuration  [default: rubrical.yaml]
 * `--target PATH`: Path to configuration  [default: /workspaces/rubrical]
-* `/--no-block`: Don&#x27;t fail if blocks found.  [default: True]
+* `--block / --no-block`: Fail if blocks found.  Overrides blocking_mode in the configuration.  [default: (blocking_mode from configuration)]
 * `--repository-name TEXT`: Repository name for reporting purposes.  [env var: RUBRICAL_REPOSITORY]
 * `--pr-id INTEGER`: PR ID for reporting purposes.  [env var: RUBRICAL_PR_ID; default: 0]
 * `--gh-access-token TEXT`: Github access token for reporting.  Presence will enable Github reporting.  [env var: RUBRICAL_GH_TOKEN]
 * `--gh-custom-url TEXT`: Github Enterprise custom url. e.g. https://github.custom.dev  [env var: RUBRICAL_GH_CUSTOM_URL]
-* `--debug / --no-debug`: Enable debug messages  [env var: RUBGRICAL_DEBUG; default: no-debug]
+* `--debug / --no-debug`: Enable debug messages  [env var: RUBRICAL_DEBUG, RUBGRICAL_DEBUG; default: no-debug]
 * `--help`: Show this message and exit.
 
 ## `configs`

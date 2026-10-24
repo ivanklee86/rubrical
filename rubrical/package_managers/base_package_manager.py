@@ -79,6 +79,9 @@ class BasePackageManager(abc.ABC):
 
         return (specficiation, sanitized_version)
 
+    def normalize_name(self, name: str) -> str:
+        return name
+
     @abc.abstractmethod
     def parse_package_manager_file(
         self, package_manager_file_details: PackageManagerFileDetails
