@@ -107,7 +107,7 @@ def test_rubrical_clean():
 
 def test_rubrical_python_name_normalization():
     test_config = RubricalConfig(
-        **{  # ty: ignore
+        **{
             "version": 1,
             "package_managers": [
                 {
@@ -129,7 +129,7 @@ def test_rubrical_python_name_normalization():
 
 def test_rubrical_nodejs_name_not_normalized():
     test_config = RubricalConfig(
-        **{  # ty: ignore
+        **{
             "version": 1,
             "package_managers": [
                 {

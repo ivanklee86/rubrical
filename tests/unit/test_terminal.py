@@ -1,5 +1,5 @@
 import pytest
-from click.exceptions import Exit
+from typer import Exit
 
 from rubrical.utilities import console
 

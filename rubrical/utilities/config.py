@@ -15,7 +15,7 @@ def load_config(config: Path) -> RubricalConfig:
         )
 
     try:
-        return RubricalConfig(**benedict(config, format=(config.suffix[1:])))  # ty: ignore
+        return RubricalConfig(**benedict(config, format=(config.suffix[1:])))
     except ValidationError as e:
         console.print_raw(str(e))
         console.print_error("Configuration error found!", "🔴")

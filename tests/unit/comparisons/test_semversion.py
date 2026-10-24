@@ -9,7 +9,7 @@ SEMVER_PACKAGE_REQUIREMENT = PackageRequirement(
         "type": "semver",
         "warn": "v1.10.1",
         "block": "v1.0.0",
-    }  # ty: ignore
+    }
 )
 
 
