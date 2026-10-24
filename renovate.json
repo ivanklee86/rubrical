@@ -4,16 +4,75 @@
     "config:recommended"
   ],
   "schedule": [
-    "every 2 weeks on friday"
+    "on friday"
   ],
-  "automerge": true,
-  "platformAutomerge": true,
+  "minimumReleaseAge": "5 days",
+  "minimumReleaseAgeBehaviour": "timestamp-optional",
+  "lockFileMaintenance": {
+    "enabled": true,
+    "schedule": ["on friday"]
+  },
+  "hostRules": [
+    {
+      "matchHost": "dhi.io",
+      "username": "ivanklee86",
+      "password": "{{ secrets.DHI_TOKEN }}"
+    }
+  ],
   "packageRules": [
     {
+      "matchManagers": ["pep621", "pyenv"],
+      "groupName": "python"
+    },
+    {
+      "matchManagers": ["dockerfile"],
+      "matchPackageNames": ["dhi.io/python", "ghcr.io/astral-sh/uv"],
+      "groupName": "python"
+    },
+    {
       "matchManagers": ["devcontainer"],
-      "groupName": "devcontainer dependencies",
-      "automerge": true,
-      "platformAutomerge": true
+      "matchPackageNames": ["ghcr.io/ivanklee86/devcontainer/python"],
+      "groupName": "python"
+    },
+    {
+      "description": "Python 3.15 is a deliberate bump (requires-python, DHI + devcontainer tags, wheels for cffi et al.); drop when moving",
+      "matchPackageNames": ["python", "dhi.io/python", "ghcr.io/ivanklee86/devcontainer/python"],
+      "allowedVersions": "<3.15"
+    },
+    {
+      "matchManagers": ["github-actions", "custom.regex"],
+      "groupName": "ci"
+    },
+    {
+      "description": "Task tags are v-prefixed, but arduino/setup-task needs a bare version (it re-adds the v)",
+      "matchPackageNames": ["go-task/task"],
+      "extractVersion": "^v(?<version>.*)$"
+    },
+    {
+      "matchManagers": ["devcontainer"],
+      "matchPackageNames": ["!ghcr.io/ivanklee86/devcontainer/python"],
+      "groupName": "devcontainer dependencies"
+    },
+    {
+      "matchUpdateTypes": ["minor", "patch", "pin", "digest", "lockFileMaintenance", "major"],
+      "automerge": true
+    },
+    {
+      "matchManagers": ["pep621", "pyenv"],
+      "matchUpdateTypes": ["major"],
+      "automerge": false
+    },
+    {
+      "matchPackageNames": ["dhi.io/python", "ghcr.io/ivanklee86/devcontainer/python"],
+      "matchUpdateTypes": ["major"],
+      "automerge": false
+    }
+  ],
+  "customManagers": [
+    {
+      "customType": "regex",
+      "managerFilePatterns": ["/^\\.github/workflows/.+\\.ya?ml$/"],
+      "matchStrings": ["version: (?<currentValue>v?[0-9.]+) # (?<datasource>.*?)/(?<depName>.*?)\\s"]
     }
   ]
 }

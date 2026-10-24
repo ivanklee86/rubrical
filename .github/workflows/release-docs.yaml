@@ -14,6 +14,9 @@ jobs:
           python-version-file: ".python-version"
       - name: Install Task
         uses: arduino/setup-task@v3.0.0
+        with:
+          version: 3.54.0 # github-releases/go-task/task
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
       - name: Set up uv
         uses: astral-sh/setup-uv@v10.3.2
         with:
