@@ -2,11 +2,10 @@ import json
 from pathlib import Path
 
 import typer
-from benedict import benedict
-from pydantic import ValidationError
 
 from rubrical.schemas.configuration import RubricalConfig
 from rubrical.utilities import console
+from rubrical.utilities.config import load_config
 
 app = typer.Typer()
 
@@ -18,18 +17,7 @@ def validate(
     """
     Validates rubrical config.
     """
-    console.print_message("Loading configuration.", "📃")
-    if config.suffix in [".yaml", ".json", ".toml"]:
-        try:
-            RubricalConfig(**benedict(config, format=(config.suffix[1:])))  # ty: ignore
-        except ValidationError as e:
-            console.print_raw(str(e))
-            console.print_error("Configuration error found!", "🔴")
-    else:
-        raise ValueError(
-            "Rubrical only supports YAML, JSON, or TOML configuration files"
-        )
-
+    load_config(config)
     console.print_message("Configuration is OK!", "✅")
 
 

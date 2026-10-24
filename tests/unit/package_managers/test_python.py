@@ -60,3 +60,12 @@ def test_uv():
     [dep] = [x for x in python.packages["pyproject.toml"] if x.name == "pydantic"]
     assert dep.version_constraints[0].version == "2.0.0"
     assert dep.version_constraints[0].specifier == DependencySpecifications.GTE
+
+
+def test_python_normalize_name():
+    python = Python()
+
+    assert python.normalize_name("Mopidy-Dirble") == "mopidy-dirble"
+    assert python.normalize_name("mopidy_dirble") == "mopidy-dirble"
+    assert python.normalize_name("zope.interface") == "zope-interface"
+    assert python.normalize_name("Foo__-.Bar") == "foo-bar"

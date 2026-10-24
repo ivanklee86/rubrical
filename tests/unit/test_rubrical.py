@@ -103,3 +103,45 @@ def test_rubrical_clean():
     assert not warnings_found
     assert not blocks_found
     assert check_results
+
+
+def test_rubrical_python_name_normalization():
+    test_config = RubricalConfig(
+        **{  # ty: ignore
+            "version": 1,
+            "package_managers": [
+                {
+                    "name": "python",
+                    "packages": [
+                        {"name": "mopidy_dirble", "warn": "v1.2.2", "block": "v1.2.1"}
+                    ],
+                }
+            ],
+        }
+    )
+    rubrical = Rubrical(test_config, Path(FILES_FOLDER_PATH, "python"))
+    result = rubrical.check_package_manager(rubrical.package_managers[0])
+
+    [dependency] = result
+    assert dependency.name == "Mopidy-Dirble"
+    assert dependency.check == PackageCheck.BLOCK
+
+
+def test_rubrical_nodejs_name_not_normalized():
+    test_config = RubricalConfig(
+        **{  # ty: ignore
+            "version": 1,
+            "package_managers": [
+                {
+                    "name": "nodejs",
+                    "packages": [
+                        {"name": "React", "warn": "v17.0.4", "block": "v17.0.3"}
+                    ],
+                }
+            ],
+        }
+    )
+    rubrical = Rubrical(test_config, Path(FILES_FOLDER_PATH, "nodejs"))
+    result = rubrical.check_package_manager(rubrical.package_managers[0])
+
+    assert not result
