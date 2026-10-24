@@ -19,6 +19,6 @@
 
 | Language | Declarations |
 |----------|--------------|
-| Python | `pyproject.toml` (`requires-python` & Poetry `python`) |
-| Go | `go.mod` (`go` directive) |
-| Node.js | `package.json` (`engines.node`) |
+| Python | `pyproject.toml` (`requires-python` & Poetry `python`), `.python-version` |
+| Go | `go.mod` (`go` directive), `.go-version` |
+| Node.js | `package.json` (`engines.node`), `.node-version`, `.nvmrc` |

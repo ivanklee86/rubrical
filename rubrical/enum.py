@@ -48,3 +48,7 @@ class VersionDialect(Enum):
     PEP440 = "pep440"
     POETRY = "poetry"
     NPM = "npm"
+    # One bare version per line, e.g. `.nvmrc`.
+    VERSION_FILE = "version_file"
+    # One bare version or PEP 440 specifier set per line, e.g. `.python-version`.
+    PYTHON_VERSION_FILE = "python_version_file"

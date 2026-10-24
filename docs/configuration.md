@@ -47,9 +47,15 @@ Language declarations are minimums (e.g. `requires-python = ">=3.10"`), so `rubr
 | `python` | `pyproject.toml` | `project.requires-python`, or `tool.poetry.dependencies.python` when `requires-python` isn't set. |
 | `go` | `go.mod` | The `go` directive.  A `go.mod` without one is graded as `go 1.16`, which is what the Go toolchain assumes. |
 | `nodejs` | `package.json` | `engines.node`. |
+| `python` | `.python-version` | Every line, as uv reads it.  A line may be a version (`3.12`) or a specifier set (`>=3.12,<3.13`). |
+| `go` | `.go-version` | The first word of every line, as goenv reads it. |
+| `nodejs` | `.node-version` | The first word of the file, as nodenv reads it. |
+| `nodejs` | `.nvmrc` | The single version left after removing `#` comments, as nvm reads it. |
 
 Each file is read with its ecosystem's own range syntax (PEP 440, Poetry, or npm).  For example, `>3.9` allows `3.9.1` in Python, while `>18` means `>=19.0.0` in npm.
 
 * Files that don't declare a version produce no result.
 * Declarations with no lower bound, such as `"node": "*"` or `<3.12`, and declarations that aren't valid in their syntax are reported as not gradeable rather than passing.  Run with `--debug` to see why.
 * Pre-releases are graded by their release, so `go 1.21rc1` is graded as `1.21.0`.
+* A version file that lists several versions (pyenv and goenv make all of them available) is graded by the lowest one.
+* Version file entries that aren't versions, such as `system`, a virtualenv name, `pypy3.10`, `cpython@3.12`, `lts/*`, or `latest`, make that file not gradeable.  Rubrical doesn't guess what an alias resolves to.

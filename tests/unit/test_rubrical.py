@@ -182,6 +182,17 @@ def test_rubrical_languages():
         ("nodejs", "nodejs/engines/caret/package.json"): PackageCheck.OK,
         ("nodejs", "nodejs/engines/wildcard/package.json"): PackageCheck.OK,
         ("nodejs", "nodejs/engines/any/package.json"): PackageCheck.NOOP,
+        ("python", "version-files/python/.python-version"): PackageCheck.OK,
+        ("python", "version-files/python-multi/.python-version"): PackageCheck.BLOCK,
+        ("python", "version-files/python-specifier/.python-version"): (
+            PackageCheck.WARN
+        ),
+        ("python", "version-files/python-pypy/.python-version"): PackageCheck.NOOP,
+        ("python", "version-files/python-system/.python-version"): PackageCheck.NOOP,
+        ("go", "version-files/go/.go-version"): PackageCheck.WARN,
+        ("nodejs", "version-files/node/.node-version"): PackageCheck.WARN,
+        ("nodejs", "version-files/nvmrc/.nvmrc"): PackageCheck.OK,
+        ("nodejs", "version-files/nvmrc-lts/.nvmrc"): PackageCheck.NOOP,
     }
 
 

@@ -29,6 +29,26 @@ def test_python_fixtures():
         "python-gt/pyproject.toml": (">3.9", VersionDialect.PEP440),
         "poetry/pyproject.toml": ("^3.12", VersionDialect.POETRY),
         "poetry-or/pyproject.toml": (">=3.8 <3.9 || >=3.10", VersionDialect.POETRY),
+        "version-files/python/.python-version": (
+            "3.12",
+            VersionDialect.PYTHON_VERSION_FILE,
+        ),
+        "version-files/python-multi/.python-version": (
+            "3.12.4\n3.9",
+            VersionDialect.PYTHON_VERSION_FILE,
+        ),
+        "version-files/python-specifier/.python-version": (
+            ">=3.11, <3.13",
+            VersionDialect.PYTHON_VERSION_FILE,
+        ),
+        "version-files/python-pypy/.python-version": (
+            "pypy3.10",
+            VersionDialect.PYTHON_VERSION_FILE,
+        ),
+        "version-files/python-system/.python-version": (
+            "3.12\nsystem",
+            VersionDialect.PYTHON_VERSION_FILE,
+        ),
     }
 
 

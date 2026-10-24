@@ -146,6 +146,23 @@ def _poetry_comparator(comparator: str) -> Optional[Release]:
     return version.padded()
 
 
+def _version_file_comparator(comparator: str) -> Optional[Release]:
+    op, text = _split_comparator(comparator)
+    version = _parse_version(text)
+    if op or version.wildcard:
+        raise UngradeableError(f"`{comparator}` is not a bare version")
+
+    return version.padded()
+
+
+def _python_version_file_comparator(comparator: str) -> Optional[Release]:
+    op, _ = _split_comparator(comparator)
+    if op:
+        return _pep440_comparator(comparator)
+
+    return _version_file_comparator(comparator)
+
+
 def _go_alternatives(declaration: str) -> List[List[str]]:
     return [[declaration]]
 
@@ -181,6 +198,24 @@ def _poetry_alternatives(declaration: str) -> List[List[str]]:
     ]
 
 
+def _version_file_lines(declaration: str) -> List[str]:
+    # An empty declaration is one empty line, which isn't a version.
+    return declaration.splitlines() or [""]
+
+
+def _version_file_alternatives(declaration: str) -> List[List[str]]:
+    # Version managers make every listed version available, so each line is an alternative.
+    return [[line] for line in _version_file_lines(declaration)]
+
+
+def _python_version_file_alternatives(declaration: str) -> List[List[str]]:
+    # uv also accepts a PEP 440 specifier set on a line, e.g. `>=3.12,<3.13`.
+    return [
+        _pep440_alternatives(line)[0] if _split_comparator(line)[0] else [line]
+        for line in _version_file_lines(declaration)
+    ]
+
+
 DIALECTS: Dict[
     VersionDialect,
     Tuple[Callable[[str], List[List[str]]], Callable[[str], Optional[Release]]],
@@ -189,6 +224,14 @@ DIALECTS: Dict[
     VersionDialect.NPM: (_npm_alternatives, _npm_comparator),
     VersionDialect.PEP440: (_pep440_alternatives, _pep440_comparator),
     VersionDialect.POETRY: (_poetry_alternatives, _poetry_comparator),
+    VersionDialect.VERSION_FILE: (
+        _version_file_alternatives,
+        _version_file_comparator,
+    ),
+    VersionDialect.PYTHON_VERSION_FILE: (
+        _python_version_file_alternatives,
+        _python_version_file_comparator,
+    ),
 }
 
 
