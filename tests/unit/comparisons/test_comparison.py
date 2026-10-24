@@ -9,7 +9,7 @@ SEMVER_PACKAGE_REQUIREMENT = PackageRequirement(
         "type": "semver",
         "warn": "v1.0.1",
         "block": "v1.0.0",
-    }  # ty: ignore
+    }
 )
 
 GENERIC_PACKAGE_REQUIREMENT = PackageRequirement(
@@ -18,7 +18,7 @@ GENERIC_PACKAGE_REQUIREMENT = PackageRequirement(
         "type": "generic",
         "warn": "v1.0.1",
         "block": "v1.0.0",
-    }  # ty: ignore
+    }
 )
 
 SEMVER_PACKAGE = Package(
@@ -79,7 +79,7 @@ def test_dependency_actuallysemver():
             "type": "semver",
             "warn": "v1.11.1",
             "block": "v1.11.0",
-        }  # ty: ignore
+        }
     )
 
     package = Package(
@@ -100,7 +100,7 @@ def test_dependency_branch():
             "type": "semver",
             "warn": "v1.11.1",
             "block": "v1.11.0",
-        }  # ty: ignore
+        }
     )
 
     package = Package(
