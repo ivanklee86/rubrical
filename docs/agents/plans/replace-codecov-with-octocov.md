@@ -1,6 +1,6 @@
 # Replace Codecov with octocov and the central tracking repo
 
-**Status: rubrical PR 1 (steps 1–4, minus the README badge) implemented. Steps 5–6 and PR 2 remain.** Open decisions resolved: octocov v0.79.0 supports `patch` in `coverage.acceptable`, so the 85% patch gate is kept (`current >= 90% && diff >= -0.5% && patch >= 85%`); `octocov dump report` confirmed repo-relative `rubrical/...` paths.
+**Status: implemented.** rubrical PR 1 (steps 1–4), octocov-central (step 5), and rubrical PR 2 (the README badge) are done. Step 6 (removing the Codecov secret and app) is manual and remains. Open decisions resolved: octocov v0.79.0 supports `patch` in `coverage.acceptable`, so the 85% patch gate is kept (`current >= 90% && diff >= -0.5% && patch >= 85%`); `octocov dump report` confirmed repo-relative `rubrical/...` paths.
 
 Mirror what `tangle` already ships ([tangle ADR 0010](https://github.com/ivanklee86/tangle/blob/main/docs/adrs/0010-replace-codecov-with-octocov.md),
 [ADR 0011](https://github.com/ivanklee86/tangle/blob/main/docs/adrs/0011-octocov-central-reporting-and-badges-repository.md)):
