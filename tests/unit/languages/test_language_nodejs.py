@@ -17,8 +17,19 @@ def test_nodejs_engines():
         "nodejs/engines/partial-gt/package.json": ">18",
         "nodejs/engines/spaced/package.json": ">= 18.17.0",
         "nodejs/engines/any/package.json": "*",
+        "version-files/node/.node-version": "v18.17.1",
+        "version-files/nvmrc/.nvmrc": "20",
+        "version-files/nvmrc-lts/.nvmrc": "lts/*",
     }
-    assert all(x.dialect == VersionDialect.NPM for x in nodejs.declarations.values())
+    assert {
+        file: x.dialect
+        for file, x in nodejs.declarations.items()
+        if x.dialect != VersionDialect.NPM
+    } == {
+        "version-files/node/.node-version": VersionDialect.VERSION_FILE,
+        "version-files/nvmrc/.nvmrc": VersionDialect.VERSION_FILE,
+        "version-files/nvmrc-lts/.nvmrc": VersionDialect.VERSION_FILE,
+    }
     # Files without `engines.node` aren't graded, and node_modules is skipped.
     assert "nodejs/engines/none/package.json" in nodejs.found_files
     assert not any("node_modules" in x for x in nodejs.found_files)

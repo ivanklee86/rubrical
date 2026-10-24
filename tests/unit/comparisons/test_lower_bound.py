@@ -13,6 +13,8 @@ GO = VersionDialect.GO
 PEP440 = VersionDialect.PEP440
 POETRY = VersionDialect.POETRY
 NPM = VersionDialect.NPM
+VERSION_FILE = VersionDialect.VERSION_FILE
+PYTHON_VERSION_FILE = VersionDialect.PYTHON_VERSION_FILE
 
 
 @pytest.mark.parametrize(
@@ -61,6 +63,18 @@ NPM = VersionDialect.NPM
         (NPM, "20.0.0-rc.1", "20.0.0"),
         (NPM, "^18.18.0 || ^20.9.0 || >=21.1.0", "18.18.0"),
         (NPM, ">=21.1.0 || ^20.9.0 || ^18.18.0", "18.18.0"),
+        # Version files: one bare version per line, and the lowest line applies.
+        (VERSION_FILE, "20", "20.0.0"),
+        (VERSION_FILE, "v18.17.1", "18.17.1"),
+        (VERSION_FILE, "1.21rc1", "1.21.0"),
+        (VERSION_FILE, "1.22.0\n1.21.5", "1.21.5"),
+        # `.python-version`: uv also accepts variants and PEP 440 specifier sets.
+        (PYTHON_VERSION_FILE, "3.12", "3.12.0"),
+        (PYTHON_VERSION_FILE, "3.13t", "3.13.0"),
+        (PYTHON_VERSION_FILE, "3.13+freethreaded", "3.13.0"),
+        (PYTHON_VERSION_FILE, ">=3.11, <3.13", "3.11.0"),
+        (PYTHON_VERSION_FILE, "3.12\n3.9", "3.9.0"),
+        (PYTHON_VERSION_FILE, "3.12\n>=3.10", "3.10.0"),
     ],
 )
 def test_lower_bound(dialect, declaration, expected):
@@ -91,6 +105,28 @@ def test_lower_bound(dialect, declaration, expected):
         (PEP440, ">=3.8 || >=3.9"),
         (PEP440, ">=3.8 <4"),
         (NPM, "~=1.2"),
+        (VERSION_FILE, ">=18"),
+        (VERSION_FILE, "20.x"),
+        (PYTHON_VERSION_FILE, "<3.13"),
+        (PYTHON_VERSION_FILE, "^3.12"),
+        # Aliases and implementation-prefixed requests aren't versions.
+        (VERSION_FILE, "lts/*"),
+        (VERSION_FILE, "node"),
+        (VERSION_FILE, "latest"),
+        (PYTHON_VERSION_FILE, "pypy3.10"),
+        (PYTHON_VERSION_FILE, "cpython@3.12"),
+        (PYTHON_VERSION_FILE, "cpython3.12"),
+        (PYTHON_VERSION_FILE, "system"),
+        (PYTHON_VERSION_FILE, "my-venv"),
+        # uv parses the whole line, so trailing text isn't a version.
+        (PYTHON_VERSION_FILE, "3.12 # pinned"),
+        # Two `.nvmrc` versions are kept together, which nvm rejects.
+        (VERSION_FILE, "20 18"),
+        # One ungradeable line makes the lowest version unknown.
+        (VERSION_FILE, "20\nlts/*"),
+        (PYTHON_VERSION_FILE, "3.12\nsystem"),
+        (VERSION_FILE, ""),
+        (PYTHON_VERSION_FILE, ""),
         # Not a version.
         (GO, "banana"),
         (PEP440, ">=banana"),

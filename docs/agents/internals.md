@@ -10,7 +10,7 @@ Rubrical is a Typer CLI that scans a repository for dependency manifests, compar
 | `rubrical/subcommands/configs.py` | `configs validate` and `configs jsonschema`. |
 | `rubrical/rubrical.py` | `Rubrical` orchestrator, `PACKAGE_MANAGER_MAPPING` and `LANGUAGE_MAPPING` (config name → class). |
 | `rubrical/package_managers/` | `BasePackageManager` ABC plus one subclass per ecosystem (`go`, `jsonnet`, `nodejs`, `python`). |
-| `rubrical/languages/` | `BaseLanguage` ABC plus one subclass per language (`go`, `nodejs`, `python`). Each extracts at most one `LanguageDeclaration` per file. See [ADR 0003](../adrs/0003-language-version-checks.md). |
+| `rubrical/languages/` | `BaseLanguage` ABC plus one subclass per language (`go`, `nodejs`, `python`). Each extracts at most one `LanguageDeclaration` per file. `version_files.py` reads version manager files (`.python-version`, `.go-version`, `.node-version`, `.nvmrc`) the way each owning tool does. See [ADR 0003](../adrs/0003-language-version-checks.md) and [ADR 0004](../adrs/0004-language-version-files.md). |
 | `rubrical/comparisons/` | `check_package()` dispatches on `PackageRequirement.type` to `semversion` or `string`. `lower_bound.py` grades language declarations. |
 | `rubrical/reporters/` | `terminal.py` renders a Rich table. `gh.py` upserts or deletes a PR comment through PyGithub. |
 | `rubrical/schemas/` | `configuration.py` holds the Pydantic config models. `package.py`, `language.py` and `results.py` hold the internal dataclasses. |
@@ -77,8 +77,14 @@ Each subclass of `BaseLanguage` sets `target_files`, optionally `denylist_pathna
 | Language | Files | Declaration | Dialect |
 |----------|-------|-------------|---------|
 | `go` | `go.mod` | The `go` directive. Without one, `go 1.16 (implicit)`, as the Go toolchain assumes. `toolchain` is ignored. | `GO` |
+| `go` | `.go-version` | The first word of every non-comment line (goenv). | `VERSION_FILE` |
 | `python` | `pyproject.toml` (skips `.venv`, `node_modules`) | `project.requires-python`, else `tool.poetry.dependencies.python`. | `PEP440` / `POETRY` |
+| `python` | `.python-version` (skips `.venv`, `node_modules`) | Every trimmed non-comment line (uv). | `PYTHON_VERSION_FILE` |
 | `nodejs` | `package.json` (skips `node_modules`) | `engines.node`. | `NPM` |
+| `nodejs` | `.node-version` (skips `node_modules`) | The first word of the file (nodenv). | `VERSION_FILE` |
+| `nodejs` | `.nvmrc` (skips `node_modules`) | Lines left after removing `#` comments and `key=value` lines, joined by spaces, so more than one version isn't gradeable (nvm). | `VERSION_FILE` |
+
+Version files dispatch on `file_details.path.name` in `parse_file`. `version` holds one entry per line (joined by newlines) and `raw_constraint` quotes each entry after the file name, for example `.python-version "3.12" "3.9"`. A version file with no entries returns `None`.
 
 ## Comparison semantics (`comparisons/`)
 
@@ -94,6 +100,7 @@ Each subclass of `BaseLanguage` sets `target_files`, optionally `denylist_pathna
   - Whitespace after an operator is removed. Within AND-ed comparators the highest lower bound applies; across `||` alternatives the lowest applies.
   - Versions are padded to three parts and pre-release/post/dev/build suffixes are dropped (`1.21rc1` → `1.21.0`).
   - `>X` differs by dialect: PEP 440 and Poetry give the next patch (`>3.9` → `3.9.1`); npm increments the last given part (`>1.2` → `1.3.0`, `>1.2.3` → `1.2.4`).
+  - Version file dialects treat each line as an alternative, so the lowest line applies. `VERSION_FILE` lines must be bare versions (optional `v`, no operator or wildcard). `PYTHON_VERSION_FILE` lines may also be PEP 440 specifier sets. One ungradeable line (`system`, `lts/*`, `pypy3.10`) makes the whole file `NOOP`.
   - `lower_bound()` raises `UngradeableError` when there is no lower bound (`*`, `<3.12`) or the syntax is invalid in the dialect (`^` in PEP 440). `compare_language()` turns that into `NOOP`, never `OK`, and returns a `LanguageGrade` whose `reason` is logged with `--debug`.
 
 ## Reporting
@@ -119,6 +126,11 @@ Each subclass of `BaseLanguage` sets `target_files`, optionally `denylist_pathna
 2. Create `languages/<name>.py` that subclasses `BaseLanguage`.
 3. Register the class in `LANGUAGE_MAPPING` in `rubrical.py`.
 4. Add fixtures under `tests/files/`, parser cases to `tests/unit/comparisons/test_lower_bound.py`, a test in `tests/unit/languages/`, and expected results to `tests/files/rubrical-languages.yaml` and `test_rubrical_languages`.
+
+**Add a version file for an existing language**
+1. Add a reader to `languages/version_files.py` that follows the owning tool's source, and returns one entry per version.
+2. Add the file name to the language's `target_files` and dispatch on it in `parse_file`, using `version_files.declaration()` with `VERSION_FILE` (or a new dialect if lines can hold ranges).
+3. Add fixtures under `tests/files/version-files/`, reader cases to `tests/unit/languages/test_language_version_files.py`, and expected results to `test_rubrical_languages`.
 
 **Add a comparison type**
 1. Add a value to `PackageTypes`.
