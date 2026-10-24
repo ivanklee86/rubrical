@@ -24,3 +24,9 @@ tasks:
     dir: tests/files
     cmds:
       - uv run rubrical grade --config rubrical-mixed.yaml
+
+  languages:
+    desc: Run rubrical with languages configuration.
+    dir: tests/files
+    cmds:
+      - uv run rubrical grade --config rubrical-languages.yaml

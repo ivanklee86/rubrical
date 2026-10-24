@@ -1,0 +1,10 @@
+{
+  "name": "engines-partial-gt",
+  "version": "1.0.0",
+  "engines": {
+    "node": ">18"
+  },
+  "dependencies": {
+    "chalk": "5.2.0"
+  }
+}

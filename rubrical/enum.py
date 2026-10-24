@@ -35,3 +35,16 @@ class SupportedPackageManagers(Enum):
     PYTHON = "python"
     GO = "go"
     NODEJS = "nodejs"
+
+
+class SupportedLanguages(Enum):
+    PYTHON = "python"
+    GO = "go"
+    NODEJS = "nodejs"
+
+
+class VersionDialect(Enum):
+    GO = "go"
+    PEP440 = "pep440"
+    POETRY = "poetry"
+    NPM = "npm"

@@ -1,0 +1,10 @@
+{
+  "name": "engines-spaced",
+  "version": "1.0.0",
+  "engines": {
+    "node": ">= 18.17.0"
+  },
+  "dependencies": {
+    "chalk": "5.2.0"
+  }
+}

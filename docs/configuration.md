@@ -3,7 +3,17 @@ Rubrical uses a YAML/JSON/TOml file is used to configure checks for your applica
 ```yaml
 version: 1
 blocking_mode: true  # Optional, default true.  If false, blocked dependencies are reported but rubrical exits 0.
-package_managers:
+languages:  # Optional.  Grades the language versions your repository declares.
+  - name: python  # One of python, go, nodejs.  Each language may only be listed once.
+    block: v3.10.0  # If the lowest version allowed is less than this, error.
+    warn: v3.12.0  # If the lowest version allowed is less than this, warn.
+  - name: go
+    block: v1.20.0
+    warn: v1.22.0
+  - name: nodejs
+    block: v18.17.0
+    warn: v20.0.0
+package_managers:  # Optional.
   - name: jsonnet
     packages:
       - name: "xunleii/vector_jsonnet" # Name of the dependency
@@ -27,3 +37,19 @@ package_managers:
 ```
 
 The `--block/--no-block` flag on `rubrical grade` overrides `blocking_mode` when given.
+
+### Languages
+
+Language declarations are minimums (e.g. `requires-python = ">=3.10"`), so `rubrical` grades the **lowest version a declaration allows** against `warn` and `block`.  Every file that declares a version is graded and reported separately.
+
+| Language | File | Declaration |
+|----------|------|-------------|
+| `python` | `pyproject.toml` | `project.requires-python`, or `tool.poetry.dependencies.python` when `requires-python` isn't set. |
+| `go` | `go.mod` | The `go` directive.  A `go.mod` without one is graded as `go 1.16`, which is what the Go toolchain assumes. |
+| `nodejs` | `package.json` | `engines.node`. |
+
+Each file is read with its ecosystem's own range syntax (PEP 440, Poetry, or npm).  For example, `>3.9` allows `3.9.1` in Python, while `>18` means `>=19.0.0` in npm.
+
+* Files that don't declare a version produce no result.
+* Declarations with no lower bound, such as `"node": "*"` or `<3.12`, and declarations that aren't valid in their syntax are reported as not gradeable rather than passing.  Run with `--debug` to see why.
+* Pre-releases are graded by their release, so `go 1.21rc1` is graded as `1.21.0`.

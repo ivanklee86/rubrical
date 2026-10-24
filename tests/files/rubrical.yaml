@@ -1,4 +1,14 @@
 version: 1
+languages:
+  - name: python
+    block: v3.8.0
+    warn: v3.12.0
+  - name: go
+    block: v1.20.0
+    warn: v1.22.0
+  - name: nodejs
+    block: v18.17.0
+    warn: v20.0.0
 package_managers:
   - name: jsonnet
     packages:

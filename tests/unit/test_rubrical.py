@@ -145,3 +145,75 @@ def test_rubrical_nodejs_name_not_normalized():
     result = rubrical.check_package_manager(rubrical.package_managers[0])
 
     assert not result
+
+
+TEST_CONFIG_LANGUAGES = {
+    "version": 1,
+    "languages": [
+        {"name": "python", "warn": "v3.12.0", "block": "v3.10.0"},
+        {"name": "go", "warn": "v1.22.0", "block": "v1.20.0"},
+        {"name": "nodejs", "warn": "v20.0.0", "block": "v18.17.0"},
+    ],
+}
+
+
+def test_rubrical_languages():
+    test_config = RubricalConfig(**TEST_CONFIG_LANGUAGES)  # ty: ignore
+    rubrical = Rubrical(test_config, FILES_FOLDER_PATH)
+    (warnings_found, blocks_found, check_results) = rubrical.check_all()
+
+    assert warnings_found
+    assert blocks_found
+    assert list(check_results.keys()) == ["languages"]
+    assert {(x.name, x.file): x.check for x in check_results["languages"]} == {
+        ("python", "python/pyproject.toml"): PackageCheck.BLOCK,
+        ("python", "python-gt/pyproject.toml"): PackageCheck.BLOCK,
+        ("python", "poetry-or/pyproject.toml"): PackageCheck.BLOCK,
+        ("python", "uv/pyproject.toml"): PackageCheck.OK,
+        ("python", "poetry/pyproject.toml"): PackageCheck.OK,
+        ("go", "go/go.mod"): PackageCheck.BLOCK,
+        ("go", "go-implicit/go.mod"): PackageCheck.BLOCK,
+        ("go", "go-toolchain/go.mod"): PackageCheck.WARN,
+        ("nodejs", "nodejs/engines/minimum/package.json"): PackageCheck.BLOCK,
+        ("nodejs", "nodejs/engines/range/package.json"): PackageCheck.WARN,
+        ("nodejs", "nodejs/engines/or-range/package.json"): PackageCheck.WARN,
+        ("nodejs", "nodejs/engines/partial-gt/package.json"): PackageCheck.WARN,
+        ("nodejs", "nodejs/engines/spaced/package.json"): PackageCheck.WARN,
+        ("nodejs", "nodejs/engines/caret/package.json"): PackageCheck.OK,
+        ("nodejs", "nodejs/engines/wildcard/package.json"): PackageCheck.OK,
+        ("nodejs", "nodejs/engines/any/package.json"): PackageCheck.NOOP,
+    }
+
+
+def test_rubrical_languages_report_declaration_and_thresholds():
+    test_config = RubricalConfig(**TEST_CONFIG_LANGUAGES)  # ty: ignore
+    rubrical = Rubrical(test_config, Path(FILES_FOLDER_PATH, "go"))
+    [result] = rubrical.check_languages()
+
+    assert result.file == "go.mod"
+    assert result.version_package == "go 1.19"
+    assert result.version_warn == "v1.22.0"
+    assert result.version_block == "v1.20.0"
+
+
+def test_rubrical_languages_and_package_managers():
+    test_config = RubricalConfig(
+        **TEST_CONFIG_WARNINGS,  # ty: ignore
+        languages=[{"name": "go", "warn": "v1.0.0", "block": "v1.0.0"}],
+    )
+    rubrical = Rubrical(test_config, FILES_FOLDER_PATH)
+    (warnings_found, blocks_found, check_results) = rubrical.check_all()
+
+    # Package manager warnings still surface when languages are clean.
+    assert warnings_found
+    assert not blocks_found
+    assert list(check_results.keys()) == ["languages", "jsonnet"]
+    assert all(x.check == PackageCheck.OK for x in check_results["languages"])
+
+
+def test_rubrical_without_languages_reports_only_package_managers():
+    test_config = RubricalConfig(**TEST_CONFIG_BLOCK)  # ty: ignore
+    rubrical = Rubrical(test_config, TEST_JSONNET_FOLDER)
+    (_, _, check_results) = rubrical.check_all()
+
+    assert list(check_results.keys()) == ["jsonnet"]

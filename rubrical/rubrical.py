@@ -2,14 +2,18 @@ from pathlib import Path
 from typing import Dict, List, Tuple
 
 from rubrical.comparisons import check_package
-from rubrical.enum import PackageCheck, SupportedPackageManagers
+from rubrical.comparisons.lower_bound import compare_language
+from rubrical.enum import PackageCheck, SupportedLanguages, SupportedPackageManagers
+from rubrical.languages import go as go_language
+from rubrical.languages import nodejs as nodejs_language
+from rubrical.languages import python as python_language
 from rubrical.package_managers.base_package_manager import BasePackageManager
 from rubrical.package_managers.go import Go
 from rubrical.package_managers.jsonnet import Jsonnet
 from rubrical.package_managers.nodejs import NodeJS
 from rubrical.package_managers.python import Python
 from rubrical.reporters import terminal
-from rubrical.schemas.configuration import RubricalConfig
+from rubrical.schemas.configuration import LanguageRequirement, RubricalConfig
 from rubrical.schemas.results import PackageCheckResult
 from rubrical.utilities import console
 
@@ -19,6 +23,14 @@ PACKAGE_MANAGER_MAPPING = {
     SupportedPackageManagers.GO.value: Go,
     SupportedPackageManagers.NODEJS.value: NodeJS,
 }
+
+LANGUAGE_MAPPING = {
+    SupportedLanguages.PYTHON.value: python_language.Python,
+    SupportedLanguages.GO.value: go_language.Go,
+    SupportedLanguages.NODEJS.value: nodejs_language.NodeJS,
+}
+
+LANGUAGES_REPORT_NAME = "languages"
 
 
 class Rubrical:
@@ -39,6 +51,80 @@ class Rubrical:
             self.package_managers.append(
                 PACKAGE_MANAGER_MAPPING[package_manager.name]()  #  type:  ignore
             )
+
+    def check_all(
+        self,
+    ) -> Tuple[bool, bool, Dict[str, List[PackageCheckResult]]]:
+        """Grades configured languages, then configured package managers."""
+        warnings_found = False
+        blocks_found = False
+        results: Dict[str, List[PackageCheckResult]] = {}
+
+        # Only report languages when configured, so existing reports are unchanged.
+        if self.configuration.languages:
+            language_results = self.check_languages()
+            terminal.terminal_report(LANGUAGES_REPORT_NAME, language_results)
+
+            warnings_found = any(x.check == PackageCheck.WARN for x in language_results)
+            blocks_found = any(x.check == PackageCheck.BLOCK for x in language_results)
+            results[LANGUAGES_REPORT_NAME] = language_results
+
+        (
+            package_warnings_found,
+            package_blocks_found,
+            package_results,
+        ) = self.check_package_managers()
+
+        return (
+            warnings_found or package_warnings_found,
+            blocks_found or package_blocks_found,
+            results | package_results,
+        )
+
+    def check_languages(self) -> List[PackageCheckResult]:
+        console.print_header("Grading languages", "🈴")
+        check_results: List[PackageCheckResult] = []
+
+        for requirement in self.configuration.languages:
+            check_results.extend(self.check_language(requirement))
+
+        return check_results
+
+    def check_language(
+        self, requirement: LanguageRequirement
+    ) -> List[PackageCheckResult]:
+        check_results: List[PackageCheckResult] = []
+        language = LANGUAGE_MAPPING[requirement.name]()  # ty: ignore
+
+        language.read_files(self.repository_path)
+        language.parse_files()
+
+        if self.debug:
+            for file in language.found_files.keys() - language.declarations.keys():
+                console.print_debug(
+                    f"{file} doesn't declare a {language.name} version."
+                )
+
+        for file, declaration in language.declarations.items():
+            grade = compare_language(requirement, declaration)
+
+            if self.debug:
+                console.print_debug(
+                    f"{language.name} @ {declaration.raw_constraint} in {file} is {grade.check.value}: {grade.reason}."
+                )
+
+            check_results.append(
+                PackageCheckResult(
+                    name=language.name,
+                    file=file,
+                    check=grade.check,
+                    version_package=declaration.raw_constraint,
+                    version_warn=requirement.warn,
+                    version_block=requirement.block,
+                )
+            )
+
+        return check_results
 
     def check_package_managers(
         self,

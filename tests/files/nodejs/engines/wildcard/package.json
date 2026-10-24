@@ -1,0 +1,10 @@
+{
+  "name": "engines-wildcard",
+  "version": "1.0.0",
+  "engines": {
+    "node": "20.x"
+  },
+  "dependencies": {
+    "chalk": "5.2.0"
+  }
+}

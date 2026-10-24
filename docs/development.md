@@ -12,6 +12,7 @@
 * docs:serve:              Run mkdocs server locally.
 * integration:block:       Run rubrical with block configuration.
 * integration:clean:       Run rubrical with clean configuration.
+* integration:languages:   Run rubrical with languages configuration.
 * integration:mixed:       Run rubrical with mixed configuration.  (Used for docs)
 * integration:warn:        Run rubrical with warn configuration.
 * python:build:            Build artifact
