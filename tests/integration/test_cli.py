@@ -1,5 +1,6 @@
 from pathlib import Path
 
+import click
 import pytest
 from typer.testing import CliRunner
 
@@ -120,7 +121,7 @@ def test_cli_rejects_invalid_report_id():
         ],
     )
     assert result.exit_code == 2
-    assert "--report-id" in result.output
+    assert "--report-id" in click.unstyle(result.output)
 
 
 def test_cli_configs_jsonschema():
