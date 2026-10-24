@@ -48,7 +48,7 @@ jobs:
         uses: k1LoW/octocov-action@a167dc0dee441b7ffc45e1b862ab55ec0d87f278 # v1.5.2
         with:
           config: .octocov.yml
-          version: v0.79.0 # github-releases/k1LoW/octocov
+          version: v0.83.3 # github-releases/k1LoW/octocov
   pre-commit:
     runs-on: ubuntu-latest
     steps:
