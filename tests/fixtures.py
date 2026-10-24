@@ -51,7 +51,7 @@ def wait_for(
 
 def owned_comments(pr: PullRequest, report_id: str) -> list:
     marker = gh.report_id_marker(report_id)
-    return [c for c in pr.get_issue_comments() if marker in c.body]
+    return [c for c in pr.get_issue_comments() if c.body.startswith(marker)]
 
 
 def _delete_quietly(comment, reason: str):
@@ -68,7 +68,7 @@ def _sweep_stale_test_comments(pr: PullRequest):
     cutoff = datetime.now(timezone.utc) - STALE_TEST_COMMENT_AGE
     stale_marker = f"{gh.REPORT_ID_PREFIX}{TEST_REPORT_ID_PREFIX}"
     for comment in pr.get_issue_comments():
-        if stale_marker in comment.body and comment.created_at < cutoff:
+        if comment.body.startswith(stale_marker) and comment.created_at < cutoff:
             _delete_quietly(comment, "stale")
 
 

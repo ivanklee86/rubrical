@@ -19,7 +19,7 @@ date: 2026-10-24
 
 Chosen option: **a user-facing `--report-id`**. It fixes the test flakes through the real matching path, so the live tests still exercise production code, and it also serves the monorepo use case.
 
-- With a report ID, the comment starts with `<!-- rubrical:report-id=<id> -->` and its heading shows the ID. Only comments with exactly that marker match. The reporter converges duplicates: it keeps the oldest match and deletes the rest.
+- With a report ID, the comment starts with `<!-- rubrical:report-id=<id> -->` and its heading shows the ID. Only comments that start with exactly that marker match, so a comment that quotes the marker is never edited or deleted. The reporter converges duplicates: it keeps the oldest match and deletes the rest.
 - Without a report ID, matching is unchanged: heading marker present, and now also no report-ID marker, so legacy runs leave ID-scoped comments alone. Duplicate convergence is **not** applied to this legacy scope, so existing users with duplicate comments see no behavior change.
 - In both scopes, a 404 on edit falls back to creating a comment and a 404 on delete counts as done, instead of crashing the run.
 - A report ID is 1–100 characters from `[A-Za-z0-9._/-]`, so it can't break out of the HTML comment.

@@ -251,6 +251,14 @@ def test_gh_report_id_does_not_match_prefix(fake_pr):
     assert fake_pr.writes == []
 
 
+def test_gh_report_id_ignores_comment_quoting_marker(fake_pr):
+    fake_pr.add(f"Why does rubrical post {gh.report_id_marker('svc')}?")
+    report(findings=False, report_id="svc")
+    report(report_id="svc")
+    assert fake_pr.writes == [("create", 2)]
+    assert len(fake_pr.comments) == 2
+
+
 def test_gh_report_legacy_scope_ignores_report_id_comments(fake_pr):
     fake_pr.add(gh._generate_report(DUMMY_RESULTS, "svc"))
     report(findings=False)
@@ -282,7 +290,7 @@ def test_gh_report_tolerates_comment_deleted_before_delete(fake_pr, report_id):
 
 
 @pytest.mark.parametrize(
-    "report_id", ["has space", "x-->", "a" * 101, "new\nline", "<b>"]
+    "report_id", ["has space", "x-->", "a" * 101, "new\nline", "svc\n", "<b>"]
 )
 def test_gh_report_rejects_invalid_report_id(fake_pr, report_id):
     with pytest.raises(ValueError):

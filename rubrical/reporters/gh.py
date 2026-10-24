@@ -13,11 +13,11 @@ logger = logging.getLogger(__name__)
 
 REPORT_HEADING_MARKER = "[Rubrical](https://github.com/ivanklee86/rubrical) Report"
 REPORT_ID_PREFIX = "<!-- rubrical:report-id="
-REPORT_ID_PATTERN = re.compile(r"^[A-Za-z0-9._/-]{1,100}$")
+REPORT_ID_PATTERN = re.compile(r"[A-Za-z0-9._/-]{1,100}")
 
 
 def validate_report_id(report_id: str) -> str:
-    if report_id and not REPORT_ID_PATTERN.match(report_id):
+    if report_id and not REPORT_ID_PATTERN.fullmatch(report_id):
         raise ValueError(
             "Report ID must be 1-100 characters of letters, digits, '.', '_', '/' or '-'."
         )
@@ -65,7 +65,8 @@ def _generate_report(
 
 def _is_report_comment(body: str, report_id: str) -> bool:
     if report_id:
-        return report_id_marker(report_id) in body
+        # Reports start with the marker; a comment that merely quotes it isn't ours.
+        return body.startswith(report_id_marker(report_id))
     # Legacy scope: the heading marker, but never a comment owned by a report ID.
     return REPORT_HEADING_MARKER in body and REPORT_ID_PREFIX not in body
 
