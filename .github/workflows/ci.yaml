@@ -17,9 +17,9 @@ jobs:
           cache: 'pip'
           cache-dependency-path: 'uv.lock'
       - name: Install Task
-        uses: arduino/setup-task@v1
+        uses: arduino/setup-task@v3.0.0
       - name: Set up uv
-        uses: astral-sh/setup-uv@v7
+        uses: astral-sh/setup-uv@v10.3.1
         with:
           enable-cache: true
       - name: Install packages
@@ -43,7 +43,7 @@ jobs:
     steps:
       - uses: actions/checkout@v7
       - name: Run pre-commit hooks via prek
-        uses: j178/prek-action@4e14d07f9231acabce116ccfca13b13dd9755ece # v3.0.0
+        uses: j178/prek-action@44924fe9ef4a6f88253c4b6b1bf11c689d3ce53d # v3.1.0
         with:
           prek-version: 0.5.3
   docker:
