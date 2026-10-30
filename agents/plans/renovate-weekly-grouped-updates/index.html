@@ -1,0 +1,987 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
+    
+    
+      
+        <title>Renovate: weekly grouped updates with gated automerge - Rubrical</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.57a0d79d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.fb2fffe2.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#renovate-weekly-grouped-updates-with-gated-automerge" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Rubrical" class="md-header__button md-logo" aria-label="Rubrical" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Rubrical
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Renovate: weekly grouped updates with gated automerge
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/ivanklee86/Rubrical" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ivanklee86/rubrical
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../installation_and_usage/" class="md-tabs__link">
+          
+  
+  
+  User Guide
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../development/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Developer Guide
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Rubrical" class="md-nav__button md-logo" aria-label="Rubrical" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Rubrical
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/ivanklee86/Rubrical" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ivanklee86/rubrical
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User Guide
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    User Guide
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../installation_and_usage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation and Usage
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../features_and_supported_formats/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Featuers and Supported Formats
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reporting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reporting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../commands/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Commands
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../development/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Developer Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#how-tangle-does-it-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How tangle does it (reference)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-rubricals-prs-pile-up" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why rubrical's PRs pile up
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-fix-ci-so-bot-prs-can-go-green" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Fix CI so bot PRs can go green
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-repo-settings-manual-github-ui" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Repo settings (manual, GitHub UI)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-restructure-renovatejson" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Restructure renovate.json
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-credentials-for-dhiio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Credentials for dhi.io
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-clean-up-the-existing-prs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Clean up the existing PRs
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="renovate-weekly-grouped-updates-with-gated-automerge">Renovate: weekly grouped updates with gated automerge</h1>
+<p><strong>Status: implemented</strong> (see <a href="../../../adrs/0001-renovate-weekly-grouped-updates/">ADR 0001</a>). The config below
+is the proposal; <code>renovate.json</code> is the source of truth, and it adds a Task version pin and an <code>extractVersion</code> rule.</p>
+<p>Mirror what <code>tangle</code> already ships (<a href="https://github.com/ivanklee86/tangle/blob/main/docs/adrs/0013-renovate-weekly-grouped-updates.md">tangle ADR 0013</a>,
+<a href="https://github.com/ivanklee86/tangle/blob/main/docs/adrs/0016-automerge-major-updates-outside-go-and-ts.md">ADR 0016</a>):
+a weekly schedule, one PR per ecosystem, a 5-day <code>minimumReleaseAge</code>, and automerge for everything except
+majors in the primary language.</p>
+<h2 id="how-tangle-does-it-reference">How tangle does it (reference)</h2>
+<ul>
+<li><code>"schedule": ["on friday"]</code>, <code>minimumReleaseAge: "5 days"</code> with <code>minimumReleaseAgeBehaviour: "timestamp-optional"</code>.</li>
+<li>Ecosystem groups (<code>go</code>, <code>ts</code>, <code>k8s</code>, <code>ci</code>) built from <code>matchDatasources</code>/<code>matchManagers</code>, with each language's
+  Dockerfile base images (<code>golang</code>, <code>node</code>) pulled into the same group by <code>matchPackageNames</code>.</li>
+<li>Automerge for <code>minor</code>/<code>patch</code>/<code>pin</code>/<code>digest</code> everywhere, and for majors everywhere <em>except</em> Go and TypeScript
+  (ADR 0016).</li>
+<li>Version caps with a <code>description</code> saying when to drop them (<code>typescript</code> <code>&lt;7</code>).</li>
+<li><code>customManagers</code> regex entries for pins Renovate can't otherwise see.</li>
+<li><code>renovate-config-validator</code> in pre-commit (rubrical already has this).</li>
+</ul>
+<h2 id="why-rubricals-prs-pile-up">Why rubrical's PRs pile up</h2>
+<p>There are only three Renovate PRs open right now (#523, #532, #541), but none of them will merge on its own:</p>
+<table>
+<thead>
+<tr>
+<th>PR</th>
+<th>Update</th>
+<th>State</th>
+<th>Cause</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>#523</td>
+<td><code>docker/metadata-action</code> v5 → v6</td>
+<td>all green, not merged</td>
+<td>repo has <code>allow_auto_merge: false</code> and <code>main</code> has no branch protection, so <code>platformAutomerge</code> can't do anything. Renovate falls back to merging the PR itself on a later run, and with a biweekly schedule that run is a long way off.</td>
+</tr>
+<tr>
+<td>#532</td>
+<td><code>actions/setup-python</code> v6 → v7</td>
+<td><code>main</code> fails</td>
+<td><code>arduino/setup-task</code> hit the <strong>unauthenticated</strong> GitHub API rate limit. This is a flake, not a v7 break.</td>
+</tr>
+<tr>
+<td>#541</td>
+<td>Python 3.14 → 3.15 (<code>.python-version</code>)</td>
+<td><code>main</code> + <code>docker</code> fail</td>
+<td><code>cffi==2.0.0</code> has no 3.15 wheel and the DHI image has no <code>cc</code>. Renovate calls this a <em>minor</em> bump, so if CI had passed, today's blanket <code>automerge: true</code> would have moved the runtime with nobody looking.</td>
+</tr>
+</tbody>
+</table>
+<p>Two other problems:</p>
+<ul>
+<li>The Dependency Dashboard (#5) warns <code>Failed to look up docker package dhi.io/python: no-result</code>. Docker
+  Hardened Images need auth, so the <code>Dockerfile</code> base image is never updated.</li>
+<li>Some pins are invisible to Renovate or float: <code>ghcr.io/astral-sh/uv:debian</code> in <code>Dockerfile</code> has no version,
+  and octocov's <code>version: v0.79.0</code> in <code>ci.yaml</code> isn't tracked.</li>
+</ul>
+<h2 id="1-fix-ci-so-bot-prs-can-go-green">1. Fix CI so bot PRs can go green</h2>
+<p>Pass the workflow token to <code>arduino/setup-task</code> in <code>ci.yaml</code>, <code>release.yaml</code>, and <code>release-docs.yaml</code>:</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Install Task</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">arduino/setup-task@v3.0.0</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">        </span><span class="nt">with</span><span class="p">:</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">          </span><span class="nt">repo-token</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ secrets.GITHUB_TOKEN }}</span>
+</span></code></pre></div>
+<p>Why the token: with no <code>version:</code> input the action defaults to <code>3.x</code>, and it lists Task's releases through the
+GitHub REST API to turn that range into a real version. Without <code>repo-token</code> the call is unauthenticated, which
+limits it to 60 requests/hour per IP, and GitHub-hosted runners share IPs. With the workflow token the limit is
+per repo (about 1,000/hour). The token is already there in every run, Renovate branches included, and
+<code>contents: read</code> is enough.</p>
+<p>Also pin an exact Task version (<code>version: 3.54.0</code>). When the input is valid semver, <code>computeVersion</code> in the action
+skips the API lookup, and the pin gives Renovate something to bump. Leave the <code>v</code> off: <code>semver.valid</code> accepts
+<code>v3.54.0</code>, and the action prepends its own <code>v</code>, which gives <code>vv3.54.0</code>.</p>
+<h2 id="2-repo-settings-manual-github-ui">2. Repo settings (manual, GitHub UI)</h2>
+<ul>
+<li>Turn on <strong>Allow auto-merge</strong> (Settings → General).</li>
+<li>Add a ruleset on <code>main</code> that requires the <code>main</code>, <code>docker</code>, and <code>pre-commit</code> checks. Without required checks,
+  GitHub auto-merge has nothing to wait for. With them in place, <code>platformAutomerge</code> merges as soon as CI passes,
+  and doesn't need another Renovate run.</li>
+<li>Add yourself (repo admin) as a bypass actor on the ruleset, or every change to <code>main</code> has to go through a PR
+  from now on.</li>
+</ul>
+<h2 id="3-restructure-renovatejson">3. Restructure <code>renovate.json</code></h2>
+<p>Groups:</p>
+<ul>
+<li><strong><code>python</code></strong>: <code>pep621</code> (pyproject and <code>uv.lock</code>), the <code>pyenv</code> runtime (<code>.python-version</code>), the <code>Dockerfile</code>
+  base images (<code>dhi.io/python</code>, <code>ghcr.io/astral-sh/uv</code>), and the devcontainer's <code>ghcr.io/ivanklee86/devcontainer/python</code>
+  image. All of these must move together on a runtime bump, which is why the devcontainer image goes here and not in
+  the devcontainer group.</li>
+<li><strong><code>ci</code></strong>: the <code>github-actions</code> manager (this already covers <code>prek-version</code>) plus the new octocov custom manager
+  (<code>custom.regex</code>).</li>
+<li><strong><code>devcontainer dependencies</code></strong>: kept as it is (features only, after the python image moves out), automerged.</li>
+<li>Weekly <code>lockFileMaintenance</code>, so <code>uv.lock</code> picks up transitive bumps. It stays in its own
+  <code>renovate/lock-file-maintenance</code> PR: Renovate doesn't merge lock file maintenance into other groups, and keeping
+  it separate means a bad transitive bump can't hold up direct-dependency updates. The <code>&gt;=</code> ranges in
+  <code>pyproject.toml</code> mean most direct-dependency updates come through as lockfile-only changes too.</li>
+</ul>
+<p>Python runtime cap: cap the runtime at <code>&lt;3.15</code> (in the same style as tangle's <code>typescript &lt;7</code> rule) until
+3.15 is a deliberate change. That change also has to bump <code>requires-python</code> and the DHI and devcontainer tags,
+and it waits on 3.15 wheels.</p>
+<p>Automerge: put every non-major update on automerge, and majors too, except in the <code>python</code> group (tangle ADR 0016's
+pattern applied to Python). Drop the top-level <code>automerge: true</code> and <code>platformAutomerge: true</code>: the rules now cover
+automerge, and <code>platformAutomerge</code> is already Renovate's default.</p>
+<p>A grouped branch only automerges if every update in it can automerge, so a single Python major holds the whole
+<code>python</code> PR. That's intended. <code>separateMajorMinor</code> (on by default) puts majors in their own <code>python (major)</code> PR,
+so the non-major <code>python</code> PR still automerges.</p>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="p">{</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="nt">"$schema"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://docs.renovatebot.com/renovate-schema.json"</span><span class="p">,</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span><span class="nt">"extends"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"config:recommended"</span><span class="p">],</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">  </span><span class="nt">"schedule"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"on friday"</span><span class="p">],</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">  </span><span class="nt">"minimumReleaseAge"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5 days"</span><span class="p">,</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">  </span><span class="nt">"minimumReleaseAgeBehaviour"</span><span class="p">:</span><span class="w"> </span><span class="s2">"timestamp-optional"</span><span class="p">,</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">  </span><span class="nt">"lockFileMaintenance"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">    </span><span class="nt">"enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">    </span><span class="nt">"schedule"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"on friday"</span><span class="p">]</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">  </span><span class="p">},</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">  </span><span class="nt">"hostRules"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="w">      </span><span class="nt">"matchHost"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dhi.io"</span><span class="p">,</span>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="w">      </span><span class="nt">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ivanklee86"</span><span class="p">,</span>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="w">      </span><span class="nt">"password"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{ secrets.DHI_TOKEN }}"</span>
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="w">  </span><span class="p">],</span>
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="w">  </span><span class="nt">"packageRules"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="w">      </span><span class="nt">"matchManagers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"pep621"</span><span class="p">,</span><span class="w"> </span><span class="s2">"pyenv"</span><span class="p">],</span>
+</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="w">      </span><span class="nt">"groupName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"python"</span>
+</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="w">    </span><span class="p">},</span>
+</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a><span class="w">      </span><span class="nt">"matchManagers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"dockerfile"</span><span class="p">],</span>
+</span><span id="__span-1-25"><a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a><span class="w">      </span><span class="nt">"matchPackageNames"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"dhi.io/python"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ghcr.io/astral-sh/uv"</span><span class="p">],</span>
+</span><span id="__span-1-26"><a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a><span class="w">      </span><span class="nt">"groupName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"python"</span>
+</span><span id="__span-1-27"><a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a><span class="w">    </span><span class="p">},</span>
+</span><span id="__span-1-28"><a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-1-29"><a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a><span class="w">      </span><span class="nt">"matchManagers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"devcontainer"</span><span class="p">],</span>
+</span><span id="__span-1-30"><a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a><span class="w">      </span><span class="nt">"matchPackageNames"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"ghcr.io/ivanklee86/devcontainer/python"</span><span class="p">],</span>
+</span><span id="__span-1-31"><a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a><span class="w">      </span><span class="nt">"groupName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"python"</span>
+</span><span id="__span-1-32"><a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a><span class="w">    </span><span class="p">},</span>
+</span><span id="__span-1-33"><a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-1-34"><a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a><span class="w">      </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Python 3.15 is a deliberate bump (requires-python, DHI + devcontainer tags, wheels for cffi et al.); drop when moving"</span><span class="p">,</span>
+</span><span id="__span-1-35"><a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a><span class="w">      </span><span class="nt">"matchPackageNames"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"python"</span><span class="p">,</span><span class="w"> </span><span class="s2">"dhi.io/python"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ghcr.io/ivanklee86/devcontainer/python"</span><span class="p">],</span>
+</span><span id="__span-1-36"><a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a><span class="w">      </span><span class="nt">"allowedVersions"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;3.15"</span>
+</span><span id="__span-1-37"><a id="__codelineno-1-37" name="__codelineno-1-37" href="#__codelineno-1-37"></a><span class="w">    </span><span class="p">},</span>
+</span><span id="__span-1-38"><a id="__codelineno-1-38" name="__codelineno-1-38" href="#__codelineno-1-38"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-1-39"><a id="__codelineno-1-39" name="__codelineno-1-39" href="#__codelineno-1-39"></a><span class="w">      </span><span class="nt">"matchManagers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"github-actions"</span><span class="p">,</span><span class="w"> </span><span class="s2">"custom.regex"</span><span class="p">],</span>
+</span><span id="__span-1-40"><a id="__codelineno-1-40" name="__codelineno-1-40" href="#__codelineno-1-40"></a><span class="w">      </span><span class="nt">"groupName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ci"</span>
+</span><span id="__span-1-41"><a id="__codelineno-1-41" name="__codelineno-1-41" href="#__codelineno-1-41"></a><span class="w">    </span><span class="p">},</span>
+</span><span id="__span-1-42"><a id="__codelineno-1-42" name="__codelineno-1-42" href="#__codelineno-1-42"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-1-43"><a id="__codelineno-1-43" name="__codelineno-1-43" href="#__codelineno-1-43"></a><span class="w">      </span><span class="nt">"matchManagers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"devcontainer"</span><span class="p">],</span>
+</span><span id="__span-1-44"><a id="__codelineno-1-44" name="__codelineno-1-44" href="#__codelineno-1-44"></a><span class="w">      </span><span class="nt">"matchPackageNames"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"!ghcr.io/ivanklee86/devcontainer/python"</span><span class="p">],</span>
+</span><span id="__span-1-45"><a id="__codelineno-1-45" name="__codelineno-1-45" href="#__codelineno-1-45"></a><span class="w">      </span><span class="nt">"groupName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"devcontainer dependencies"</span>
+</span><span id="__span-1-46"><a id="__codelineno-1-46" name="__codelineno-1-46" href="#__codelineno-1-46"></a><span class="w">    </span><span class="p">},</span>
+</span><span id="__span-1-47"><a id="__codelineno-1-47" name="__codelineno-1-47" href="#__codelineno-1-47"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-1-48"><a id="__codelineno-1-48" name="__codelineno-1-48" href="#__codelineno-1-48"></a><span class="w">      </span><span class="nt">"matchUpdateTypes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"minor"</span><span class="p">,</span><span class="w"> </span><span class="s2">"patch"</span><span class="p">,</span><span class="w"> </span><span class="s2">"pin"</span><span class="p">,</span><span class="w"> </span><span class="s2">"digest"</span><span class="p">,</span><span class="w"> </span><span class="s2">"lockFileMaintenance"</span><span class="p">,</span><span class="w"> </span><span class="s2">"major"</span><span class="p">],</span>
+</span><span id="__span-1-49"><a id="__codelineno-1-49" name="__codelineno-1-49" href="#__codelineno-1-49"></a><span class="w">      </span><span class="nt">"automerge"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+</span><span id="__span-1-50"><a id="__codelineno-1-50" name="__codelineno-1-50" href="#__codelineno-1-50"></a><span class="w">    </span><span class="p">},</span>
+</span><span id="__span-1-51"><a id="__codelineno-1-51" name="__codelineno-1-51" href="#__codelineno-1-51"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-1-52"><a id="__codelineno-1-52" name="__codelineno-1-52" href="#__codelineno-1-52"></a><span class="w">      </span><span class="nt">"matchManagers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"pep621"</span><span class="p">,</span><span class="w"> </span><span class="s2">"pyenv"</span><span class="p">],</span>
+</span><span id="__span-1-53"><a id="__codelineno-1-53" name="__codelineno-1-53" href="#__codelineno-1-53"></a><span class="w">      </span><span class="nt">"matchUpdateTypes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"major"</span><span class="p">],</span>
+</span><span id="__span-1-54"><a id="__codelineno-1-54" name="__codelineno-1-54" href="#__codelineno-1-54"></a><span class="w">      </span><span class="nt">"automerge"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
+</span><span id="__span-1-55"><a id="__codelineno-1-55" name="__codelineno-1-55" href="#__codelineno-1-55"></a><span class="w">    </span><span class="p">},</span>
+</span><span id="__span-1-56"><a id="__codelineno-1-56" name="__codelineno-1-56" href="#__codelineno-1-56"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-1-57"><a id="__codelineno-1-57" name="__codelineno-1-57" href="#__codelineno-1-57"></a><span class="w">      </span><span class="nt">"matchPackageNames"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"dhi.io/python"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ghcr.io/ivanklee86/devcontainer/python"</span><span class="p">],</span>
+</span><span id="__span-1-58"><a id="__codelineno-1-58" name="__codelineno-1-58" href="#__codelineno-1-58"></a><span class="w">      </span><span class="nt">"matchUpdateTypes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"major"</span><span class="p">],</span>
+</span><span id="__span-1-59"><a id="__codelineno-1-59" name="__codelineno-1-59" href="#__codelineno-1-59"></a><span class="w">      </span><span class="nt">"automerge"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
+</span><span id="__span-1-60"><a id="__codelineno-1-60" name="__codelineno-1-60" href="#__codelineno-1-60"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-1-61"><a id="__codelineno-1-61" name="__codelineno-1-61" href="#__codelineno-1-61"></a><span class="w">  </span><span class="p">],</span>
+</span><span id="__span-1-62"><a id="__codelineno-1-62" name="__codelineno-1-62" href="#__codelineno-1-62"></a><span class="w">  </span><span class="nt">"customManagers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+</span><span id="__span-1-63"><a id="__codelineno-1-63" name="__codelineno-1-63" href="#__codelineno-1-63"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-1-64"><a id="__codelineno-1-64" name="__codelineno-1-64" href="#__codelineno-1-64"></a><span class="w">      </span><span class="nt">"customType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"regex"</span><span class="p">,</span>
+</span><span id="__span-1-65"><a id="__codelineno-1-65" name="__codelineno-1-65" href="#__codelineno-1-65"></a><span class="w">      </span><span class="nt">"managerFilePatterns"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"/^\\.github/workflows/ci\\.yaml$/"</span><span class="p">],</span>
+</span><span id="__span-1-66"><a id="__codelineno-1-66" name="__codelineno-1-66" href="#__codelineno-1-66"></a><span class="w">      </span><span class="nt">"matchStrings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"version: (?&lt;currentValue&gt;v[0-9.]+) # (?&lt;datasource&gt;.*?)/(?&lt;depName&gt;.*?)\\s"</span><span class="p">]</span>
+</span><span id="__span-1-67"><a id="__codelineno-1-67" name="__codelineno-1-67" href="#__codelineno-1-67"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-1-68"><a id="__codelineno-1-68" name="__codelineno-1-68" href="#__codelineno-1-68"></a><span class="w">  </span><span class="p">]</span>
+</span><span id="__span-1-69"><a id="__codelineno-1-69" name="__codelineno-1-69" href="#__codelineno-1-69"></a><span class="p">}</span>
+</span></code></pre></div>
+<p>Supporting file changes:</p>
+<ul>
+<li><code>ci.yaml</code>: annotate the octocov pin as <code>version: v0.79.0 # github-releases/k1LoW/octocov</code>, the same convention
+  tangle uses for <code>K3D_VERSION</code>.</li>
+<li><code>Dockerfile</code>: pin <code>ghcr.io/astral-sh/uv:debian</code> to <code>0.13.5-debian@sha256:…</code>. That's the current release, which
+  <code>:debian</code> was already pulling, so behavior doesn't change. The pin gives Renovate a tag and a digest to bump.</li>
+<li><code>ci.yaml</code>, <code>release.yaml</code>, <code>release-docs.yaml</code>: the exact Task <code>version:</code> from step 1, annotated
+  <code># github-releases/go-task/task</code>. The custom manager matches all workflows and accepts an optional <code>v</code>, and a
+  <code>go-task/task</code> rule sets <code>extractVersion: "^v(?&lt;version&gt;.*)$"</code> so Renovate writes back bare versions.</li>
+</ul>
+<h2 id="4-credentials-for-dhiio">4. Credentials for <code>dhi.io</code></h2>
+<p>Add a <code>DHI_TOKEN</code> secret (a Docker Hub PAT with DHI pull access) for this repo in the Mend developer portal, then
+use the <code>hostRules</code> entry above. If that's more than we want to maintain, use
+<code>{"matchPackageNames": ["dhi.io/python"], "enabled": false}</code> instead. This makes the "manual only" choice explicit
+and removes the dashboard warning. If you take that route, also take <code>dhi.io/python</code> out of the <code>python</code> group
+rule, the major-automerge exclusion, and the <code>&lt;3.15</code> cap, and drop the <code>hostRules</code> block, so no dead config is
+left behind.</p>
+<h2 id="5-clean-up-the-existing-prs">5. Clean up the existing PRs</h2>
+<ul>
+<li>
+<h1 id="523-merge-now-its-green">523: merge now (it's green).</h1>
+</li>
+<li>
+<h1 id="532-once-step-1-lands-rebase-it-from-the-dashboard-and-let-it-automerge-it-will-reopen-as-part-of-the-ci-group">532: once step 1 lands, rebase it from the dashboard and let it automerge. It will reopen as part of the <code>ci</code> group.</h1>
+</li>
+<li>
+<h1 id="541-close-it-the-315-cap-stops-it-from-coming-back">541: close it. The <code>&lt;3.15</code> cap stops it from coming back.</h1>
+</li>
+<li>
+<h1 id="519-pre-commitci-autoupdate-isnt-from-renovate-and-tangle-adr-0013-deliberately-leaves-rev-bumps-to">519 (pre-commit.ci autoupdate) isn't from Renovate, and tangle ADR 0013 deliberately leaves <code>rev:</code> bumps to</h1>
+  pre-commit.ci. Look at it separately.</li>
+</ul>
+<h2 id="verification">Verification</h2>
+<ul>
+<li><code>prek run renovate-config-validator --all-files</code> passes.</li>
+<li>After the next Friday run, the Dependency Dashboard shows at most one PR each for <code>python</code>, <code>ci</code>, and
+  <code>devcontainer dependencies</code> (plus <code>python (major)</code> if one is pending), and a separate lock file maintenance PR.
+  It no longer shows the <code>dhi.io</code>
+  lookup warning, and it lists <code>k1LoW/octocov</code> and <code>ghcr.io/astral-sh/uv</code> under detected dependencies.</li>
+<li>Check that a non-major <code>ci</code> PR automerges without anyone touching it once the required checks pass.</li>
+</ul>
+<h2 id="6-record-it-as-an-adr">6. Record it as an ADR</h2>
+<p>Create <code>docs/adrs/</code> and add ADR 0001 covering the weekly grouped schedule, the <code>&lt;3.15</code> runtime cap, and keeping
+Python majors out of automerge. Tangle recorded this as ADR 0013 plus 0016. Without an ADR, the cap and the
+exclusion look arbitrary to the next reader.</p>
+<h2 id="resolved-questions">Resolved questions</h2>
+<ul>
+<li>Lock file maintenance gets its own PR (see step 3).</li>
+<li>Yes, add an ADR (step 6).</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["header.autohide", "navigation.tabs", "navigation.path", "navigation.sections", "toc.follow", "search.suggest", "search.share"], "search": "../../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.c21346df.min.js"></script>
+      
+    
+  </body>
+</html>

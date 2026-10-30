@@ -1,0 +1,982 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
+    
+    
+      
+        <title>Harden the GitHub integration tests against shared-state failures - Rubrical</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.57a0d79d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.fb2fffe2.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#harden-the-github-integration-tests-against-shared-state-failures" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Rubrical" class="md-header__button md-logo" aria-label="Rubrical" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Rubrical
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Harden the GitHub integration tests against shared-state failures
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/ivanklee86/Rubrical" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ivanklee86/rubrical
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../installation_and_usage/" class="md-tabs__link">
+          
+  
+  
+  User Guide
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../development/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Developer Guide
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Rubrical" class="md-nav__button md-logo" aria-label="Rubrical" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Rubrical
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/ivanklee86/Rubrical" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ivanklee86/rubrical
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User Guide
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    User Guide
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../installation_and_usage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation and Usage
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../features_and_supported_formats/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Featuers and Supported Formats
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reporting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reporting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../commands/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Commands
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../development/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Developer Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problem
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Problem">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#evidence-from-prior-runs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Evidence from prior runs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#root-causes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Root causes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#product-behavior-worth-flagging" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Product behavior worth flagging
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#goals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Goals
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#plan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Plan
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Plan">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-isolate-each-runs-comments-with-a-report-id-product-change" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Isolate each run's comments with a report ID (product change)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-rewrite-the-live-github-fixture-around-ownership-and-teardown" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Rewrite the live-GitHub fixture around ownership and teardown
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-make-the-reporter-converge-on-a-single-comment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Make the reporter converge on a single comment
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-move-most-github-coverage-off-the-network" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Move most GitHub coverage off the network
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-ci-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. CI changes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-one-off-cleanup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. One-off cleanup
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#order-of-work" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Order of work
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#decisions-formerly-open-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decisions (formerly open questions)
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="harden-the-github-integration-tests-against-shared-state-failures">Harden the GitHub integration tests against shared-state failures</h1>
+<p><strong>Status: implemented</strong> (2026-10-24), except step 6, which is manual. Decisions are recorded in <a href="../../../adrs/0002-github-report-id/">ADR 0002</a>.</p>
+<h2 id="problem">Problem</h2>
+<p>The tests that talk to GitHub (<code>tests/unit/reporters/test_gh.py::test_gh_report</code>, <code>::test_gh_cleanup</code>, <code>::test_gh_report_noop</code>, and <code>tests/integration/test_cli.py::test_cli_gh_report</code>) all read and write comments on one shared, long-lived PR, <code>ivanklee86/rubrical#27</code>. Every CI run that has <code>RUBRICAL_TEST_GITHUB_ACCESS_TOKEN</code> runs them against that PR. Renovate routinely opens or rebases several PRs within seconds of each other, so several CI runs mutate PR #27 at the same time.</p>
+<h3 id="evidence-from-prior-runs">Evidence from prior runs</h3>
+<table>
+<thead>
+<tr>
+<th>Run</th>
+<th>Started (UTC)</th>
+<th>Failure</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/ivanklee86/rubrical/actions/runs/40081234910">40081234910</a></td>
+<td>2026-10-24 09:15:27</td>
+<td><code>test_cli_gh_report</code>: <code>assert 2 == 1</code> (two Rubrical comments). Overlapped runs 40081245491 (09:15:36) and 40081274745 (09:16:03).</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ivanklee86/rubrical/actions/runs/40079708135">40079708135</a></td>
+<td>2026-10-24 08:52:08</td>
+<td><code>test_gh_report</code>: <code>404 Not Found</code> on <em>update an issue comment</em>; <code>test_cli_gh_report</code>: <code>assert 2 == 1</code>. Overlapped three other runs started 08:51:33–08:52:04.</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ivanklee86/rubrical/actions/runs/40077848308">40077848308</a></td>
+<td>2026-10-24 08:23:28</td>
+<td><code>test_gh_report</code>: <code>assert 2 == 1</code>. Overlapped four other runs started 08:23:07–08:23:38.</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ivanklee86/rubrical/actions/runs/40077826932">40077826932</a></td>
+<td>2026-10-24 08:23:07</td>
+<td><code>test_cli_gh_report</code> setup error: <code>404 Not Found</code> on <em>delete an issue comment</em>.</td>
+</tr>
+</tbody>
+</table>
+<p>(The remaining failures in that window were lint, <code>ty</code>, and Docker build failures, which are unrelated.)</p>
+<p>At the time of writing, PR #27 still has a leftover Rubrical comment (id <code>6382555631</code>, created 09:28:36) from the last green run on <code>main</code>, which shows that the tests don't clean up even when they pass.</p>
+<h3 id="root-causes">Root causes</h3>
+<ol>
+<li><strong>Shared mutable fixture across concurrent runs.</strong> All runs use the same PR and the same fixed comment marker (<code>[Rubrical](https://github.com/ivanklee86/rubrical) Report</code>), so run A's comment is indistinguishable from run B's. That leads to three race outcomes:</li>
+<li>Both runs see no comment and both create one, so the count is 2.</li>
+<li>Run B's <code>github_pr_clean</code> fixture deletes run A's comment between A's lookup and A's <code>edit()</code> or <code>delete()</code>, so A gets a 404.</li>
+<li>Run B's fixture tries to delete a comment that run A's fixture already deleted, so B gets a 404 during setup.</li>
+<li><strong>Setup-only cleanup, no teardown.</strong> <code>github_pr_clean</code> (<code>tests/fixtures.py</code>) deletes <em>every</em> comment on the PR before the test and nothing after it. <code>test_gh_report_noop</code> and <code>test_cli_gh_report</code> leave a live comment behind on every run, which the next run has to clean up and might race on.</li>
+<li><strong>Cleanup isn't idempotent.</strong> <code>issue_comment.delete()</code> raises <code>UnknownObjectException</code> when the comment is already gone. Because this runs during fixture setup, the test errors before it starts.</li>
+<li><strong>Over-broad cleanup.</strong> The fixture deletes all comments on the PR, including other runs' in-flight comments and any human comments, rather than only what the current test created.</li>
+<li><strong>Sleep-based pacing.</strong> <code>time.sleep(5)</code> after each delete slows the suite and widens the race window. It doesn't wait for anything specific.</li>
+<li><strong>Assertions match too broadly.</strong> <code>"Rubrical" in issue_comment.body</code> counts any comment that mentions the word, not just reports from this run.</li>
+</ol>
+<h3 id="product-behavior-worth-flagging">Product behavior worth flagging</h3>
+<p><code>report_github()</code> in <code>rubrical/reporters/gh.py</code> keeps the <em>last</em> comment that matches the marker and ignores any others. When duplicates exist, whether from these races or from a real user who runs rubrical twice in parallel, rubrical never converges back to one comment, and cleanup only deletes one of them. I don't want tests that enshrine this behavior. Step 3 proposes changing it.</p>
+<h2 id="goals">Goals</h2>
+<ul>
+<li>A GitHub test failure means rubrical's GitHub reporting is broken, not that another CI run happened to overlap.</li>
+<li>Each test removes everything it created, even when it fails partway through.</li>
+<li>Most of the reporter's logic is covered without network access, so it runs on forks and locally without a token.</li>
+<li>GitHub calls made by tests can be traced: each comment can be linked back to the run that created it, and created and deleted comment IDs are logged.</li>
+</ul>
+<h2 id="plan">Plan</h2>
+<h3 id="1-isolate-each-runs-comments-with-a-report-id-product-change">1. Isolate each run's comments with a report ID (product change)</h3>
+<p>Add an optional report identifier to the GitHub reporter: a <code>--report-id</code> option on <code>grade</code>, with the environment variable <code>RUBRICAL_REPORT_ID</code>. When it is set, the comment body includes a hidden marker <code>&lt;!-- rubrical:report-id=&lt;id&gt; --&gt;</code>, and <code>report_github()</code> matches only comments that carry that marker. When it is unset, behavior is unchanged: the comment is matched by the existing heading marker, so existing users keep their current comments.</p>
+<p>This also has standalone user value. A monorepo that runs rubrical several times on one PR (for example, once per service with different configs) currently has its runs overwrite each other's comment. With report IDs, each run gets its own comment.</p>
+<p>Record the decision as an ADR in <code>docs/adrs/0002-github-report-id.md</code> and update the Reporting section of <code>docs/agents/internals.md</code> and the user docs.</p>
+<h3 id="2-rewrite-the-live-github-fixture-around-ownership-and-teardown">2. Rewrite the live-GitHub fixture around ownership and teardown</h3>
+<p>Replace <code>github_pr_clean</code> in <code>tests/fixtures.py</code> with a <code>github_report</code> fixture that:</p>
+<ul>
+<li>Generates a unique report ID per test invocation: <code>f"test-{GITHUB_RUN_ID or 'local'}-{GITHUB_RUN_ATTEMPT or 0}-{request.node.name}-{uuid4().hex[:8]}"</code>.</li>
+<li>Yields <code>(pr, report_id)</code>.</li>
+<li>In teardown, which runs even when the test fails, deletes only comments whose body contains that report ID. It treats <code>UnknownObjectException</code> (404) as success.</li>
+<li>At setup, sweeps comments with a <code>rubrical:report-id=test-</code> marker that are older than a set age (for example, 6 hours). This cleans up after runs that were cancelled or hit a timeout before their teardown ran. The sweep never touches comments without a test marker, and it never touches young comments that may belong to a run still in progress.</li>
+<li>Logs each comment ID it creates, finds or deletes, together with the report ID, through the <code>logging</code> module, so <code>pytest -o log_cli=true</code> and the CI log show exactly what each run did to PR #27.</li>
+</ul>
+<p>Embed the CI run URL (<code>$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID</code>) in test-created comments so that someone looking at PR #27 can tell which run left a stray comment. This can go in the report ID itself or in a second hidden marker that only tests set.</p>
+<p>Remove <code>time.sleep(5)</code>. Where a test needs to observe a write, use a small <code>wait_for(predicate, timeout=30, interval=1)</code> helper that polls <code>pr.get_issue_comments()</code> until the expected count is reached. This copes with GitHub's eventual consistency without fixed sleeps.</p>
+<p>~~Configure PyGithub with a custom <code>urllib3.Retry</code> in tests.~~ Dropped during implementation: PyGithub 2.x already defaults to <code>GithubRetry(total=10)</code>, which retries 5xx responses and rate limits.</p>
+<h3 id="3-make-the-reporter-converge-on-a-single-comment">3. Make the reporter converge on a single comment</h3>
+<p>Within one match scope (one report ID, or the legacy marker when there is no ID), change <code>report_github()</code> so it:</p>
+<ul>
+<li>Collects <em>all</em> matching comments, not just the last one.</li>
+<li>When reporting, edits the first match and deletes the rest.</li>
+<li>When the run is clean, deletes all matches.</li>
+<li>Treats a 404 on <code>edit()</code> (another process deleted the comment) by creating a new comment, and a 404 on <code>delete()</code> as already done.</li>
+</ul>
+<p>This makes the reporter self-heal from duplicates, whatever caused them.</p>
+<h3 id="4-move-most-github-coverage-off-the-network">4. Move most GitHub coverage off the network</h3>
+<p>Split <code>tests/unit/reporters/test_gh.py</code> into the following:</p>
+<ul>
+<li><strong>Unit tests (no network).</strong> Fake <code>Github</code> / <code>Repository</code> / <code>PullRequest</code> / <code>IssueComment</code> objects (for example, <code>unittest.mock</code> with a small in-memory comment list, or the <code>responses</code> library pinned to an exact version), injected by monkeypatching <code>rubrical.reporters.gh.Github</code>. Planned cases:</li>
+<li>Happy path: no existing comment and findings present, so one comment is created.</li>
+<li>Upsert: an existing comment and findings present, so that comment is edited and no new one is created.</li>
+<li>Cleanup: an existing comment and a clean run, so the comment is deleted.</li>
+<li>No-op: no comment and a clean run, so there are no write calls and the message says "Nothing to report".</li>
+<li>Duplicates: two matching comments, so one is edited and the other deleted (step 3).</li>
+<li>Race on edit: <code>edit()</code> raises 404, so a new comment is created.</li>
+<li>Race on delete: <code>delete()</code> raises 404, so no error is raised.</li>
+<li>Scoping: with report ID <code>a</code> set, a comment with report ID <code>b</code> and a legacy comment without an ID are both left alone.</li>
+<li>Legacy compatibility: with no report ID, the existing heading-marker comment is still found and edited.</li>
+<li>Custom URL: with <code>custom_url</code> set, <code>Github</code> is constructed with <code>base_url=&lt;url&gt;/api/v3</code>.</li>
+<li><strong>Live integration tests (network, token required).</strong> Keep one live round trip in <code>tests/integration/test_github.py</code>: create, then upsert, then clean, with the CLI <code>test_cli_gh_report</code> as a second test. Both use the <code>github_report</code> fixture and are marked <code>@pytest.mark.github</code> (register the marker in <code>pyproject.toml</code>). Delete <code>test_gh_report_noop</code>. It asserts nothing and leaks a comment.</li>
+</ul>
+<p>Tighten assertions to count comments whose body contains this test's report ID, rather than <code>"Rubrical" in body</code>.</p>
+<h3 id="5-ci-changes">5. CI changes</h3>
+<ul>
+<li>Add workflow-level <code>concurrency: { group: ci-${{ github.workflow }}-${{ github.ref }}, cancel-in-progress: true }</code> to <code>.github/workflows/ci.yaml</code>. Renovate force-pushes made <code>renovate/lock-file-maintenance-python</code> run CI four times in 12 minutes, and superseded runs should be cancelled. This reduces load. It is not what makes the tests correct; step 1 does that.</li>
+<li>Keep the GitHub tests in the same <code>pytest</code> invocation so coverage still includes them, but add <code>-rs</code> so skipped GitHub tests show up in the log, for example on fork PRs that have no secret.</li>
+<li>I'm <em>not</em> proposing a single global concurrency group to serialize the GitHub tests across runs. GitHub keeps at most one pending job per concurrency group and cancels older pending ones, so a burst of Renovate PRs would get cancelled jobs, which are effectively failures. With per-run report IDs it isn't needed.</li>
+</ul>
+<h3 id="6-one-off-cleanup">6. One-off cleanup</h3>
+<p>After steps 1–4 merge, delete the leftover comment(s) on PR #27 by hand (<code>gh api -X DELETE repos/ivanklee86/rubrical/issues/comments/&lt;id&gt;</code>). After that, the age-based sweep in step 2 keeps the PR tidy.</p>
+<h2 id="order-of-work">Order of work</h2>
+<ol>
+<li>Steps 3 and 4 (unit half): reporter convergence and the offline unit tests. These have no product-surface change and can ship on their own. Together with a fixture teardown that ignores 404s, they already remove the 404 failures.</li>
+<li>Step 1, with its ADR and docs: the report-ID option.</li>
+<li>Step 2 and the live half of step 4: the new fixture and the rewritten live tests. Together with step 1, these remove the <code>2 == 1</code> failures.</li>
+<li>Step 5: CI concurrency and <code>-rs</code>.</li>
+<li>Step 6: manual cleanup.</li>
+</ol>
+<h2 id="decisions-formerly-open-questions">Decisions (formerly open questions)</h2>
+<p>Answered on 2026-10-24:</p>
+<ul>
+<li><strong>User-facing <code>--report-id</code>: yes.</strong> Implemented as <code>--report-id</code> / <code>RUBRICAL_REPORT_ID</code>.</li>
+<li><strong>Duplicate convergence in the legacy (no report ID) path: no.</strong> It applies only when a report ID is set. The legacy path keeps using the last match and leaves the others alone. The 404 tolerance on edit and delete applies to both paths, since it only replaces a crash.</li>
+<li><strong>Fresh PR per run: no.</strong> Tests keep using PR #27, isolated by report ID.</li>
+</ul>
+<p>The original questions:</p>
+<ul>
+<li>Is a user-facing <code>--report-id</code> acceptable? The alternative that avoids a product change is a test-only override of the marker string through monkeypatching. It works, but then the live tests no longer exercise the real matching path, and the monorepo use case goes unaddressed.</li>
+<li>Should the duplicate convergence in step 3 also apply to the legacy (no report ID) path? I think yes, but it changes current behavior for users who already have duplicate comments: rubrical would start deleting the extras.</li>
+<li>Should we create a fresh PR per CI run instead of reusing PR #27? It gives the strongest isolation, but it needs <code>contents: write</code> to push a branch, and it adds API calls and leaves branches to clean up. I don't recommend it unless report IDs prove insufficient.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["header.autohide", "navigation.tabs", "navigation.path", "navigation.sections", "toc.follow", "search.suggest", "search.share"], "search": "../../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.c21346df.min.js"></script>
+      
+    
+  </body>
+</html>

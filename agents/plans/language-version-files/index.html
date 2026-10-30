@@ -1,0 +1,983 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
+    
+    
+      
+        <title>Read language version files - Rubrical</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.57a0d79d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.fb2fffe2.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#read-language-version-files" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Rubrical" class="md-header__button md-logo" aria-label="Rubrical" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Rubrical
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Read language version files
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/ivanklee86/Rubrical" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ivanklee86/rubrical
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../installation_and_usage/" class="md-tabs__link">
+          
+  
+  
+  User Guide
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../development/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Developer Guide
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Rubrical" class="md-nav__button md-logo" aria-label="Rubrical" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Rubrical
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/ivanklee86/Rubrical" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ivanklee86/rubrical
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User Guide
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    User Guide
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../installation_and_usage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation and Usage
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../features_and_supported_formats/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Featuers and Supported Formats
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reporting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reporting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../commands/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Commands
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../development/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Developer Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problem
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#goals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Goals
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#non-goals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Non-goals
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verified-file-formats" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verified file formats
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#plan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Plan
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Plan">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-dialects" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Dialects
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-reading-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Reading files
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-observability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Observability
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Documentation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tests
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sources
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="read-language-version-files">Read language version files</h1>
+<p><strong>Status: implemented</strong> (2026-10-24). Decisions are recorded in <a href="../../../adrs/0004-language-version-files/">ADR 0004</a>, which builds on <a href="../../../adrs/0003-language-version-checks/">ADR 0003</a> and <a href="../language-version-checks/">its plan</a>.</p>
+<h2 id="problem">Problem</h2>
+<p>Language checks read only <code>pyproject.toml</code>, <code>go.mod</code>, and <code>package.json</code>. A repository that pins its runtime only in <code>.python-version</code>, <code>.node-version</code>, <code>.nvmrc</code>, or <code>.go-version</code> gets no language result, even though CI (setup-python, setup-node, setup-go) and local tooling use that file to pick the runtime.</p>
+<h2 id="goals">Goals</h2>
+<ul>
+<li>Grade <code>.python-version</code>, <code>.node-version</code>, <code>.nvmrc</code>, and <code>.go-version</code> with the existing <code>languages</code> config, thresholds, and reporting.</li>
+<li>Read each file the way the tool that owns it reads it, so rubrical doesn't grade content the tool would interpret differently.</li>
+<li>Keep the ADR 0003 rule that a language check is never silently <code>OK</code>: anything that can't be graded is <code>NOOP</code> with a reason logged under <code>--debug</code>.</li>
+</ul>
+<h2 id="non-goals">Non-goals</h2>
+<ul>
+<li><code>.tool-versions</code>, <code>mise.toml</code>, uv's <code>.python-versions</code>, <code>runtime.txt</code>, <code>uv.lock</code>, and Dockerfiles.</li>
+<li>Resolving aliases (<code>lts/*</code>, <code>node</code>, <code>latest</code>, <code>system</code>) or implementation-prefixed requests (<code>pypy3.10</code>, <code>cpython@3.12</code>) to a version.</li>
+<li>Reconciling a version file with the manifest in the same directory.</li>
+</ul>
+<h2 id="verified-file-formats">Verified file formats</h2>
+<p>Checked against each tool's source or documentation on 2026-10-24. Sources are listed at the end.</p>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Tool rules</th>
+<th>How rubrical reads it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>.python-version</code></td>
+<td><strong>pyenv</strong> reads every line, keeps the first word of each, skips blank lines and lines whose first word starts with <code>#</code>, and uses all versions. <strong>uv</strong> reads every line, trimmed, skips blank lines and lines that start with <code>#</code>, and parses the whole line as a request: a version (<code>3.12</code>), a PEP 440 specifier set (<code>&gt;=3.12,&lt;3.13</code>), a variant (<code>3.13t</code>, <code>3.13+freethreaded</code>), an implementation (<code>pypy3.10</code>, <code>cpython@3.12</code>, <code>cpython-3.12.3-macos-aarch64-none</code>), or a path or executable name.</td>
+<td>uv's rules: every trimmed line that is not blank and doesn't start with <code>#</code>. A trailing comment (<code>3.12 # pinned</code>), which pyenv allows and uv doesn't, isn't gradeable.</td>
+</tr>
+<tr>
+<td><code>.go-version</code></td>
+<td><strong>goenv</strong> reads the first word of every line, skips blank lines and lines whose first word starts with <code>#</code>, drops <code>..</code> and words containing <code>/</code>, and uses all versions. setup-go accepts the file through <code>go-version-file</code>.</td>
+<td>The first word of every line that is not blank and doesn't start with <code>#</code>.</td>
+</tr>
+<tr>
+<td><code>.node-version</code></td>
+<td><strong>nodenv</strong> reads only the first word of the file, with no comment handling. setup-node accepts the file through <code>node-version-file</code>.</td>
+<td>The first word of the file.</td>
+</tr>
+<tr>
+<td><code>.nvmrc</code></td>
+<td><strong>nvm</strong> removes <code>#</code> and everything after it on each line, trims each line, and skips blank lines. A line containing <code>=</code> is a reserved <code>key=value</code> pair and is ignored. Exactly one other line must remain, or the file is invalid. Aliases such as <code>lts/*</code>, <code>lts/iron</code>, <code>node</code>, and <code>stable</code> are allowed.</td>
+<td>nvm's rules. If more than one version line remains, the lines are kept together as one value, which isn't gradeable.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="plan">Plan</h2>
+<h3 id="1-dialects">1. Dialects</h3>
+<p>Add two values to <code>VersionDialect</code> and register them in <code>DIALECTS</code> in <code>comparisons/lower_bound.py</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Dialect</th>
+<th>Used by</th>
+<th>Alternatives</th>
+<th>Comparator</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>VERSION_FILE</code></td>
+<td><code>.node-version</code>, <code>.nvmrc</code>, <code>.go-version</code></td>
+<td>One per line.</td>
+<td>A bare version: an optional <code>v</code>, release numbers, and an optional pre-release suffix. An operator, wildcard, or anything else raises <code>UngradeableError</code>.</td>
+</tr>
+<tr>
+<td><code>PYTHON_VERSION_FILE</code></td>
+<td><code>.python-version</code></td>
+<td>One per line. A line that starts with an operator is split into PEP 440 comparators.</td>
+<td>A bare version, as above, or a PEP 440 comparator.</td>
+</tr>
+</tbody>
+</table>
+<p>Each line is an alternative, so the existing <code>lower_bound()</code> loop gives the lowest version across lines, and one ungradeable line makes the whole file <code>NOOP</code>. Bare versions are padded and suffixes are dropped as in ADR 0003, so <code>3.13t</code> grades as <code>3.13.0</code> and <code>v18.17.1</code> as <code>18.17.1</code>.</p>
+<h3 id="2-reading-files">2. Reading files</h3>
+<p>Add <code>rubrical/languages/version_files.py</code> with one function per file format, each returning the version lines (an empty list means the file declares nothing). The language classes add the file names to <code>target_files</code> and dispatch on <code>file_details.path.name</code> in <code>parse_file</code>. A file whose function returns no lines returns <code>None</code>, so it produces no result.</p>
+<p><code>raw_constraint</code> is the file name followed by each line quoted, for example <code>.python-version "3.12" "3.11"</code>, and <code>version</code> is the lines joined by newlines.</p>
+<h3 id="3-observability">3. Observability</h3>
+<p><code>Rubrical.check_languages()</code> already logs each declaration, its lower bound, and the <code>NOOP</code> reason under <code>--debug</code>, so no new logging is needed. The <code>UngradeableError</code> reasons name the offending line, for example <code>\`pypy3.10\` is not a version</code>.</p>
+<h3 id="4-documentation">4. Documentation</h3>
+<ul>
+<li><code>docs/configuration.md</code> and <code>docs/features_and_supported_formats.md</code>: add the four files.</li>
+<li><code>docs/agents/internals.md</code>: add the files to the language table, the new dialects, and <code>version_files.py</code>.</li>
+</ul>
+<h2 id="tests">Tests</h2>
+<p>Fixtures in <code>tests/files/version-files/</code>, graded with <code>rubrical-languages.yaml</code> (Python warn <code>3.12.0</code>/block <code>3.10.0</code>, Go warn <code>1.22.0</code>/block <code>1.20.0</code>, Node.js warn <code>20.0.0</code>/block <code>18.17.0</code>):</p>
+<table>
+<thead>
+<tr>
+<th>Fixture</th>
+<th>Contents</th>
+<th>Expected</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>python/.python-version</code></td>
+<td><code>3.12</code></td>
+<td><code>OK</code></td>
+</tr>
+<tr>
+<td><code>python-multi/.python-version</code></td>
+<td>a comment, <code>3.12.4</code>, <code>3.9</code></td>
+<td><code>BLOCK</code> (lowest is <code>3.9.0</code>)</td>
+</tr>
+<tr>
+<td><code>python-specifier/.python-version</code></td>
+<td><code>&gt;=3.11, &lt;3.13</code></td>
+<td><code>WARN</code></td>
+</tr>
+<tr>
+<td><code>python-pypy/.python-version</code></td>
+<td><code>pypy3.10</code></td>
+<td><code>NOOP</code></td>
+</tr>
+<tr>
+<td><code>python-system/.python-version</code></td>
+<td><code>3.12</code>, <code>system</code></td>
+<td><code>NOOP</code></td>
+</tr>
+<tr>
+<td><code>go/.go-version</code></td>
+<td><code>1.21.5</code></td>
+<td><code>WARN</code></td>
+</tr>
+<tr>
+<td><code>node/.node-version</code></td>
+<td><code>v18.17.1</code></td>
+<td><code>WARN</code></td>
+</tr>
+<tr>
+<td><code>nvmrc/.nvmrc</code></td>
+<td>a comment line, <code>20 # LTS</code></td>
+<td><code>OK</code></td>
+</tr>
+<tr>
+<td><code>nvmrc-lts/.nvmrc</code></td>
+<td><code>lts/*</code></td>
+<td><code>NOOP</code></td>
+</tr>
+</tbody>
+</table>
+<p>Unit tests in <code>tests/unit/comparisons/test_lower_bound.py</code>:</p>
+<ul>
+<li><code>VERSION_FILE</code>: <code>20</code> gives <code>20.0.0</code>, <code>v18.17.1</code> gives <code>18.17.1</code>, <code>1.21rc1</code> gives <code>1.21.0</code>, and <code>1.22.0\n1.21.5</code> gives <code>1.21.5</code>.</li>
+<li><code>VERSION_FILE</code> is not gradeable for <code>lts/*</code>, <code>node</code>, <code>latest</code>, <code>&gt;=18</code>, <code>20.x</code>, <code>20 18</code> (two <code>.nvmrc</code> versions), and <code>20\nlts/*</code>.</li>
+<li><code>PYTHON_VERSION_FILE</code>: <code>3.12</code> gives <code>3.12.0</code>, <code>3.13t</code> and <code>3.13+freethreaded</code> give <code>3.13.0</code>, <code>&gt;=3.11, &lt;3.13</code> gives <code>3.11.0</code>, and <code>3.12\n3.9</code> gives <code>3.9.0</code>.</li>
+<li><code>PYTHON_VERSION_FILE</code> is not gradeable for <code>pypy3.10</code>, <code>cpython@3.12</code>, <code>cpython3.12</code>, <code>system</code>, <code>my-venv</code>, <code>3.12 # pinned</code>, <code>&lt;3.13</code>, and <code>3.12\nsystem</code>.</li>
+</ul>
+<p>Unit tests in <code>tests/unit/languages/</code> for each reader, through <code>parse_file</code>:</p>
+<ul>
+<li><code>.python-version</code>: comments and blank lines are skipped; every line is kept; a file with only comments returns <code>None</code>.</li>
+<li><code>.go-version</code>: the first word of each line is kept; comment lines are skipped.</li>
+<li><code>.node-version</code>: only the first word of the file is kept.</li>
+<li><code>.nvmrc</code>: inline comments and <code>key=value</code> lines are removed; two version lines are kept together and aren't gradeable; a file with only <code>key=value</code> lines returns <code>None</code>.</li>
+<li>Each class finds the fixtures under <code>tests/files/</code> with the expected dialect, and the existing manifests are still found.</li>
+</ul>
+<p><code>tests/unit/test_rubrical.py</code>: <code>test_rubrical_languages</code> expects the rows in the fixture table.</p>
+<h2 id="sources">Sources</h2>
+<p>Checked on 2026-10-24:</p>
+<ul>
+<li>pyenv: <a href="https://github.com/pyenv/pyenv/blob/master/libexec/pyenv-version-file-read"><code>pyenv-version-file-read</code></a>.</li>
+<li>uv: <a href="https://docs.astral.sh/uv/concepts/python-versions/">Python versions, <code>.python-version</code> files and request formats</a>, and <a href="https://github.com/astral-sh/uv/blob/main/crates/uv-python-discovery/src/version_files.rs"><code>version_files.rs</code></a>.</li>
+<li>goenv: <a href="https://github.com/go-nv/goenv/blob/master/libexec/goenv-version-file-read"><code>goenv-version-file-read</code></a>. setup-go: <a href="https://github.com/actions/setup-go#readme">README, <code>go-version-file</code></a>.</li>
+<li>nodenv: <a href="https://github.com/nodenv/nodenv/blob/master/libexec/nodenv-version-file-read"><code>nodenv-version-file-read</code></a>.</li>
+<li>nvm: <a href="https://github.com/nvm-sh/nvm#nvmrc">README, <code>.nvmrc</code></a>, and <a href="https://github.com/nvm-sh/nvm/blob/master/nvm.sh"><code>nvm_process_nvmrc_content</code> in <code>nvm.sh</code></a>.</li>
+<li>setup-node: <a href="https://github.com/actions/setup-node#supported-version-syntax">README, supported version syntax</a>, and <a href="https://github.com/actions/setup-node/blob/main/docs/advanced-usage.md">advanced usage, <code>node-version-file</code></a>.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["header.autohide", "navigation.tabs", "navigation.path", "navigation.sections", "toc.follow", "search.suggest", "search.share"], "search": "../../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.c21346df.min.js"></script>
+      
+    
+  </body>
+</html>
