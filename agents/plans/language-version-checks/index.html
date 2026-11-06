@@ -1,0 +1,1260 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
+    
+    
+      
+        <title>Check declared language versions - Rubrical</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.57a0d79d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.fb2fffe2.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#check-declared-language-versions" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Rubrical" class="md-header__button md-logo" aria-label="Rubrical" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Rubrical
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Check declared language versions
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/ivanklee86/Rubrical" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ivanklee86/rubrical
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../installation_and_usage/" class="md-tabs__link">
+          
+  
+  
+  User Guide
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../development/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Developer Guide
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Rubrical" class="md-nav__button md-logo" aria-label="Rubrical" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Rubrical
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/ivanklee86/Rubrical" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ivanklee86/rubrical
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User Guide
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    User Guide
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../installation_and_usage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation and Usage
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../features_and_supported_formats/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Featuers and Supported Formats
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reporting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reporting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../commands/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Commands
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../development/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Developer Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problem
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#goals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Goals
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#non-goals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Non-goals
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#plan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Plan
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Plan">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-shared-file-discovery" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Shared file discovery
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-language-classes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Language classes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-lower-bound-comparison" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Lower-bound comparison
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verified-syntax-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verified syntax rules
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-counts-as-acceptable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What counts as acceptable
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-orchestration-and-reporting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Orchestration and reporting
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-observability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Observability
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Documentation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tests
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tests">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fixtures" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fixtures
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-cases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test cases
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixtures-to-add" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fixtures to add
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#implementation-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Implementation notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-findings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related findings
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sources
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="check-declared-language-versions">Check declared language versions</h1>
+<p><strong>Status: implemented</strong> (2026-10-24). See <a href="#implementation-notes">Implementation notes</a> for where the code differs from this plan. Decisions are recorded in <a href="../../../adrs/0003-language-version-checks/">ADR 0003</a>.</p>
+<h2 id="problem">Problem</h2>
+<p>Rubrical grades dependency versions but not the language versions that a repository declares. Teams want to warn or block when a repository still allows an end-of-life runtime, such as <code>requires-python = "&gt;=3.7"</code> or <code>go 1.19</code>.</p>
+<p>The existing semver comparison can't grade these declarations, because it grades the <em>highest</em> version that a constraint allows, and language declarations are minimums. Here is what each fixture gets today:</p>
+<table>
+<thead>
+<tr>
+<th>Fixture</th>
+<th>Declaration</th>
+<th>Today's result</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>tests/files/python/pyproject.toml</code></td>
+<td><code>requires-python = "&gt;=3.7"</code></td>
+<td><code>NOOP</code></td>
+<td><code>GTE</code> always gives <code>NOOP</code>.</td>
+</tr>
+<tr>
+<td><code>tests/files/uv/pyproject.toml</code></td>
+<td><code>requires-python = "&gt;=3.14"</code></td>
+<td><code>NOOP</code></td>
+<td>Same.</td>
+</tr>
+<tr>
+<td><code>tests/files/poetry/pyproject.toml</code></td>
+<td><code>python = "^3.12"</code></td>
+<td>always <code>OK</code></td>
+<td><code>COMPATIBLE</code> becomes <code>3.999999.999999</code>.</td>
+</tr>
+<tr>
+<td><code>tests/files/go/go.mod</code></td>
+<td><code>go 1.19</code></td>
+<td>always <code>OK</code></td>
+<td><code>semver.compare("1.19", …)</code> raises <code>ValueError</code>, which is treated as <code>OK</code>.</td>
+</tr>
+<tr>
+<td><code>tests/files/nodejs/engines/*/package.json</code></td>
+<td><code>engines.node</code></td>
+<td>not read</td>
+<td>The Node.js package manager only reads dependency sections.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="goals">Goals</h2>
+<ul>
+<li>Users can set a <code>warn</code> and <code>block</code> threshold for each language and get results for every file that declares that language's version.</li>
+<li>A language check is never silently <code>OK</code>. If a declaration can't be graded, the result is <code>NOOP</code>, and the reason is logged with <code>--debug</code>.</li>
+<li>Dependency checks don't change at all.</li>
+<li>Every result can be traced back to the file and the raw declaration it came from.</li>
+</ul>
+<h2 id="non-goals">Non-goals</h2>
+<ul>
+<li>Version files that aren't dependency manifests: <code>.python-version</code>, <code>.nvmrc</code>, <code>.node-version</code>, <code>.tool-versions</code>, <code>runtime.txt</code>, Dockerfiles, <code>go.work</code>. The design supports them, and they are follow-ups.</li>
+<li>The Go <code>toolchain</code> directive. Only the <code>go</code> directive is graded.</li>
+<li>Reconciling conflicting declarations across files.</li>
+<li>Fixing the existing dependency comparison bugs listed under <a href="#related-findings">Related findings</a>.</li>
+</ul>
+<h2 id="plan">Plan</h2>
+<h3 id="1-configuration">1. Configuration</h3>
+<p>In <code>rubrical/enum.py</code>, add <code>SupportedLanguages</code> with <code>PYTHON = "python"</code>, <code>GO = "go"</code>, and <code>NODEJS = "nodejs"</code>. The values match the package manager names, so configs read consistently.</p>
+<p>In <code>rubrical/schemas/configuration.py</code>:</p>
+<ul>
+<li>Add <code>LanguageRequirement{name: SupportedLanguages, warn: str, block: str}</code>.</li>
+<li>Add <code>languages: List[LanguageRequirement] = []</code> to <code>RubricalConfig</code>.</li>
+<li>Default <code>package_managers</code> to <code>[]</code>, so a config with only languages is valid.</li>
+<li>Reject duplicate language names with a validator, so it's always clear which thresholds apply.</li>
+</ul>
+<h3 id="2-shared-file-discovery">2. Shared file discovery</h3>
+<p>Extract the <code>rglob</code> and denylist loop in <code>BasePackageManager.read_package_manager_files()</code> into a function in <code>rubrical/utilities/files.py</code>. It should return <code>Dict[str, FileDetails]</code>, keyed by the path relative to the target. Rename <code>PackageManagerFileDetails</code> to <code>FileDetails</code> and keep the old name as an alias, so the package manager code changes as little as possible. <code>BasePackageManager</code> then calls the helper. Its behavior doesn't change, and the existing package manager tests cover it.</p>
+<h3 id="3-language-classes">3. Language classes</h3>
+<p>Create <code>rubrical/languages/</code>:</p>
+<ul>
+<li><code>base_language.py</code>: <code>BaseLanguage</code> ABC with <code>name</code>, <code>target_files</code>, <code>denylist_pathnames</code>, <code>found_files</code>, and <code>declarations: Dict[str, Package]</code>. It provides <code>read_files(target)</code>, which uses the shared helper, and <code>parse_files()</code>, which calls the abstract <code>parse_file(details) -&gt; Optional[Package]</code> and stores only the files that return a declaration. Each declaration is a <code>Package</code> with <code>name</code> set to the language and <code>raw_constraint</code> set to the declared value, as written in the file.</li>
+<li><code>go.py</code>: reads <code>go.mod</code>, with dialect <code>GO</code>. It matches the <code>^go\s+(\S+)</code> line. If there's no <code>go</code> directive, it records <code>go 1.16 (implicit)</code>. It ignores <code>toolchain</code>.</li>
+<li><code>python.py</code>: reads <code>pyproject.toml</code>. It reads <code>project.requires-python</code> with dialect <code>PEP440</code>, or failing that <code>tool.poetry.dependencies.python</code> with dialect <code>POETRY</code>. Denylist: <code>.venv</code>, <code>node_modules</code>.</li>
+<li><code>nodejs.py</code>: reads <code>package.json</code>, specifically <code>engines.node</code>, with dialect <code>NPM</code>. Denylist: <code>node_modules</code>.</li>
+</ul>
+<p>Each declaration carries its dialect, either as a field on a small <code>LanguageDeclaration</code> dataclass that wraps <code>Package</code>, or as a new optional field on <code>Package</code>. I'll decide which when implementing; the wrapper is preferred so dependency code doesn't see the new field.</p>
+<p>Add <code>LANGUAGE_MAPPING</code> next to <code>PACKAGE_MANAGER_MAPPING</code> in <code>rubrical/rubrical.py</code>.</p>
+<h3 id="4-lower-bound-comparison">4. Lower-bound comparison</h3>
+<p>Add <code>rubrical/comparisons/lower_bound.py</code> with two functions:</p>
+<ul>
+<li><code>lower_bound(raw: str, dialect: Dialect) -&gt; Optional[str]</code> takes the raw declaration and returns a three-component version, or <code>None</code>. <code>Dialect</code> is <code>GO</code>, <code>PEP440</code>, <code>POETRY</code>, or <code>NPM</code>. A dialect is needed because the same text means different things in different ecosystems (see <a href="#verified-syntax-rules">Verified syntax rules</a>). Each language class picks the dialect for each source it reads.</li>
+<li><code>compare_language(requirement, declaration) -&gt; PackageCheck</code> returns <code>NOOP</code> when <code>lower_bound</code> returns <code>None</code>. Otherwise it compares the bound with <code>results_to_status()</code>.</li>
+</ul>
+<p>The algorithm is the same for every dialect. Only the tokenizing and the meaning of each operator differ.</p>
+<ol>
+<li>Remove whitespace between an operator and its version. All three range syntaxes allow it, for example <code>&gt;= 3.8</code> and <code>&gt; 1.2.3 &lt; 1.2.5</code>. Then split the range into alternatives and split each alternative into comparators. Alternatives are separated by <code>||</code> in npm, and by <code>||</code> or <code>|</code> in Poetry. PEP 440 has no OR. Comparators are separated by whitespace in npm, commas in PEP 440, and either in Poetry.</li>
+<li>For each comparator, derive its lower bound using the rules in the table. If a comparator has only an upper bound (<code>&lt;</code>, <code>&lt;=</code>, <code>!=</code>), it contributes nothing.</li>
+<li>An alternative's lower bound is the <strong>highest</strong> lower bound among its comparators, because comparators are combined with AND. An alternative with no lower bound is unbounded.</li>
+<li>The declaration's lower bound is the <strong>lowest</strong> lower bound across its alternatives. If any alternative is unbounded, the whole declaration is unbounded, so the function returns <code>None</code>.</li>
+<li>Pad to <code>MAJOR.MINOR.PATCH</code> and drop any pre-release, dev, or post suffix, keeping only the release numbers: <code>1.21rc1</code> becomes <code>1.21.0</code>, <code>3.13.0rc1</code> becomes <code>3.13.0</code>, and <code>20.0.0-rc.1</code> becomes <code>20.0.0</code>.</li>
+<li>If a token is invalid in the dialect, the function returns <code>None</code> and logs the reason with <code>--debug</code>. Examples: <code>^</code> or <code>||</code> in PEP 440, <code>~=3</code> in PEP 440, a wildcard with an ordered operator in PEP 440 (<code>&gt;=3.*</code>), <code>===</code> arbitrary equality, or text that isn't a version at all.</li>
+</ol>
+<p>I'm writing a small parser rather than adding <code>packaging</code> or an npm-range library. No one library handles Go, PEP 440, Poetry, and npm syntax, and only the lower bound is needed. If the parser grows past the rules below, we should revisit that choice.</p>
+<h3 id="verified-syntax-rules">Verified syntax rules</h3>
+<p>These rules were checked against the official documentation on 2026-10-24. Sources are listed at the end of the plan.</p>
+<table>
+<thead>
+<tr>
+<th>Rule</th>
+<th>Go</th>
+<th>PEP 440 (<code>requires-python</code>)</th>
+<th>Poetry (<code>python</code>)</th>
+<th>npm (<code>engines.node</code>)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Meaning of the declaration</td>
+<td>Minimum toolchain version. Enforced since Go 1.21.</td>
+<td>Supported Python versions.</td>
+<td>Supported Python versions for locking. It must be a subset of <code>requires-python</code>.</td>
+<td>Supported Node.js versions. Advisory unless <code>engine-strict</code> is set.</td>
+</tr>
+<tr>
+<td>Operators</td>
+<td>None. It's a bare version.</td>
+<td><code>~=</code> <code>==</code> <code>!=</code> <code>&lt;=</code> <code>&gt;=</code> <code>&lt;</code> <code>&gt;</code> <code>===</code></td>
+<td>PEP 440 operators plus <code>^</code> and <code>~</code></td>
+<td><code>&lt;</code> <code>&lt;=</code> <code>&gt;</code> <code>&gt;=</code> <code>=</code> plus <code>^</code>, <code>~</code>, hyphen ranges, and X-ranges</td>
+</tr>
+<tr>
+<td>AND / OR</td>
+<td>Not applicable</td>
+<td>Comma / none</td>
+<td>Comma or whitespace / <code>\|\|</code> or <code>\|</code></td>
+<td>Whitespace / <code>\|\|</code></td>
+</tr>
+<tr>
+<td><code>&gt;X</code> lower bound</td>
+<td>Not applicable</td>
+<td>Next patch: <code>&gt;3.9</code> gives <code>3.9.1</code>, because PEP 440 says <code>&gt;1.7</code> allows <code>1.7.1</code></td>
+<td>Next patch: <code>&gt;3.9</code> gives <code>3.9.1</code>. Poetry builds an exclusive range on the padded version.</td>
+<td>Increment the last given component: <code>&gt;1</code> gives <code>2.0.0</code>, <code>&gt;1.2</code> gives <code>1.3.0</code>, and <code>&gt;1.2.3</code> gives <code>1.2.4</code>. node-semver's <code>replaceXRange</code> and <code>minVersion</code> do this.</td>
+</tr>
+<tr>
+<td>Bare partial version</td>
+<td><code>1.19</code> is the language version, ordered just before <code>1.19.0</code>, so it gives <code>1.19.0</code></td>
+<td><code>==3.12</code> pads to <code>3.12.0</code></td>
+<td><code>3.12</code> is exact and pads to <code>3.12.0</code></td>
+<td><code>20</code> is an X-range (<code>&gt;=20.0.0 &lt;21.0.0-0</code>), so it gives <code>20.0.0</code></td>
+</tr>
+<tr>
+<td>Wildcards</td>
+<td>Not applicable</td>
+<td>Only with <code>==</code> and <code>!=</code>: <code>==3.12.*</code> gives <code>3.12.0</code></td>
+<td><code>*</code> means any version, and <code>3.*</code> gives <code>3.0.0</code></td>
+<td><code>*</code>, <code>x</code>, <code>""</code> mean any version, and <code>20.x</code> gives <code>20.0.0</code></td>
+</tr>
+<tr>
+<td>Leading <code>v</code> / <code>=</code></td>
+<td>Not applicable</td>
+<td><code>v</code> is ignored</td>
+<td>Same as PEP 440</td>
+<td>Both are stripped</td>
+</tr>
+<tr>
+<td>Missing declaration</td>
+<td>Treated as <code>go 1.16</code></td>
+<td>No result</td>
+<td>No result</td>
+<td>No result. npm documents a missing value the same as <code>*</code>.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="what-counts-as-acceptable">What counts as acceptable</h3>
+<p>These decisions follow from the rules above.</p>
+<ul>
+<li><strong>Gradeable:</strong> any declaration whose lower bound can be derived with these rules.</li>
+<li><strong><code>NOOP</code>, logged with <code>--debug</code>:</strong> a declaration with no lower bound, such as <code>*</code>, <code>""</code>, <code>&lt;3.12</code>, <code>!=3.9.*</code>, or <code>^18 || &lt;16</code>. npm documents <code>*</code> as meaning the same as no declaration, so grading it as <code>0.0.0</code> and blocking would contradict the docs. This is a deliberate difference from node-semver's <code>minVersion</code>, which returns <code>0.0.0</code> for these ranges.</li>
+<li><strong><code>NOOP</code>, logged with <code>--debug</code>:</strong> syntax that is invalid in the dialect. The tool that owns the file would reject it anyway.</li>
+<li><strong>Pre-releases:</strong> graded by their release numbers, so <code>1.21rc1</code> is graded as <code>1.21.0</code>. A release candidate only precedes its own release, so this doesn't hide an end-of-life version.</li>
+<li><strong>Go with no <code>go</code> directive:</strong> graded as <code>1.16</code>, with <code>raw_constraint</code> set to <code>go 1.16 (implicit)</code>. This is what the Go toolchain does, and it's the one case where a missing declaration produces a result.</li>
+<li><strong>Go <code>toolchain</code> directive:</strong> ignored. The docs say it is only a suggestion and can't be lower than the <code>go</code> version.</li>
+<li><strong>Python with both PEP 621 and Poetry:</strong> grade <code>requires-python</code>. Poetry requires its <code>python</code> range to be a subset of <code>requires-python</code>, so <code>requires-python</code> is the minimum that users actually see.</li>
+</ul>
+<h3 id="5-orchestration-and-reporting">5. Orchestration and reporting</h3>
+<p>In <code>Rubrical</code>:</p>
+<ul>
+<li>Add <code>check_languages() -&gt; List[PackageCheckResult]</code>. For each configured language, it reads and parses files, then appends a <code>PackageCheckResult(name=language, file=file, check=…, version_package=raw_constraint, version_warn=…, version_block=…)</code> for each declaration.</li>
+<li><code>check_package_managers()</code> becomes <code>check_all()</code>, or gains a languages pass, that also runs <code>check_languages()</code>. It calls <code>terminal.terminal_report("languages", results)</code>, stores the results under the <code>languages</code> key in the results dict, and folds them into <code>warnings_found</code> and <code>blocks_found</code>.</li>
+<li>Only add the <code>languages</code> key when languages are configured, so GitHub comments from existing configs don't change.</li>
+</ul>
+<p><code>reporters/gh.py</code> and <code>reporters/terminal.py</code> need no changes. They already loop over the result keys, and the "update to &gt;= warn" wording also works for languages. The table column is labeled "Dependency". I'll check whether it reads oddly for languages, and if so rename it to "Name".</p>
+<h3 id="6-observability">6. Observability</h3>
+<p>With <code>--debug</code>, log:</p>
+<ul>
+<li>Each file that a language class reads, and whether it found a declaration.</li>
+<li>Each raw declaration, the lower bound derived from it, and the result.</li>
+<li>The reason for each <code>NOOP</code> (no lower bound, or unparseable version), so it's always clear why a file wasn't graded.</li>
+</ul>
+<h3 id="7-documentation">7. Documentation</h3>
+<ul>
+<li><code>docs/configuration.md</code>: the <code>languages</code> section, with an example.</li>
+<li><code>docs/features_and_supported_formats.md</code>: a table of supported language sources, and the lower-bound and <code>NOOP</code> rules.</li>
+<li><code>docs/agents/internals.md</code>: add <code>rubrical/languages/</code> and <code>comparisons/lower_bound.py</code> to the layout, the languages pass to the flow diagram, and the comparison semantics.</li>
+<li>Mark ADR 0003 as <code>accepted</code> once this is merged.</li>
+</ul>
+<h2 id="tests">Tests</h2>
+<h3 id="fixtures">Fixtures</h3>
+<p>These already exist:</p>
+<ul>
+<li><code>tests/files/nodejs/engines/{minimum,caret,range,or-range,wildcard,none}/package.json</code></li>
+<li><code>tests/files/python/pyproject.toml</code> (<code>&gt;=3.7</code>)</li>
+<li><code>tests/files/uv/pyproject.toml</code> (<code>&gt;=3.14</code>)</li>
+<li><code>tests/files/poetry/pyproject.toml</code> (<code>^3.12</code>)</li>
+<li><code>tests/files/go/go.mod</code> (<code>go 1.19</code>)</li>
+</ul>
+<p>Add <code>tests/files/rubrical-languages.yaml</code> with thresholds chosen so that every outcome appears at least once:</p>
+<table>
+<thead>
+<tr>
+<th>Language</th>
+<th>warn</th>
+<th>block</th>
+<th>Expected results</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>python</td>
+<td><code>v3.12.0</code></td>
+<td><code>v3.10.0</code></td>
+<td><code>python/</code> 3.7.0 <code>BLOCK</code>, <code>uv/</code> 3.14.0 <code>OK</code>, <code>poetry/</code> 3.12.0 <code>OK</code></td>
+</tr>
+<tr>
+<td>go</td>
+<td><code>v1.22.0</code></td>
+<td><code>v1.20.0</code></td>
+<td><code>go/</code> 1.19.0 <code>BLOCK</code></td>
+</tr>
+<tr>
+<td>nodejs</td>
+<td><code>v20.0.0</code></td>
+<td><code>v18.17.0</code></td>
+<td><code>minimum</code> 18.0.0 <code>BLOCK</code>, <code>range</code> 18.17.0 <code>WARN</code>, <code>or-range</code> 18.18.0 <code>WARN</code>, <code>caret</code> 20.11.0 <code>OK</code>, <code>wildcard</code> 20.0.0 <code>OK</code>, <code>none</code> and the existing <code>package.json</code> files: no result</td>
+</tr>
+</tbody>
+</table>
+<h3 id="test-cases">Test cases</h3>
+<p><code>tests/unit/comparisons/test_lower_bound.py</code>, for <code>lower_bound()</code>. Each case comes from an example in the official docs, or applies a documented rule:</p>
+<ul>
+<li>Go:</li>
+<li><code>1.19</code> gives <code>1.19.0</code>, <code>1.21.3</code> gives <code>1.21.3</code>, and <code>1.21rc1</code> gives <code>1.21.0</code>.</li>
+<li><code>&gt;=1.19</code> gives <code>None</code>, because Go has no operators.</li>
+<li>PEP 440:</li>
+<li><code>&gt;=3.7</code> gives <code>3.7.0</code>, <code>~=3.10</code> gives <code>3.10.0</code>, <code>==3.12.*</code> gives <code>3.12.0</code>, <code>==3.12</code> gives <code>3.12.0</code>, and <code>&gt;=v3.8</code> gives <code>3.8.0</code>.</li>
+<li><code>&gt;3.9</code> gives <code>3.9.1</code>, and <code>&gt;= 3.8</code> (with a space) gives <code>3.8.0</code>.</li>
+<li><code>&gt;=3.9,&lt;4</code> gives <code>3.9.0</code>, and <code>&gt;=3.8,&gt;=3.10</code> gives <code>3.10.0</code> because the higher bound wins within AND.</li>
+<li>Invalid in the dialect, so <code>None</code>: <code>^3.12</code>, <code>~=3</code>, <code>&gt;=3.*</code>, <code>===3.12</code>, and <code>&gt;=3.8 || &gt;=3.9</code>.</li>
+<li>Unbounded, so <code>None</code>: <code>&lt;3.12</code>, <code>!=3.9.*</code>, and the empty string.</li>
+<li>Poetry:</li>
+<li><code>^3.12</code> gives <code>3.12.0</code>, <code>~3.12</code> gives <code>3.12.0</code>, <code>3.*</code> gives <code>3.0.0</code>, and <code>&gt;3.9</code> gives <code>3.9.1</code>.</li>
+<li><code>&gt;=3.8 &lt;4.0</code> (whitespace AND) gives <code>3.8.0</code>, and <code>&gt;=3.8,&lt;4.0</code> (comma AND) gives <code>3.8.0</code>.</li>
+<li><code>^3.9 || ^3.11</code> gives <code>3.9.0</code>, and <code>^3.11 | ^3.9</code> gives <code>3.9.0</code>.</li>
+<li><code>*</code> gives <code>None</code>.</li>
+<li>npm:</li>
+<li><code>&gt;=18.0.0</code> gives <code>18.0.0</code>, <code>^20.11.0</code> gives <code>20.11.0</code>, <code>~18.2</code> gives <code>18.2.0</code>, <code>20.x</code> gives <code>20.0.0</code>, <code>20</code> gives <code>20.0.0</code>, <code>=20.1.0</code> gives <code>20.1.0</code>, and <code>v20.1.0</code> gives <code>20.1.0</code>.</li>
+<li><code>&gt;1</code> gives <code>2.0.0</code>, <code>&gt;18.2</code> gives <code>18.3.0</code>, and <code>&gt;18.2.3</code> gives <code>18.2.4</code>. These match node-semver's <code>minVersion</code>.</li>
+<li><code>&gt;=18.17.0 &lt;23</code> gives <code>18.17.0</code>, <code>&gt;= 18.17.0</code> gives <code>18.17.0</code>, <code>1.2 - 2.3.4</code> gives <code>1.2.0</code>, and <code>20.0.0-rc.1</code> gives <code>20.0.0</code>.</li>
+<li><code>^18.18.0 || ^20.9.0 || &gt;=21.1.0</code> gives <code>18.18.0</code>, and so does the same range with its alternatives in reverse order.</li>
+<li>Unbounded, so <code>None</code>: <code>*</code>, <code>x</code>, <code>""</code>, <code>&lt;16</code>, and <code>^18 || &lt;16</code>.</li>
+<li>Any dialect: <code>banana</code> gives <code>None</code>. It doesn't raise.</li>
+</ul>
+<p>For <code>compare_language()</code>:</p>
+<ul>
+<li>A bound below <code>block</code> gives <code>BLOCK</code>.</li>
+<li>A bound between <code>block</code> and <code>warn</code> gives <code>WARN</code>.</li>
+<li>A bound at or above <code>warn</code> gives <code>OK</code>.</li>
+<li>A bound exactly equal to <code>block</code> gives <code>WARN</code>, not <code>BLOCK</code>.</li>
+<li>An unbounded or unparseable declaration gives <code>NOOP</code>, never <code>OK</code>.</li>
+</ul>
+<p><code>tests/unit/languages/test_{go,python,nodejs}.py</code>, for each language class:</p>
+<ul>
+<li>It extracts the raw declaration and its dialect from each fixture, keyed by relative path.</li>
+<li>It records no entry for files without a declaration (<code>engines/none</code>, the root <code>nodejs/package.json</code>, and <code>requirements.txt</code>, which isn't a target).</li>
+<li>It skips <code>node_modules</code>.</li>
+<li>Python:</li>
+<li>When PEP 621 and Poetry both declare a version, <code>requires-python</code> wins.</li>
+<li><code>requires-python</code> uses the <code>PEP440</code> dialect, and Poetry <code>python</code> uses the <code>POETRY</code> dialect.</li>
+<li>Go:</li>
+<li>It ignores the <code>toolchain</code> directive.</li>
+<li>A <code>go.mod</code> with no <code>go</code> directive produces <code>go 1.16 (implicit)</code>.</li>
+</ul>
+<h3 id="fixtures-to-add">Fixtures to add</h3>
+<p>The verified rules above need some fixtures that don't exist yet:</p>
+<ul>
+<li><code>tests/files/nodejs/engines/partial-gt/package.json</code> with <code>"node": "&gt;18"</code>. Its lower bound is <code>19.0.0</code>, which checks the npm-specific <code>&gt;</code> rule end to end.</li>
+<li><code>tests/files/nodejs/engines/spaced/package.json</code> with <code>"node": "&gt;= 18.17.0"</code>. This checks whitespace after an operator.</li>
+<li><code>tests/files/nodejs/engines/any/package.json</code> with <code>"node": "*"</code>. It should give <code>NOOP</code>.</li>
+<li><code>tests/files/go-implicit/go.mod</code> with no <code>go</code> directive. It should be graded as <code>1.16</code>.</li>
+<li><code>tests/files/go-toolchain/go.mod</code> with <code>go 1.21rc1</code> and <code>toolchain go1.22.0</code>. It should be graded as <code>1.21.0</code>.</li>
+<li><code>tests/files/poetry-or/pyproject.toml</code> with <code>python = "&gt;=3.8 &lt;3.9 || &gt;=3.10"</code>. Its lower bound is <code>3.8.0</code>.</li>
+<li><code>tests/files/python-gt/pyproject.toml</code> with <code>requires-python = "&gt;3.9"</code>. Its lower bound is <code>3.9.1</code>.</li>
+</ul>
+<p>Update the <code>rubrical-languages.yaml</code> expected-results table to include these fixtures, and check that the Go package manager's tests still pass with the new <code>go.mod</code> files.</p>
+<p><code>tests/unit/test_configuration.py</code>:</p>
+<ul>
+<li>A config with only <code>languages</code> is valid.</li>
+<li>An unknown language name is rejected.</li>
+<li>A duplicate language name is rejected.</li>
+<li>Existing configs without <code>languages</code> still validate.</li>
+</ul>
+<p><code>tests/integration/test_cli.py</code>:</p>
+<ul>
+<li><code>grade</code> with <code>rubrical-languages.yaml</code> exits 1, and the output lists each expected <code>BLOCK</code> and <code>WARN</code> row with its file path.</li>
+<li>With <code>--no-block</code>, it exits 0 and still lists the rows.</li>
+<li>The existing CLI tests pass unchanged, which shows that dependency results and exit codes are unaffected.</li>
+</ul>
+<h2 id="implementation-notes">Implementation notes</h2>
+<p>Where the code differs from the plan above:</p>
+<ul>
+<li><strong><code>lower_bound()</code> raises instead of returning <code>None</code>.</strong> It raises <code>UngradeableError</code> with a reason ("has no lower bound", "isn't a PEP 440 version specifier", and so on). <code>compare_language()</code> catches it and returns a <code>LanguageGrade{check, lower_bound, reason}</code>, so the reason can be logged with <code>--debug</code>. In the test cases above, "gives <code>None</code>" means "raises <code>UngradeableError</code>".</li>
+<li><strong><code>LanguageDeclaration</code> is its own dataclass</strong> (<code>version</code>, <code>raw_constraint</code>, <code>dialect</code>) in <code>schemas/language.py</code>, not a wrapper around <code>Package</code>. Nothing in the language path needs <code>Package</code>'s specification list.</li>
+<li><strong><code>Rubrical.check_all()</code> was added</strong> and is what <code>grade</code> calls. It runs <code>check_languages()</code> first, then the unchanged <code>check_package_managers()</code>.</li>
+<li><strong>Report text quotes the declared range</strong>, for example <code>requires-python "&gt;=3.7" &lt; v3.10.0</code>. Without the quotes, <code>engines.node &gt;=18.17.0 &lt;23 &lt; v20.0.0</code> was hard to read.</li>
+<li><strong>The GitHub reporter escapes <code>|</code> in table cells.</strong> Before this, no reported value could contain <code>|</code>, but <code>||</code> ranges would have split the markdown table row.</li>
+<li><strong>Thresholds are parsed with the same version rules.</strong> A <code>warn</code> or <code>block</code> that isn't a version (for example <code>latest</code>) gives <code>NOOP</code> with a reason, rather than failing the run.</li>
+<li><strong>Language test files are named <code>test_language_*.py</code></strong> in <code>tests/unit/languages/</code>, because the test directories have no <code>__init__.py</code> and <code>test_go.py</code>, <code>test_python.py</code> and <code>test_nodejs.py</code> already exist under <code>tests/unit/package_managers/</code>.</li>
+<li><strong>The "Dependency" column wasn't renamed.</strong> For languages it shows <code>python</code>, <code>go</code> or <code>nodejs</code>, which reads well enough.</li>
+</ul>
+<h2 id="related-findings">Related findings</h2>
+<p>These come from reviewing the comparison code. They are out of scope here, but I don't want new tests to enshrine them:</p>
+<ul>
+<li><strong>Unparseable versions give <code>OK</code>.</strong> In <code>compare_package_semver</code>, <code>ValueError</code> from <code>semver</code> produces <code>OK</code>, so any dependency pinned to a version that isn't full semver (such as <code>1.19</code>) passes silently. It should probably be <code>NOOP</code>.</li>
+<li><strong><code>||</code> ranges are dropped.</strong> <code>NodeJS._parse_packagelock</code> skips any dependency whose version contains <code>||</code> without logging it, so those dependencies are never graded.</li>
+<li><strong>Fixed: whitespace after an operator broke npm parsing.</strong> node-semver accepts <code>&gt;= 1.2.3</code>, but <code>NodeJS._parse_packagelock</code> split on spaces first, so <code>&gt;= 1.2.3</code> was graded as a pinned <code>1.2.3</code>. The parser now removes whitespace between an operator and its version before parsing.</li>
+<li><strong>Fixed: bare partial npm versions were graded as exact.</strong> In npm, <code>20</code> is an X-range (<code>&gt;=20.0.0 &lt;21.0.0-0</code>), but the Node.js package manager mapped it to <code>EQ</code> <code>20</code>, which semver can't parse, so it got <code>OK</code>. Partial versions and every X-range spelling (<code>1</code>, <code>1.2</code>, <code>1.x</code>, <code>1.x.x</code>, <code>1.2.*</code>) now map to <code>APPROX_EQ</code>.</li>
+<li><strong>Still open: leading <code>=</code> and partial versions with <code>&lt;</code>.</strong> In npm, <code>=1.2.3</code> is the same as <code>1.2.3</code>, but rubrical keeps the <code>=</code> and fails to parse the version, so it gets <code>OK</code>. And <code>&lt;1.2</code> means <code>&lt;1.2.0-0</code>, but <code>1.2</code> can't be parsed as semver, so it also gets <code>OK</code>.</li>
+</ul>
+<h2 id="sources">Sources</h2>
+<p>Checked on 2026-10-24:</p>
+<ul>
+<li>Go: <a href="https://go.dev/ref/mod#go-mod-file-go">Go Modules Reference, <code>go</code> and <code>toolchain</code> directives</a>, and <a href="https://go.dev/doc/toolchain#version">Go Toolchains, version syntax and ordering</a>.</li>
+<li>Python: <a href="https://packaging.python.org/en/latest/specifications/pyproject-toml/">pyproject.toml specification, <code>requires-python</code></a>, and <a href="https://packaging.python.org/en/latest/specifications/version-specifiers/">Version specifiers (PEP 440)</a>.</li>
+<li>Poetry: <a href="https://python-poetry.org/docs/dependency-specification/">Dependency specification</a>, <a href="https://python-poetry.org/docs/pyproject/">pyproject.toml and the <code>python</code> requirement</a>, and <a href="https://github.com/python-poetry/poetry-core/blob/main/src/poetry/core/constraints/version/parser.py">poetry-core constraint parser</a>. The <code>||</code>/<code>|</code> OR syntax is in the parser but isn't documented on the dependency specification page.</li>
+<li>npm: <a href="https://docs.npmjs.com/cli/v10/configuring-npm/package-json#engines">package.json <code>engines</code></a>, <a href="https://github.com/npm/node-semver#ranges">node-semver README, ranges</a>, <a href="https://github.com/npm/node-semver/blob/main/classes/range.js">node-semver <code>range.js</code></a>, and <a href="https://github.com/npm/node-semver/blob/main/ranges/min-version.js">node-semver <code>min-version.js</code></a>.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["header.autohide", "navigation.tabs", "navigation.path", "navigation.sections", "toc.follow", "search.suggest", "search.share"], "search": "../../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.c21346df.min.js"></script>
+      
+    
+  </body>
+</html>

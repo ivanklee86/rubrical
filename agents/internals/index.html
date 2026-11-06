@@ -1,0 +1,1045 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
+    
+    
+      
+        <title>Rubrical internals - Rubrical</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.fb2fffe2.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#rubrical-internals" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Rubrical" class="md-header__button md-logo" aria-label="Rubrical" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Rubrical
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Rubrical internals
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/ivanklee86/Rubrical" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ivanklee86/rubrical
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../installation_and_usage/" class="md-tabs__link">
+          
+  
+  
+  User Guide
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../development/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Developer Guide
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Rubrical" class="md-nav__button md-logo" aria-label="Rubrical" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Rubrical
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/ivanklee86/Rubrical" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ivanklee86/rubrical
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User Guide
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    User Guide
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation_and_usage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation and Usage
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features_and_supported_formats/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Featuers and Supported Formats
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reporting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reporting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../commands/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Commands
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Developer Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#layout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Layout
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#flow-of-rubrical-grade" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Flow of rubrical grade
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#core-data-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core data model
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#package-manager-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Package manager pattern
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#language-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Language pattern
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#comparison-semantics-comparisons" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Comparison semantics (comparisons/)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reporting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reporting
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common changes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dev-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dev workflow
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#known-quirks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Known quirks
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="rubrical-internals">Rubrical internals</h1>
+<p>Rubrical is a Typer CLI that scans a repository for dependency manifests, compares each declared dependency version constraint and each declared language version against <code>warn</code>/<code>block</code> thresholds from a config file, and reports results to the terminal and, optionally, to a GitHub PR comment.</p>
+<h2 id="layout">Layout</h2>
+<table>
+<thead>
+<tr>
+<th>Path</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>rubrical/main.py</code></td>
+<td>Typer <code>app</code>. <code>grade</code> command plus the mounted <code>configs</code> sub-app. Entry point is <code>rubrical = rubrical.main:app</code>.</td>
+</tr>
+<tr>
+<td><code>rubrical/subcommands/configs.py</code></td>
+<td><code>configs validate</code> and <code>configs jsonschema</code>.</td>
+</tr>
+<tr>
+<td><code>rubrical/rubrical.py</code></td>
+<td><code>Rubrical</code> orchestrator, <code>PACKAGE_MANAGER_MAPPING</code> and <code>LANGUAGE_MAPPING</code> (config name → class).</td>
+</tr>
+<tr>
+<td><code>rubrical/package_managers/</code></td>
+<td><code>BasePackageManager</code> ABC plus one subclass per ecosystem (<code>go</code>, <code>jsonnet</code>, <code>nodejs</code>, <code>python</code>).</td>
+</tr>
+<tr>
+<td><code>rubrical/languages/</code></td>
+<td><code>BaseLanguage</code> ABC plus one subclass per language (<code>go</code>, <code>nodejs</code>, <code>python</code>). Each extracts at most one <code>LanguageDeclaration</code> per file. <code>version_files.py</code> reads version manager files (<code>.python-version</code>, <code>.go-version</code>, <code>.node-version</code>, <code>.nvmrc</code>) the way each owning tool does. See <a href="../../adrs/0003-language-version-checks/">ADR 0003</a> and <a href="../../adrs/0004-language-version-files/">ADR 0004</a>.</td>
+</tr>
+<tr>
+<td><code>rubrical/comparisons/</code></td>
+<td><code>check_package()</code> dispatches on <code>PackageRequirement.type</code> to <code>semversion</code> or <code>string</code>. <code>lower_bound.py</code> grades language declarations.</td>
+</tr>
+<tr>
+<td><code>rubrical/reporters/</code></td>
+<td><code>terminal.py</code> renders a Rich table. <code>gh.py</code> upserts or deletes a PR comment through PyGithub.</td>
+</tr>
+<tr>
+<td><code>rubrical/schemas/</code></td>
+<td><code>configuration.py</code> holds the Pydantic config models. <code>package.py</code>, <code>language.py</code> and <code>results.py</code> hold the internal dataclasses.</td>
+</tr>
+<tr>
+<td><code>rubrical/enum.py</code></td>
+<td>All enums: <code>SupportedPackageManagers</code>, <code>SupportedLanguages</code>, <code>VersionDialect</code>, <code>DependencySpecifications</code>, <code>PackageCheck</code>, <code>PackageTypes</code>, <code>SemverComparison</code>.</td>
+</tr>
+<tr>
+<td><code>rubrical/utilities/console.py</code></td>
+<td><code>rich.print</code> wrappers. <code>print_error</code> raises <code>typer.Exit(1)</code> (typed <code>NoReturn</code>).</td>
+</tr>
+<tr>
+<td><code>rubrical/utilities/config.py</code></td>
+<td><code>load_config(path)</code>, shared by <code>grade</code> and <code>configs validate</code>. Exits 1 on a <code>ValidationError</code>.</td>
+</tr>
+<tr>
+<td><code>rubrical/utilities/files.py</code></td>
+<td><code>find_files()</code> (<code>rglob</code> plus the substring denylist) and <code>FileDetails</code>, shared by package managers and languages. <code>PackageManagerFileDetails</code> is an alias of <code>FileDetails</code>.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="flow-of-rubrical-grade">Flow of <code>rubrical grade</code></h2>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>flowchart TD
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    CLI["main.grade()"] --&gt;|"load_config() → RubricalConfig"| R["Rubrical(config, target)"]
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    R --&gt;|"PACKAGE_MANAGER_MAPPING[name]()"| PM["PackageManager instances"]
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    R --&gt;|"check_all()"| LANG{{"languages configured?"}}
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    LANG --&gt;|"yes, LANGUAGE_MAPPING[name]()"| LREAD["read_files(target) → parse_file()&lt;br/&gt;→ declarations[relpath] = LanguageDeclaration"]
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    LREAD --&gt; LCMP["lower_bound.compare_language()&lt;br/&gt;→ PackageCheck"]
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    LCMP --&gt; LTERM["terminal_report('languages')"]
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    LTERM --&gt; LOOP
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    LANG --&gt;|"no"| LOOP{{"for each package manager"}}
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    LOOP --&gt; READ["read_package_manager_files(target)&lt;br/&gt;rglob(target_files), skip denylist_pathnames"]
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>    READ --&gt; PARSE["parse_package_manager_file()&lt;br/&gt;→ packages[relpath] = list of Package"]
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>    PARSE --&gt; MATCH["name match via normalize_name()"]
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>    MATCH --&gt; CMP["comparisons.check_package()&lt;br/&gt;semver | generic → PackageCheck"]
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>    CMP --&gt; TERM["reporters.terminal.terminal_report()"]
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>    TERM --&gt; LOOP
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>    LOOP --&gt;|"(warnings_found, blocks_found, results)"| CLI2["main.grade()"]
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>    CLI2 --&gt;|"RUBRICAL_GH_TOKEN set"| GH["reporters.gh.report_github()"]
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>    CLI2 --&gt;|"blocks and should_block"| EXIT1["print_error → exit 1"]
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>    CLI2 --&gt;|"otherwise"| EXIT0["exit 0"]
+</span></code></pre></div>
+<h2 id="core-data-model">Core data model</h2>
+<ul>
+<li><strong>Config</strong> (Pydantic, <code>schemas/configuration.py</code>): <code>RubricalConfig{version, blocking_mode, languages[] = [], package_managers[] = []}</code>. <code>PackageManager{name: SupportedPackageManagers, packages[]}</code> → <code>PackageRequirement{name, type=semver|generic, warn, block}</code>. <code>LanguageRequirement{name: SupportedLanguages, warn, block}</code>; each language may appear once. The config is loaded from <code>.yaml</code>, <code>.json</code>, or <code>.toml</code> with <code>benedict</code>.</li>
+<li><strong>Parsed dependency</strong> (dataclass, <code>schemas/package.py</code>): <code>Package{name, raw_constraint, version_constraints: [Specification{version, specifier: DependencySpecifications}]}</code>. A single dependency can carry several specifications, such as <code>&gt;=1.0,&lt;2</code>.</li>
+<li><strong>Language declaration</strong> (dataclass, <code>schemas/language.py</code>): <code>LanguageDeclaration{version, raw_constraint, dialect: VersionDialect}</code>. <code>version</code> is the declared range (<code>&gt;=3.7</code>); <code>raw_constraint</code> is what reports show (<code>requires-python "&gt;=3.7"</code>).</li>
+<li><strong>Result</strong> (dataclass, <code>schemas/results.py</code>): <code>PackageCheckResult{name, file, check: PackageCheck, version_package, version_warn, version_block}</code>.</li>
+<li><code>PackageCheck</code> has four values: <code>OK</code>, <code>WARN</code>, <code>BLOCK</code>, and <code>NOOP</code>. <code>NOOP</code> means the constraint can't be judged, for example a lower bound only.</li>
+</ul>
+<h2 id="package-manager-pattern">Package manager pattern</h2>
+<p>Each subclass of <code>BasePackageManager</code>:</p>
+<ol>
+<li>Sets the class attributes <code>target_files</code> (glob names) and, optionally, <code>denylist_pathnames</code>, which are substring-matched against the path.</li>
+<li>Sets <code>self.name = SupportedPackageManagers.X.value</code> in <code>__init__</code>.</li>
+<li>Optionally extends <code>self.specification_symbols</code> with a dict merge (<code>|</code>) to map ecosystem operators. Python adds <code>~=</code>→<code>APPROX_EQ</code>. NodeJS adds <code>~</code>→<code>APPROX_EQ</code> and <code>^</code>→<code>COMPATIBLE</code>.</li>
+<li>Implements <code>parse_package_manager_file(details)</code>, which must initialize and fill <code>self.packages[details.name]</code>. <code>details.name</code> is the file path relative to <code>--target</code>.</li>
+<li>Optionally overrides <code>normalize_name(name)</code>. It is applied to both the config name and the parsed name before matching. The default keeps names exact; Python applies PEP 503 rules (lowercase, with runs of <code>-</code>, <code>_</code> and <code>.</code> treated as <code>-</code>).</li>
+</ol>
+<p><code>match_from_specification_symbols(version)</code> finds the specifier by substring match. The last matching group wins, so <code>&gt;=</code> resolves to <code>GTE</code> rather than <code>GT</code>. The function then strips the operator characters. If nothing matches, the specifier defaults to <code>EQ</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Manager</th>
+<th>Files</th>
+<th>Parsing notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>go</code></td>
+<td><code>go.mod</code></td>
+<td>Regex over <code>( … )</code> blocks. Lines containing <code>indirect</code> are skipped. Every entry is <code>EQ</code>.</td>
+</tr>
+<tr>
+<td><code>jsonnet</code></td>
+<td><code>jsonnetfile.json</code></td>
+<td>Pydantic models for the file. The name comes from <code>git.repository_from_url(remote)</code> as <code>owner/repo</code>. The version (which may be a branch) is <code>EQ</code>.</td>
+</tr>
+<tr>
+<td><code>python</code></td>
+<td><code>requirements.txt</code>, <code>pyproject.toml</code></td>
+<td><code>requirements-parser</code> for each line. In <code>pyproject.toml</code>, PEP 621 <code>project.dependencies</code> are re-parsed through <code>requirements.parse</code>. Poetry (<code>tool.poetry</code>) goes through <code>requirements_detector.find_requirements(parent_dir)</code>. Requirements with no version specifier are dropped.</td>
+</tr>
+<tr>
+<td><code>nodejs</code></td>
+<td><code>package.json</code> (skips <code>node_modules</code>)</td>
+<td>Reads <code>dependencies</code>, <code>devDependencies</code>, and <code>peerDependencies</code>. Whitespace between an operator and its version is removed first (<code>&gt;= 1.2.3</code> → <code>&gt;=1.2.3</code>), and runs of whitespace between comparators are collapsed. Partial versions and X-ranges (<code>1</code>, <code>1.2</code>, <code>1.x</code>, <code>1.x.x</code>, <code>1.2.*</code>) become <code>APPROX_EQ</code>. <code>a - b</code> becomes <code>GTE</code>+<code>LTE</code>. Two-part <code>&gt;=a &lt;b</code> is parsed per part. <code>\|\|</code> and other multi-part ranges are skipped.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="language-pattern">Language pattern</h2>
+<p>Each subclass of <code>BaseLanguage</code> sets <code>target_files</code>, optionally <code>denylist_pathnames</code>, sets <code>self.name = SupportedLanguages.X.value</code>, and implements <code>parse_file(details) -&gt; Optional[LanguageDeclaration]</code>. Returning <code>None</code> means the file declares no version, and it produces no result.</p>
+<table>
+<thead>
+<tr>
+<th>Language</th>
+<th>Files</th>
+<th>Declaration</th>
+<th>Dialect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>go</code></td>
+<td><code>go.mod</code></td>
+<td>The <code>go</code> directive. Without one, <code>go 1.16 (implicit)</code>, as the Go toolchain assumes. <code>toolchain</code> is ignored.</td>
+<td><code>GO</code></td>
+</tr>
+<tr>
+<td><code>go</code></td>
+<td><code>.go-version</code></td>
+<td>The first word of every non-comment line (goenv).</td>
+<td><code>VERSION_FILE</code></td>
+</tr>
+<tr>
+<td><code>python</code></td>
+<td><code>pyproject.toml</code> (skips <code>.venv</code>, <code>node_modules</code>)</td>
+<td><code>project.requires-python</code>, else <code>tool.poetry.dependencies.python</code>.</td>
+<td><code>PEP440</code> / <code>POETRY</code></td>
+</tr>
+<tr>
+<td><code>python</code></td>
+<td><code>.python-version</code> (skips <code>.venv</code>, <code>node_modules</code>)</td>
+<td>Every trimmed non-comment line (uv).</td>
+<td><code>PYTHON_VERSION_FILE</code></td>
+</tr>
+<tr>
+<td><code>nodejs</code></td>
+<td><code>package.json</code> (skips <code>node_modules</code>)</td>
+<td><code>engines.node</code>.</td>
+<td><code>NPM</code></td>
+</tr>
+<tr>
+<td><code>nodejs</code></td>
+<td><code>.node-version</code> (skips <code>node_modules</code>)</td>
+<td>The first word of the file (nodenv).</td>
+<td><code>VERSION_FILE</code></td>
+</tr>
+<tr>
+<td><code>nodejs</code></td>
+<td><code>.nvmrc</code> (skips <code>node_modules</code>)</td>
+<td>Lines left after removing <code>#</code> comments and <code>key=value</code> lines, joined by spaces, so more than one version isn't gradeable (nvm).</td>
+<td><code>VERSION_FILE</code></td>
+</tr>
+</tbody>
+</table>
+<p>Version files dispatch on <code>file_details.path.name</code> in <code>parse_file</code>. <code>version</code> holds one entry per line (joined by newlines) and <code>raw_constraint</code> quotes each entry after the file name, for example <code>.python-version "3.12" "3.9"</code>. A version file with no entries returns <code>None</code>.</p>
+<h2 id="comparison-semantics-comparisons">Comparison semantics (<code>comparisons/</code>)</h2>
+<ul>
+<li><strong>semver</strong> (default): each <code>Specification</code> reduces to the highest version the constraint allows, which is then compared against the thresholds:</li>
+<li><code>EQ</code>, <code>LT</code>, and <code>LTE</code> use the version as-is.</li>
+<li><code>GT</code>, <code>GTE</code>, and <code>NE</code> give <code>NOOP</code>.</li>
+<li><code>APPROX_EQ</code> pads missing components with <code>999999</code>, so <code>1.2</code> becomes <code>1.2.999999</code>.</li>
+<li><code>COMPATIBLE</code> replaces the last component with <code>999999</code> and pads, so <code>6.0.1</code> becomes <code>6.0.999999</code>.</li>
+</ul>
+<p>A leading <code>v</code> is stripped. The result is <code>BLOCK</code> if the version is below <code>block</code>, otherwise <code>WARN</code> if it is below <code>warn</code>, otherwise <code>OK</code>. A <code>ValueError</code> from <code>semver</code> (an unparseable version) gives <code>OK</code>. For a package with several specifications, <code>max_status</code> picks the most severe in the order <code>BLOCK &gt; WARN &gt; OK &gt; NOOP</code>.
+- <strong>generic</strong>: applies only when there is exactly one <code>EQ</code> specification; anything else gives <code>NOOP</code>. It uses a plain lexicographic string comparison (<code>warn &gt; version</code>, <code>block &gt; version</code>).
+- <strong>Language lower bound</strong> (<code>lower_bound.py</code>): languages are graded by the <em>lowest</em> <code>MAJOR.MINOR.PATCH</code> their declaration allows, because language declarations are minimums. The rules per dialect, with sources, are in <a href="../plans/language-version-checks/#verified-syntax-rules">the plan</a>.
+  - Whitespace after an operator is removed. Within AND-ed comparators the highest lower bound applies; across <code>||</code> alternatives the lowest applies.
+  - Versions are padded to three parts and pre-release/post/dev/build suffixes are dropped (<code>1.21rc1</code> → <code>1.21.0</code>).
+  - <code>&gt;X</code> differs by dialect: PEP 440 and Poetry give the next patch (<code>&gt;3.9</code> → <code>3.9.1</code>); npm increments the last given part (<code>&gt;1.2</code> → <code>1.3.0</code>, <code>&gt;1.2.3</code> → <code>1.2.4</code>).
+  - Version file dialects treat each line as an alternative, so the lowest line applies. <code>VERSION_FILE</code> lines must be bare versions (optional <code>v</code>, no operator or wildcard). <code>PYTHON_VERSION_FILE</code> lines may also be PEP 440 specifier sets. One ungradeable line (<code>system</code>, <code>lts/*</code>, <code>pypy3.10</code>) makes the whole file <code>NOOP</code>.
+  - <code>lower_bound()</code> raises <code>UngradeableError</code> when there is no lower bound (<code>*</code>, <code>&lt;3.12</code>) or the syntax is invalid in the dialect (<code>^</code> in PEP 440). <code>compare_language()</code> turns that into <code>NOOP</code>, never <code>OK</code>, and returns a <code>LanguageGrade</code> whose <code>reason</code> is logged with <code>--debug</code>.</p>
+<h2 id="reporting">Reporting</h2>
+<ul>
+<li><strong>Terminal</strong>: one table per manager, plus a <code>languages</code> table when languages are configured, listing only <code>WARN</code> and <code>BLOCK</code> results and printed only when there is at least one. Otherwise a single success line is printed.</li>
+<li><strong>Result keys</strong>: <code>check_all()</code> returns results keyed by <code>languages</code> (only when configured, first) and then by package manager name. Both reporters loop over the keys. Language blocks and warnings count toward the exit status like dependency ones.</li>
+<li><strong>Exit status</strong>: <code>should_block</code> is the <code>--block/--no-block</code> flag when given, otherwise <code>blocking_mode</code> from the config (default <code>true</code>). Blocks with <code>should_block</code> exit 1. Blocks without it print a "blocking is disabled" header and exit 0.</li>
+<li><strong>GitHub</strong>: enabled when <code>RUBRICAL_GH_TOKEN</code> is set. It also needs <code>RUBRICAL_REPOSITORY</code> and <code>RUBRICAL_PR_ID</code>, and optionally <code>RUBRICAL_GH_CUSTOM_URL</code> (which uses <code>&lt;url&gt;/api/v3</code>) and <code>RUBRICAL_REPORT_ID</code> (<code>--report-id</code>). <code>|</code> in a declaration is escaped as <code>\|</code> so <code>||</code> ranges stay in their table cell. If there are warnings or blocks, the comment is edited or created. If the run is clean, any old comment is deleted. Comments are matched within a scope (<a href="../../adrs/0002-github-report-id/">ADR 0002</a>):</li>
+<li><strong>With a report ID</strong>: comments that start with <code>&lt;!-- rubrical:report-id=&lt;id&gt; --&gt;</code> (a comment that only quotes the marker further down is ignored). Duplicates converge: the oldest match is kept and the rest are deleted.</li>
+<li><strong>Without a report ID (legacy)</strong>: comments containing <code>[Rubrical](https://github.com/ivanklee86/rubrical) Report</code> and no report-ID marker. The last match is used and any others are left alone, as before.</li>
+<li>In both scopes, a 404 on <code>edit()</code> (the comment was deleted concurrently) falls back to creating a new comment, and a 404 on <code>delete()</code> counts as done. Every comment ID found, created, edited or deleted is logged through the <code>rubrical.reporters.gh</code> logger.</li>
+</ul>
+<h2 id="common-changes">Common changes</h2>
+<p><strong>Add a package manager</strong>
+1. Add a value to <code>SupportedPackageManagers</code> in <code>enum.py</code>.
+2. Create <code>package_managers/&lt;name&gt;.py</code> that subclasses <code>BasePackageManager</code>.
+3. Register the class in <code>PACKAGE_MANAGER_MAPPING</code> in <code>rubrical.py</code>.
+4. Add fixtures under <code>tests/files/&lt;name&gt;/</code> and a test in <code>tests/unit/package_managers/</code>. Add entries to <code>tests/files/rubrical*.yaml</code> if integration coverage is wanted.</p>
+<p><strong>Add a language</strong>
+1. Add a value to <code>SupportedLanguages</code> in <code>enum.py</code>, and to <code>VersionDialect</code> if its version syntax is new (then add a comparator and an alternatives splitter to <code>DIALECTS</code> in <code>comparisons/lower_bound.py</code>, following the official spec).
+2. Create <code>languages/&lt;name&gt;.py</code> that subclasses <code>BaseLanguage</code>.
+3. Register the class in <code>LANGUAGE_MAPPING</code> in <code>rubrical.py</code>.
+4. Add fixtures under <code>tests/files/</code>, parser cases to <code>tests/unit/comparisons/test_lower_bound.py</code>, a test in <code>tests/unit/languages/</code>, and expected results to <code>tests/files/rubrical-languages.yaml</code> and <code>test_rubrical_languages</code>.</p>
+<p><strong>Add a version file for an existing language</strong>
+1. Add a reader to <code>languages/version_files.py</code> that follows the owning tool's source, and returns one entry per version.
+2. Add the file name to the language's <code>target_files</code> and dispatch on it in <code>parse_file</code>, using <code>version_files.declaration()</code> with <code>VERSION_FILE</code> (or a new dialect if lines can hold ranges).
+3. Add fixtures under <code>tests/files/version-files/</code>, reader cases to <code>tests/unit/languages/test_language_version_files.py</code>, and expected results to <code>test_rubrical_languages</code>.</p>
+<p><strong>Add a comparison type</strong>
+1. Add a value to <code>PackageTypes</code>.
+2. Create a module in <code>comparisons/</code> that returns <code>PackageCheck</code>. Use <code>utils.results_to_status</code> and <code>utils.max_status</code>.
+3. Add a branch for it in <code>comparisons/__init__.check_package</code>.</p>
+<h2 id="dev-workflow">Dev workflow</h2>
+<ul>
+<li>Tooling is <code>uv</code> and <a href="https://taskfile.dev">Task</a>. The commands are:</li>
+<li><code>task python:install</code></li>
+<li><code>task python:fmt</code>, which runs <code>ruff format</code> and <code>ruff check --fix</code></li>
+<li><code>task python:lint</code>, which runs <code>ruff</code> and <code>ty check</code></li>
+<li><code>task python:test</code>, which runs <code>pytest tests/unit tests/integration</code></li>
+<li><code>task docs:test</code>, which runs <code>mkdocs build --strict</code></li>
+<li>Tests use fixture repos in <code>tests/files/</code>. Unit tests instantiate a manager, then call <code>read_package_manager_files(path)</code> and <code>parse_package_manager_files()</code>, then assert on <code>.packages[relpath]</code>. Integration tests drive <code>main.app</code> through <code>typer.testing.CliRunner</code> with <code>--target tests/</code>. The GitHub reporter's logic is unit tested offline in <code>tests/unit/reporters/test_gh.py</code> against an in-memory fake of PyGithub. Live GitHub tests are marked <code>github</code>, need <code>RUBRICAL_TEST_GITHUB_ACCESS_TOKEN</code> (without it they skip, and <code>-rs</code> lists them), and target PR #27 of <code>ivanklee86/rubrical</code>. They use the <code>github_report</code> fixture in <code>tests/fixtures.py</code>, which gives each test a unique report ID (<code>test-&lt;run id&gt;-&lt;attempt&gt;-&lt;test&gt;-&lt;random&gt;</code>), so concurrent CI runs never touch each other's comments. The fixture deletes only that test's comments at teardown, and at setup it sweeps <code>test-</code> comments older than 6 hours that were left by cancelled runs. Run <code>pytest -o log_cli=true -m github</code> to watch the comment IDs each test touches.</li>
+<li>The version comes from <code>setuptools_scm</code> and is written to <code>rubrical/_version.py</code>, which is untracked. The Docker image (<code>Dockerfile</code>) uses <code>ENTRYPOINT ["rubrical", "grade"]</code>.</li>
+</ul>
+<h2 id="known-quirks">Known quirks</h2>
+<ul>
+<li>Unparseable semver versions (such as branch names) are treated as <code>OK</code>, not <code>NOOP</code>. Language checks don't share this quirk.</li>
+<li><code>go.mod</code>, <code>pyproject.toml</code> and <code>package.json</code> are read twice when both a package manager and a language are configured.</li>
+<li>Package names are matched exactly for every manager except Python, so a capitalization difference in a Node.js, Go or Jsonnet name won't match.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["header.autohide", "navigation.tabs", "navigation.path", "navigation.sections", "toc.follow", "search.suggest", "search.share"], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.c21346df.min.js"></script>
+      
+    
+  </body>
+</html>
