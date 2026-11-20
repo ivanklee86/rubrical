@@ -62,16 +62,16 @@ wheels = [
 
 [[package]]
 name = "backrefs"
-version = "8.3"
+version = "8.3.1"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/53/1d/01d5e03463cf724789518b935b1df079d3692e9565b7f41d5c289295b2a3/backrefs-8.3.tar.gz", hash = "sha256:bc87b4350f11cc6bf31a2f793dd2f9df577f5c91efaa943627bd261df26506aa", size = 5947408, upload-time = "2026-11-13T00:49:26.625Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/83/8b/7e4adda5f54c16aae9363ace26265cf702f77885d10244e597c4896c12c8/backrefs-8.3.1.tar.gz", hash = "sha256:7b76f39c09d29740a6323be8d613cd9abee3068321c98ba8eb871ed23428eb20", size = 5947622, upload-time = "2026-11-20T13:20:19.038Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/b0/ed/960d7997ce9f41481ad50ce8b22ad3343c67510e15e687cfa0b47ece00a1/backrefs-8.3-py310-none-any.whl", hash = "sha256:bc7ab9f1f5444d23ce15795700f6a3e621f13d521e0cb87e21204ff1e12b8c5f", size = 386394, upload-time = "2026-11-13T00:49:16.959Z" },
-    { url = "https://files.pythonhosted.org/packages/16/d7/4fcdb17835dc0f3519272d0d54114a4e63081732634c377491f8ba5b73a0/backrefs-8.3-py311-none-any.whl", hash = "sha256:2722cbb6884ecadce4cab992113fa50fc2c28733949104132fcf89dba0ac3290", size = 398389, upload-time = "2026-11-13T00:49:18.566Z" },
-    { url = "https://files.pythonhosted.org/packages/ee/12/3f55cfffe037d84db1b37fee7a91b461ce02b6303417ae6ce4abf82d50c7/backrefs-8.3-py312-none-any.whl", hash = "sha256:f9e7cc5934a9dd89bf1d86a91853120fca7cd32d7861c829c7a449f30100ba99", size = 404182, upload-time = "2026-11-13T00:49:19.881Z" },
-    { url = "https://files.pythonhosted.org/packages/26/ff/690caa4791e08622331c23b4728c80c2bffbf72a189fa1182860d5364f6c/backrefs-8.3-py313-none-any.whl", hash = "sha256:3f4b574b32f08b0c0dedc6ad15c3865ce93f1dca4fb31760e061bc4bac41ff2b", size = 406069, upload-time = "2026-11-13T00:49:21.463Z" },
-    { url = "https://files.pythonhosted.org/packages/54/37/af7a66a70ec5ca0d535950c3807432b9840bf3ec9f98baf1268d08608925/backrefs-8.3-py314-none-any.whl", hash = "sha256:be0de6f9ead4d44839169774643f25e36f4f2b05f7f1850368f5b5147e279e82", size = 418239, upload-time = "2026-11-13T00:49:22.94Z" },
-    { url = "https://files.pythonhosted.org/packages/ba/55/50bb5542709c09673e7d321dd3de828715780e138684ff84c65f04c88c02/backrefs-8.3-py315-none-any.whl", hash = "sha256:3930982530dc3e6c3b45094fdaa246edd59e4e91fd6b2dba61ee821efe1e3101", size = 423672, upload-time = "2026-11-13T00:49:24.871Z" },
+    { url = "https://files.pythonhosted.org/packages/16/23/46b3abba813aa7fe5a8c57ba9eccb956d5f5a453cc7a5ef1463684b5b68a/backrefs-8.3.1-py310-none-any.whl", hash = "sha256:f3013ec3cc3ceb1069fa31c0432c73c2d72d652c03d082b96089745c290e7a10", size = 386417, upload-time = "2026-11-20T13:20:09.649Z" },
+    { url = "https://files.pythonhosted.org/packages/4e/20/3583edc736a9946f5034b30f0d6838f403aa877ea4614e0048d8cb541f60/backrefs-8.3.1-py311-none-any.whl", hash = "sha256:c27c66419b126ecf4d54966ad92f0e3c2a8aff0eac1687f57fe2a1b04fa4d244", size = 398413, upload-time = "2026-11-20T13:20:11.356Z" },
+    { url = "https://files.pythonhosted.org/packages/ab/78/95ca8ff9f8278f846a2d120f1e56a9083967381de584239ab8c7137d2601/backrefs-8.3.1-py312-none-any.whl", hash = "sha256:4f49546f237131515ed25943d1af4c79956425733bb199cb879da56d79ebb77a", size = 404208, upload-time = "2026-11-20T13:20:12.818Z" },
+    { url = "https://files.pythonhosted.org/packages/f7/33/4add6a4f4f48254c9cc7bd8a386ef35ed8ab4a2a9e00c761954f2733a0e2/backrefs-8.3.1-py313-none-any.whl", hash = "sha256:5e3fec5e2d2405da135c8b480df12005e2245500c12a60ffd3f496e4acb7cd79", size = 406094, upload-time = "2026-11-20T13:20:14.4Z" },
+    { url = "https://files.pythonhosted.org/packages/ca/e0/cb4aa24357e79229441ea37467a8ac40f65110b9b178ecf924594999326a/backrefs-8.3.1-py314-none-any.whl", hash = "sha256:d818aea8a704e41c0ce60c619e23e136fd5fe87f0fdf0b601107473c35d2d407", size = 418265, upload-time = "2026-11-20T13:20:15.864Z" },
+    { url = "https://files.pythonhosted.org/packages/66/18/b6566004d8d1f6bcc5079790b8f55b54468ef3a3d875ba8780e60387c182/backrefs-8.3.1-py315-none-any.whl", hash = "sha256:cecce5f4290b0eae0cb30a6e216c539465393218e6596ed164d82d20f2d96a54", size = 423695, upload-time = "2026-11-20T13:20:17.261Z" },
 ]
 
 [[package]]
@@ -1014,11 +1014,11 @@ wheels = [
 
 [[package]]
 name = "phonenumbers"
-version = "9.0.43"
+version = "9.0.44"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/0b/d5/b3ad857b2cdd09c806436b48d2c9afcdde2673475b1a894f74da0db32e75/phonenumbers-9.0.43.tar.gz", hash = "sha256:d4e508ab800c3e5ce219b14be339deb3d55a0ab81af82fea44749fcabd01e908", size = 2314544, upload-time = "2026-11-06T11:43:26.829Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/ca/8e/ba0442ff8d93cc667c971fb592f5414a562481ff9d86855802719cbe7c00/phonenumbers-9.0.44.tar.gz", hash = "sha256:91f44c4085afcb86418b6339502a0957cd643238fad23dee314ea2008c0eaaa4", size = 2314610, upload-time = "2026-11-20T14:25:04.818Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/1b/4c/b33a2189464f0f67215e9c8401cb2931ad3ab3f7c8060929f84fe4970544/phonenumbers-9.0.43-py2.py3-none-any.whl", hash = "sha256:349bc799f15e010e35bd2c7d28149950ae74479cb1e11fb054ed9a95ecb4b437", size = 2596726, upload-time = "2026-11-06T11:43:23.63Z" },
+    { url = "https://files.pythonhosted.org/packages/d2/90/84558cf9f1be59a04f3e76788d65e2c68c980ac0895ec9438fae2ebf2c6c/phonenumbers-9.0.44-py2.py3-none-any.whl", hash = "sha256:8fddbbf98e6b7c4be02f96c132df6b9b1ff6a6976e6a338155bc79c04e5a509e", size = 2596212, upload-time = "2026-11-20T14:24:55.296Z" },
 ]
 
 [[package]]
@@ -1185,15 +1185,15 @@ crypto = [
 
 [[package]]
 name = "pymdown-extensions"
-version = "13.1"
+version = "13.1.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "markdown" },
     { name = "pyyaml" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/47/b0/c98e5189398dc14ad3fa7d8762bed345d9178a6a3a37e2f6bdfb7cce8f53/pymdown_extensions-13.1.tar.gz", hash = "sha256:e1ecec373677483b7324a47e5b4bf2e0c6614fe8dcdab1dcc6a05ecefd9b527d", size = 897600, upload-time = "2026-11-11T14:08:38.819Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/78/59/1759fb252a3e48c14ab4c9a9a00f6236f0b2d731521923bbafb8c22fd739/pymdown_extensions-13.1.1.tar.gz", hash = "sha256:975384d42127906a014ed0770ab7d5b0d747a24f2635b9eba8571791455781d3", size = 902250, upload-time = "2026-11-20T13:39:32.37Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/09/ea/6efb2c6c3dd91156bad5e46c292164a9115a35a83cac285f0ed8e7d3a810/pymdown_extensions-13.1-py3-none-any.whl", hash = "sha256:093d1fab98168526d98fbb17aa5c9da68eef3664324f6b25ebbf78b2709babeb", size = 284594, upload-time = "2026-11-11T14:08:37.03Z" },
+    { url = "https://files.pythonhosted.org/packages/d3/98/23a0d8c91c295e296da75c1b45a647b24b5ae283ac6d29ce6b5e128dca76/pymdown_extensions-13.1.1-py3-none-any.whl", hash = "sha256:eadd3c66e1c44249cde54be202606f52cbf798ffdc334e060ed7d15800bab3a0", size = 286252, upload-time = "2026-11-20T13:39:30.894Z" },
 ]
 
 [[package]]
@@ -1729,11 +1729,11 @@ wheels = [
 
 [[package]]
 name = "soupsieve"
-version = "4.1.2"
+version = "4.1.3"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/17/35/bf779c1cc376bc216a2d94e3b3d9ee48347296af29bedfc6caaf96bc132f/soupsieve-4.1.2.tar.gz", hash = "sha256:c6539a2638f26991463527337e39d630e3cbb86d024f52282a510535b8a7e09f", size = 178884, upload-time = "2026-11-18T17:21:03.858Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/82/77/d59ca6aa338bdd8d880234d15b7c466cb176e44502899a9df81ba2e13cd0/soupsieve-4.1.3.tar.gz", hash = "sha256:13f70186c8f40bf8d0ff7bbab09a18fb149600b465269207b5e5b588f55fda08", size = 181564, upload-time = "2026-11-20T12:58:27.613Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/1e/33/f5082b3c480db024453077592057200955aed2a376327b8921d553404ca7/soupsieve-4.1.2-py3-none-any.whl", hash = "sha256:96b4115212a3abee1f572d62da706cca090b088cb5effa278db5702122e63a2c", size = 59295, upload-time = "2026-11-18T17:21:02.593Z" },
+    { url = "https://files.pythonhosted.org/packages/f6/f7/be207468cac6ad79389f36cf1fce4f2836960df91659979ec486c727bb2e/soupsieve-4.1.3-py3-none-any.whl", hash = "sha256:7a390d1a57d1ab7bb228531e9b8a750a5ebf87db774e0ef6faeeac057d22a5bf", size = 59792, upload-time = "2026-11-20T12:58:26.459Z" },
 ]
 
 [[package]]
