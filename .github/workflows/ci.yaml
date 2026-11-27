@@ -32,7 +32,7 @@ jobs:
           version: 3.54.0 # github-releases/go-task/task
           repo-token: ${{ secrets.GITHUB_TOKEN }}
       - name: Set up uv
-        uses: astral-sh/setup-uv@v10.3.3
+        uses: astral-sh/setup-uv@v10.4.0
         with:
           enable-cache: true
       - name: Install packages
@@ -59,9 +59,9 @@ jobs:
     steps:
       - uses: actions/checkout@v7
       - name: Run pre-commit hooks via prek
-        uses: j178/prek-action@44924fe9ef4a6f88253c4b6b1bf11c689d3ce53d # v3.1.0
+        uses: j178/prek-action@7b101f8338a08d2bd6fdb3625e4e7692428763a3 # v3.1.1
         with:
-          prek-version: v0.5.10
+          prek-version: v0.5.11
   docker:
     runs-on: ubuntu-latest
     permissions:
